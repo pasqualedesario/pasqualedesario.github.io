@@ -81,18 +81,18 @@ section.info a:hover {
 }
 
 section.info h1::selection {
-	background: rgb(255, 255, 0);
-	color: rgb(254, 107, 0);
+	background: rgb(254, 107, 0);
+	color: rgb(255, 255, 255);
 }
 
 section.info p::selection {
 	background: rgb(254, 107, 0);
-	color: rgb(255, 255, 0);
+	color: rgb(255, 255, 255);
 }
 
 section.info a::selection {
-	background: rgb(255, 255, 0);
-	color: rgb(254, 107, 0);
+	background: rgb(254, 107, 0);
+	color: rgb(255, 255, 255);
 }
 
 
@@ -151,7 +151,7 @@ section.contact a:hover {
 }
 
 section.contact a::selection {
-	background: rgb(255, 255, 0);
+	background: rgb(255, 255, 255);
 	color: rgb(254, 107, 0);
 }
 
