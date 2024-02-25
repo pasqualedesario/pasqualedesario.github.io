@@ -95,9 +95,7 @@ section.info a::selection {
 	color: rgb(255, 255, 255);
 }
 
-
 /* contact section */
-/* https://nahuelgerth.de/de/play/organic-grids */
 
 .container {
     width: 100vw;
@@ -154,8 +152,6 @@ section.contact a::selection {
 	background: rgb(255, 255, 255);
 	color: rgb(254, 107, 0);
 }
-
-/* responsive */
 
 /* responsive */
 
