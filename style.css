@@ -1,37 +1,43 @@
 :root {
-	--clr: #000000;
-	--bg: #FFFFFF;
-  }
-  
-  @media (prefers-color-scheme: dark) {
-	:root {
-	  --clr: #FFFFFF;
-	  --bg: #000000;
-	}
-  }
-
-br
-  {
-	  -webkit-user-select: none; /* Safari */        
-	  -moz-user-select: none; /* Firefox */
-	  -ms-user-select: none; /* IE10+/Edge */
-	  user-select: none; /* Standard */
-  }
-
-* {
-	box-sizing: border-box;
+    --clr: #000000;
+    --bg: #FFFFFF;
 }
 
-html, body {
-	margin: 0;
-	padding: 0;
-	background-color: var(--bg);
-	color: var(--clr);
-	font-size: 1.5em;
-	@font-face {
-        font-family: 'Suisse Intl';
-        src: url('SuisseIntl-Regular-WebXL.woff2') format('woff2');
-      }
+@media (prefers-color-scheme: dark) {
+    :root {
+        --clr: #FFFFFF;
+        --bg: #000000;
+    }
+}
+
+br {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--clr);
+    font-size: 1.5em;
+}
+
+@font-face {
+    font-family: 'Suisse Intl';
+    src: url('Suisse/SuisseIntl-Regular-WebXL.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Suisse Works';
+    src: url('Suisse/SuisseWorks-Regular-WebXL.woff2') format('woff2');
 }
 
 h1 {
@@ -67,35 +73,27 @@ section.full-screen {
 
 section.info {
     align-items: center;
-	justify-content:left;
+    justify-content: left;
     background-color: var(--bg);
     padding: 6.25vw;
     color: var(--clr);
 }
 
 .info::selection {
-	background: #000000;
-	color: #ffffff;
+    background: #000000;
+    color: #ffffff;
 }
 
 section.info a:hover {
-	font-style: italic;
-	color:  rgb(175, 175, 175);
+    font-style: italic;
+    color: rgb(175, 175, 175);
 }
 
-section.info h1::selection {
-	background: rgb(175, 175, 175);
-	color: rgb(255, 255, 255);
-}
-
-section.info p::selection {
-	background: rgb(175, 175, 175);
-	color: rgb(255, 255, 255);
-}
-
+section.info h1::selection,
+section.info p::selection,
 section.info a::selection {
-	background: rgb(175, 175, 175);
-	color: rgb(255, 255, 255);
+    background: rgb(175, 175, 175);
+    color: rgb(255, 255, 255);
 }
 
 /* contact section */
@@ -115,10 +113,10 @@ section.info a::selection {
 }
 
 .grid-element {
-	display:flex;
-	align-items: center;
-    justify-content:space-evenly;
-	background-color: rgb(175, 175, 175);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(175, 175, 175);
     mix-blend-mode: normal;
 }
 
@@ -144,32 +142,30 @@ section.contact a {
     font-size: 1.5em;
     color: #ffffff;
     font-weight: bold;
-	mix-blend-mode: normal;
+    mix-blend-mode: normal;
 }
 
 section.contact a:hover {
-	@font-face {
-        font-family: 'Suisse Works';
-        src: url('SuisseWorks-Regular-WebXL.woff2') format('woff2');
-      };
+    font-family: 'Suisse Works', sans-serif;
 }
 
 section.contact a::selection {
-	background: rgb(255, 255, 255);
-	color: rgb(175, 175, 175);
+    background: rgb(255, 255, 255);
+    color: rgb(175, 175, 175);
 }
 
 /* responsive */
 
 @media only screen and (max-width: 768px) {
-    h1, section.contact a, body {
+    h1,
+    section.contact a,
+    body {
         font-size: 1em;
     }
 }
 
 @media only screen and (max-height: 768px) {
-	body {
-		font-size: 0.75em;
-	}
-
+    body {
+        font-size: 0.75em;
+    }
 }
