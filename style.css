@@ -175,4 +175,8 @@ section.contact a::selection {
     body {
         font-size: 1em;
     }
+
+    section.info {
+        padding: 7.5vw;
+    }
 }
