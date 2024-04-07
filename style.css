@@ -28,7 +28,10 @@ html, body {
 	background-color: var(--bg);
 	color: var(--clr);
 	font-size: 1.5em;
-	font-family: 'IBM Plex Mono', monospace;
+	@font-face {
+        font-family: 'Suisse Intl';
+        src: url('SuisseIntl-Regular.woff2') format('woff2');
+      }
 }
 
 h1 {
@@ -145,7 +148,10 @@ section.contact a {
 }
 
 section.contact a:hover {
-	font-style: italic;
+	@font-face {
+        font-family: 'Suisse Works';
+        src: url('SuisseWorks-Regular.woff2') format('woff2');
+      };
 }
 
 section.contact a::selection {
