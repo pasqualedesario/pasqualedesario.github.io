@@ -28,6 +28,7 @@ body {
     background-color: var(--bg);
     color: var(--clr);
     font-size: 1.5em;
+    font-family: 'Suisse Intl', sans-serif; /* Imposta 'Suisse Intl' come font predefinito */
 }
 
 @font-face {
@@ -40,9 +41,23 @@ body {
     src: url('Suisse/SuisseWorks-Regular-WebXL.woff2') format('woff2');
 }
 
+/* Aggiungi il grassetto solo dove necessario */
+@font-face {
+    font-family: 'Suisse Intl';
+    src: url('Suisse/SuisseIntl-Bold-WebXL.woff2') format('woff2');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Suisse Works';
+    src: url('Suisse/SuisseWorks-Bold-WebXL.woff2') format('woff2');
+    font-weight: bold;
+}
+
 h1 {
     font-size: 1.5em;
     margin: 0px;
+    font-weight: bold;
 }
 
 a {
@@ -85,7 +100,7 @@ section.info {
 }
 
 section.info a:hover {
-    font-style: italic;
+    font-family: 'Suisse Works', serif;
     color: rgb(175, 175, 175);
 }
 
@@ -146,7 +161,7 @@ section.contact a {
 }
 
 section.contact a:hover {
-    font-family: 'Suisse Works', sans-serif;
+    font-family: 'Suisse Works', serif;
 }
 
 section.contact a::selection {
