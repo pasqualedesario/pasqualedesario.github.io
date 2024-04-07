@@ -169,11 +169,11 @@ section.contact a::selection {
 
 /* responsive */
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
     h1,
     section.contact a,
     body {
-        font-size: 1em;
+        font-size: 0.85em;
     }
 
     section.info {
