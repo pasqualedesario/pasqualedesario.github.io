@@ -169,7 +169,7 @@ section.contact a::selection {
 
 /* responsive */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 800px) {
     h1,
     section.contact a,
     body {
