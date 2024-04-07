@@ -30,7 +30,7 @@ html, body {
 	font-size: 1.5em;
 	@font-face {
         font-family: 'Suisse Intl';
-        src: url('SuisseIntl-Regular.woff2') format('woff2');
+        src: url('SuisseIntl-Regular-WebXL.woff2') format('woff2');
       }
 }
 
@@ -150,7 +150,7 @@ section.contact a {
 section.contact a:hover {
 	@font-face {
         font-family: 'Suisse Works';
-        src: url('SuisseWorks-Regular.woff2') format('woff2');
+        src: url('SuisseWorks-Regular-WebXL.woff2') format('woff2');
       };
 }
 
