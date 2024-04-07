@@ -90,7 +90,7 @@ section.info {
     align-items: center;
     justify-content: left;
     background-color: var(--bg);
-    padding: 6.25vw;
+    padding: 10vw;
     color: var(--clr);
 }
 
