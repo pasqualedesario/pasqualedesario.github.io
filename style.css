@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #D2CFC3;
+    color: var(--clr);
+    font-size: 4vw;
+    line-height: 4.5vw;
+    font-family: 'Suisse Intl', sans-serif;
+}
+
+@font-face {
+    font-family: 'Suisse Intl';
+    src: url('Suisse/SuisseIntl-Bold-WebXL.woff2') format('woff2');
+    font-weight: bold;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+}
+
+section.sticky {
+    position: sticky;
+}
+
+section.info {
+    background-color: #D2CFC3;
+    padding: 2vw;
+}
+
+section.info a:hover {
+    text-decoration: underline;
+    color: #EAFF01;
+}
+
+::selection {
+    color: #A9A59B;
+}
+
+section.info a:hover::selection {
+    color: #EAFF01;
+}
+
+.hover-effect {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.hover-effect:hover {
+    background-color: #ff5200;
+}
+
+.hover-effect:hover::selection {
+    background-color: #ff5200;
+}
+
+div.scroll-container {
+    overflow: auto;
+    white-space: nowrap;
+  }
+  
+  div.scroll-container img {
+    max-width: 65%;
+    height: auto;
+    vertical-align: middle;
+  }
+
+  div {
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll; 
+  }
+  
+  div::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
+
+@media (max-width: 768px) {
+    body, h1, section.contact a {
+        font-size: 5.5vw;
+        line-height: 6.1875vw;
+    }
+}
