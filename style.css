@@ -45,7 +45,7 @@ section.info a:hover {
 }
 
 ::selection {
-    color: #A6A6A6;
+    color: #BFBFBF;
 }
 
 section.info a:hover::selection {
