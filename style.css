@@ -9,12 +9,12 @@ html, body {
     color: var(--clr);
     font-size: 4vw;
     line-height: 4.5vw;
-    font-family: 'Suisse Intl', sans-serif;
+    font-family: 'ABC Social', sans-serif;
 }
 
 @font-face {
-    font-family: 'Suisse Intl';
-    src: url('Suisse/SuisseIntl-Bold-WebXL.woff2') format('woff2');
+    font-family: 'ABC Social';
+    src: url('ABCSocial/ABCSocialCondensedEdu-Bold.woff2') format('woff2');
     font-weight: bold;
 }
 
