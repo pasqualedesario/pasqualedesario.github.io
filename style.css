@@ -1,3 +1,4 @@
+/* General styles and responsive design */
 * {
     box-sizing: border-box;
 }
@@ -5,8 +6,8 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #7a7b80;
-    color: var(--clr);
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-size: 4vw;
     line-height: 4.5vw;
     font-family: 'ABC Social', sans-serif;
@@ -18,8 +19,24 @@ html, body {
     font-weight: bold;
 }
 
+/* Dark and light mode colors */
+:root {
+    --bg-color: #FFFFFF;
+    --text-color: #000000;
+    --hover-color: #026126;
+    --selection-color: #bebfc3;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #000000;
+        --text-color: #FFFFFF;
+    }
+}
+
+/* Section styles */
 a {
-    color: #000;
+    color: var(--text-color);
     text-decoration: none;
 }
 
@@ -35,56 +52,60 @@ section.sticky {
 }
 
 section.info {
-    background-color: #7a7b80;
+    background-color: var(--bg-color);
     padding: 2vw;
 }
 
 section.info a:hover {
     text-decoration: underline;
-    color: #EAFF01;
+    color: var(--hover-color);
 }
 
+/* Text selection styles */
 ::selection {
-    color: #bebfc3;
+    color: var(--selection-color);
 }
 
 section.info a:hover::selection {
-    color: #EAFF01;
+    color: var(--hover-color);
 }
 
+/* Hover effects */
 .hover-effect {
     transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .hover-effect:hover {
-    background-color: #ff5200;
+    background-color: #ff8800;
 }
 
 .hover-effect:hover::selection {
-    background-color: #ff5200;
+    background-color: #ff8800;
 }
 
+/* Scrollable container for images */
 div.scroll-container {
     overflow: auto;
     white-space: nowrap;
-  }
-  
-  div.scroll-container img {
+}
+
+div.scroll-container img {
     max-width: 65%;
     height: auto;
     vertical-align: middle;
-  }
+}
 
-  div {
-    -ms-overflow-style: none; /* for Internet Explorer, Edge */
-    scrollbar-width: none; /* for Firefox */
-    overflow-y: scroll; 
-  }
-  
-  div::-webkit-scrollbar {
-    display: none; /* for Chrome, Safari, and Opera */
-  }
+div {
+    -ms-overflow-style: none; /* IE, Edge */
+    scrollbar-width: none; /* Firefox */
+    overflow-y: scroll;
+}
 
+div::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
     body, h1, section.contact a {
         font-size: 5.5vw;
