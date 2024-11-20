@@ -91,7 +91,7 @@ div.scroll-container {
 
 div.scroll-container img {
     max-width: 65%;
-    height: auto;
+    max-height: auto;
     vertical-align: middle;
 }
 
