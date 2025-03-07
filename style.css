@@ -98,15 +98,27 @@ section.sticky {
 
 /* Responsive design for Spinning Wheel */
 @media (max-width: 768px) {
+    .home-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .circle-container {
+        position: relative;
         width: 75vw;
         height: 500vh; /* Adjust height to fit within smaller screens */
+
     }
     .circle-image {
         width: 50px; /* Reduce image size further */
         height: 50px;
     }
-    .about-link {
+    .about-link a {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         font-size: 1.5rem; /* Adjust size for mobile */
     }
 }
