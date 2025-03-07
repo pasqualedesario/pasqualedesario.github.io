@@ -136,7 +136,7 @@ section.sticky {
         top: 5vh;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         text-align: center;
     }
 
@@ -144,7 +144,7 @@ section.sticky {
         bottom: 5vh;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         text-align: center;
     }
 }
@@ -241,8 +241,8 @@ div::-webkit-scrollbar {
 
     section.info {
         max-width: 80vw; /* Aumentato per evitare il testo troppo stretto */
-        font-size: 1.5rem; /* Reso più leggibile su mobile */
-        line-height: 2rem;
+        font-size: 1.2rem; /* Reso più leggibile su mobile */
+        line-height: 1.8rem;
         text-align: left;
         display: flex;
         flex-direction: column;
