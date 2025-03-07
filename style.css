@@ -106,6 +106,12 @@ section.sticky {
         width: 50px; /* Reduce image size further */
         height: 50px;
     }
+    .about-link {
+        font-size: 1.5rem; /* Adjust size for mobile */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Ensures centering on mobile */
+    }
 }
 
 /* About page styles */
@@ -179,7 +185,7 @@ div::-webkit-scrollbar {
 /* Responsive design */
 @media (max-width: 768px) {
     body, h1, section.contact a {
-        font-size: 7.5vw;
-        line-height: 8vw;
+        font-size: 1.5rem;
+        line-height: 2rem;
     }
 }
