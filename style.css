@@ -101,6 +101,9 @@ section.sticky {
     .circle-container {
         width: 75vw;
         height: 500vh; /* Adjust height to fit within smaller screens */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
     .circle-image {
         width: 50px; /* Reduce image size further */
