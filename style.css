@@ -105,7 +105,7 @@ section.sticky {
     }
 
     .circle-container {
-        position: relative;
+        position: absolute;
         width: 75vw;
         height: 500vh; /* Adjust height to fit within smaller screens */
 
