@@ -214,12 +214,12 @@ div::-webkit-scrollbar {
 /* Responsive design */
 @media (max-width: 768px) {
     .about-body {
-        padding: 5vw;
         text-align: left;
         display: flex;
         justify-content: center;
         align-items: center;
     }
+
     section.info {
         max-width: 80vw;
         font-size: 1.2rem;
