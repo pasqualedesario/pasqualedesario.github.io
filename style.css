@@ -10,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #fff;
+    background-color: var(--bg-color);
     overflow: hidden;
     font-family: 'ABC Social', sans-serif;
     color: var(--text-color);
