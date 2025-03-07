@@ -83,6 +83,8 @@ section.sticky {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1vw;
+    text-align: center;
+    line-height: 1.5vw;
     font-weight: bold;
     text-decoration: none;
     color: var(--text-color);
