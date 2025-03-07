@@ -136,7 +136,7 @@ section.sticky {
         top: 5vh;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         text-align: center;
     }
 
@@ -144,7 +144,7 @@ section.sticky {
         bottom: 5vh;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         text-align: center;
     }
 }
@@ -234,18 +234,19 @@ div::-webkit-scrollbar {
         justify-content: center;
         align-items: center;
         overflow: hidden;
+        width: 100%;
+        height: 100%;
+        padding: 5vw;
     }
 
     section.info {
-        top: 5vh;
-        max-width: 90vw;
-        font-size: 1.2rem;
-        line-height: 1.6rem;
+        max-width: 80vw; /* Aumentato per evitare il testo troppo stretto */
+        font-size: 1.5rem; /* Reso più leggibile su mobile */
+        line-height: 2rem;
         text-align: left;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        bottom: 5vh;
     }
 }
