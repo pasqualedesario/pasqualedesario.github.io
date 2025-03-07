@@ -28,7 +28,7 @@ body {
     --text-color: #000000;
     --hover-color: #026126;
     --selection-color: #bebfc3;
-    --about-hover-color: #bebfc3;
+    --about-hover-color: #026126;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -102,6 +102,7 @@ section.sticky {
 
 .site-title:hover, .info-link:hover {
     color: var(--about-hover-color);
+    text-decoration: underline;
 }
 
 /* Responsive design for Spinning Wheel and Text */
@@ -139,22 +140,27 @@ section.sticky {
 
 /* About page styles */
 .about-body {
-    display: block;
-    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
 section.info {
     background-color: var(--bg-color);
-    padding: 2vw;
-    max-width: 90vw;
-    margin: 1.5vw auto;
+    max-width: 75vw; /* Restringe il testo per evitare eccessiva dispersione */
     text-align: left;
-    font-size: 4vw;
-    line-height: 4.5vw;
+    font-size: 3rem;
+    line-height: 3.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Allinea il testo a sinistra */
 }
 
 section.info p {
-    margin-bottom: 2.5vw;
+    margin-bottom: 1.8rem; /* Adds space between paragraphs */
 }
 
 section.info a:hover {
@@ -207,8 +213,21 @@ div::-webkit-scrollbar {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    body, h1, section.contact a {
-        font-size: 1.5rem;
-        line-height: 2rem;
+    .about-body {
+        padding: 5vw;
+        text-align: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    section.info {
+        max-width: 80vw;
+        font-size: 1.2rem;
+        line-height: 1.6rem;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
     }
 }
