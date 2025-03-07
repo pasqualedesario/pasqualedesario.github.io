@@ -225,6 +225,10 @@ div::-webkit-scrollbar {
 /* Responsive design */
 @media (max-width: 768px) {
     .about-body {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         text-align: left;
         display: flex;
         justify-content: center;
