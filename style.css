@@ -1,16 +1,19 @@
 /* General styles and responsive design */
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-size: 4vw;
-    line-height: 4.5vw;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff;
+    overflow: hidden;
     font-family: 'ABC Social', sans-serif;
+    color: var(--text-color);
 }
 
 @font-face {
@@ -25,6 +28,7 @@ html, body {
     --text-color: #000000;
     --hover-color: #026126;
     --selection-color: #bebfc3;
+    --about-hover-color: #bebfc3;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -51,9 +55,77 @@ section.sticky {
     position: sticky;
 }
 
+/* Home specific styles (Spinning Wheel) */
+.home-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.circle-container {
+    position: relative;
+    width: 90vh;
+    height: 90vh;
+}
+
+.circle-image {
+    position: absolute;
+    width: 125x;
+    height: 125px;
+    object-fit: contain;
+}
+
+.about-link a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4vw;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--text-color);
+    pointer-events: auto;
+    transition: color 0.3s ease;
+    z-index: 10;
+}
+
+.about-link a:hover {
+    color: var(--about-hover-color);
+    text-decoration: underline;
+}
+
+/* Responsive design for Spinning Wheel */
+@media (max-width: 768px) {
+    .circle-container {
+        width: 75vw;
+        height: 500vh; /* Adjust height to fit within smaller screens */
+    }
+    .circle-image {
+        width: 50px; /* Reduce image size further */
+        height: 50px;
+    }
+}
+
+/* About page styles */
+.about-body {
+    display: block;
+    overflow: auto;
+}
+
 section.info {
     background-color: var(--bg-color);
     padding: 2vw;
+    max-width: 90vw;
+    margin: 1.5vw auto;
+    text-align: left;
+    font-size: 4vw;
+    line-height: 4.5vw;
+}
+
+section.info p {
+    margin-bottom: 2.5vw;
 }
 
 section.info a:hover {
@@ -98,7 +170,6 @@ div.scroll-container img {
 div {
     -ms-overflow-style: none; /* IE, Edge */
     scrollbar-width: none; /* Firefox */
-    overflow-y: scroll;
 }
 
 div::-webkit-scrollbar {
