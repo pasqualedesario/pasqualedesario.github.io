@@ -179,7 +179,7 @@ div::-webkit-scrollbar {
 /* Responsive design */
 @media (max-width: 768px) {
     body, h1, section.contact a {
-        font-size: 5.5vw;
-        line-height: 6.1875vw;
+        font-size: 7.5vw;
+        line-height: 8vw;
     }
 }
