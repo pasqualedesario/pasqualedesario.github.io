@@ -107,7 +107,7 @@ section.sticky {
     }
 
     .circle-container {
-        position: absolute;
+        position: relative;
         width: 75vw;
         height: 500vh; /* Adjust height to fit within smaller screens */
 
@@ -118,6 +118,9 @@ section.sticky {
     }
     .about-link a {
         position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         font-size: 1.5rem; /* Adjust size for mobile */
     }
 }
