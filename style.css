@@ -26,9 +26,9 @@ body {
 :root {
     --bg-color: #FFFFFF;
     --text-color: #000000;
-    --hover-color: #026126;
+    --hover-color: #ff5200;
     --selection-color: #bebfc3;
-    --about-hover-color: #026126;
+    --about-hover-color: #ff5200;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -194,11 +194,11 @@ section.info a:hover::selection {
 }
 
 .hover-effect:hover {
-    background-color: #ff8800;
+    background-color: #ff5200;
 }
 
 .hover-effect:hover::selection {
-    background-color: #ff8800;
+    background-color: #ff5200;
 }
 
 /* Scrollable container for images */
