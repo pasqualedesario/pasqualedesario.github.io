@@ -194,11 +194,11 @@ section.info a:hover::selection {
 }
 
 .hover-effect:hover {
-    background-color: #ff5200;
+    color: var(--hover-color);
 }
 
 .hover-effect:hover::selection {
-    background-color: #ff5200;
+    color: var(--hover-color);
 }
 
 /* Scrollable container for images */
