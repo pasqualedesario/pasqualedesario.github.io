@@ -250,7 +250,7 @@ section.sticky {
     .site-title {
         position: absolute;
         top: 2vh;
-        left: 2vh; /* CORRETTO */
+        left: 5vw; 
         font-size: 1.25rem;
         font-weight: bold;
         text-decoration: none;
