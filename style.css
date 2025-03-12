@@ -186,7 +186,6 @@ section.sticky {
 
 .intro-text {
     font-family: 'ABC Social Book', sans-serif;
-    font-weight: normal;
     font-size: 1.5rem;
     line-height: 2rem;
     text-align: left;
@@ -194,7 +193,6 @@ section.sticky {
 
 .small-text {
     font-family: 'ABC Social Book', sans-serif;
-    font-weight: normal;
     font-size: 1.25rem;
     line-height: 1.5rem;
     text-align: left;
@@ -252,7 +250,6 @@ section.sticky {
         top: 2vh;
         left: 5vw; 
         font-size: 1.25rem;
-        font-weight: bold;
         text-decoration: none;
         color: var(--text-color);
         z-index: 20;
