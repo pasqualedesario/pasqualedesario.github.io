@@ -78,8 +78,8 @@ section.sticky {
 
 .circle-image {
     position: absolute;
-    width: 150px;
-    height: 150px;
+    width: 7.5vw;
+    height: 7.5vw;
     object-fit: contain;
 }
 
