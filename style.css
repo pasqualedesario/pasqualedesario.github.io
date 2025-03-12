@@ -78,8 +78,8 @@ section.sticky {
 
 .circle-image {
     position: absolute;
-    width: 125px;
-    height: 125px;
+    width: 150px;
+    height: 15px;
     object-fit: contain;
 }
 
@@ -89,7 +89,7 @@ section.sticky {
     top: 2vh;
     left: 2vh;
     font-size: 1.5rem;
-    font-weight: bold;
+    font-family: 'ABC Social';
     text-decoration: none;
     color: var(--text-color);
     z-index: 20;
@@ -100,7 +100,7 @@ section.sticky {
     bottom: 2vh;
     right: 2vh;
     font-size: 1.5rem;
-    font-weight: bold;
+    font-family: 'ABC Social';
     text-decoration: none;
     color: var(--text-color);
     z-index: 20;
