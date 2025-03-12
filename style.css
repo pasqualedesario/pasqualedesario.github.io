@@ -22,6 +22,12 @@ body {
     font-weight: bold;
 }
 
+@font-face {
+    font-family: 'ABC Social Book';
+    src: url('ABCSocial/ABCSocialCondensedEdu-Book.woff2') format('woff2');
+    font-weight: normal;
+}
+
 /* Dark and light mode colors */
 :root {
     --bg-color: #FFFFFF;
@@ -72,7 +78,7 @@ section.sticky {
 
 .circle-image {
     position: absolute;
-    width: 125x;
+    width: 125px;
     height: 125px;
     object-fit: contain;
 }
@@ -120,8 +126,8 @@ section.sticky {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 75vw; /* Larghezza proporzionata */
-        height: 75vw; /* Altezza proporzionata */
+        width: 75vw;
+        height: 75vw;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -133,50 +139,141 @@ section.sticky {
     }
 
     .site-title {
-        top: 5vh;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 1.2rem;
-        text-align: center;
+        position: absolute;
+        top: 2vh;
+        left: 2vh; /* CORRETTO */
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--text-color);
+        z-index: 20;
     }
 
     .info-link {
-        bottom: 5vh;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 1.2rem;
-        text-align: center;
+        position: fixed;
+        bottom: 4vh;
+        left: 5vw;
+        right: 5vw;
+        margin-bottom: 0;
+        font-size: 1.25rem;
+        text-align: right;
     }
 }
 
-/* About page styles */
+/* About page layout */
 .about-body {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
     height: 100vh;
+    width: 100vw;
     overflow: hidden;
+    position: relative;
+    padding: 2vh 2vw;
 }
 
-section.info {
-    background-color: var(--bg-color);
-    max-width: 75vw; /* Restringe il testo per evitare eccessiva dispersione */
-    text-align: left;
-    font-size: 3rem;
-    line-height: 3.6rem;
+.right-column {
+    position: absolute;
+    top: 2vh;
+    left: 50%;
+    width: 45vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start; /* Allinea il testo a sinistra */
+    justify-content: space-between;
+    height: calc(100vh - 4vh);
 }
 
-section.info p {
-    margin-bottom: 1.8rem; /* Adds space between paragraphs */
+.intro-text {
+    font-family: 'ABC Social Book', sans-serif;
+    font-weight: normal;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: left;
 }
 
-section.info a:hover {
-    text-decoration: underline;
+.small-text {
+    font-family: 'ABC Social Book', sans-serif;
+    font-weight: normal;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    text-align: left;
+}
+
+.typeset-note {
+    display: block;
+    margin-top: 2vh; /* o una misura a piacere per separare dai link */
+}
+
+/* Hover links in about sections */
+.intro-text a,
+.small-text a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+/* Hover effect */
+.intro-text a:hover,
+.small-text a:hover {
     color: var(--hover-color);
+    text-decoration: underline;
+}
+
+/* Selection color on hover (optional, to match other hovers) */
+.intro-text a:hover::selection,
+.small-text a:hover::selection {
+    color: var(--hover-color);
+}
+
+/* Responsive design for About */
+@media (max-width: 768px) {
+    .about-body {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 5vw;
+        height: auto;
+    }
+
+    .right-column {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: auto;
+        margin-top: 4vh;
+        padding-bottom: calc(4vh + 3rem); /* per evitare che il testo vada sotto ai link fissati */
+    }
+
+    .site-title {
+        position: absolute;
+        top: 2vh;
+        left: 2vh; /* CORRETTO */
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--text-color);
+        z-index: 20;
+    }
+
+    .intro-text {
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        margin-bottom: 4vh;
+    }
+
+    .small-text {
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        margin-bottom: 4vh;
+        position: fixed;
+        bottom: 4vh; /* stesso margine della site-title */
+        left: 5vw; /* uguale al padding della pagina */
+        right: 5vw;
+        margin-bottom: 0; /* reset di eventuali margini */
+    }
 }
 
 /* Text selection styles */
@@ -214,39 +311,10 @@ div.scroll-container img {
 }
 
 div {
-    -ms-overflow-style: none; /* IE, Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 div::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .about-body {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: left;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-        padding: 5vw;
-    }
-
-    section.info {
-        max-width: 80vw; /* Aumentato per evitare il testo troppo stretto */
-        font-size: 1.2rem; /* Reso più leggibile su mobile */
-        line-height: 1.8rem;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-    }
+    display: none;
 }
