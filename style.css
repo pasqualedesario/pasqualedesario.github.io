@@ -157,10 +157,9 @@ section.sticky {
 
     .info-link {
         position: fixed;
-        bottom: 4vh;
+        bottom: 2vh;
         left: 5vw;
         right: 5vw;
-        margin-bottom: 0;
         font-size: 1.25rem;
         text-align: right;
     }
