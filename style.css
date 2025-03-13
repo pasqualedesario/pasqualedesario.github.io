@@ -284,9 +284,8 @@ section.sticky {
     .small-text {
         font-size: 1.25rem;
         line-height: 1.5rem;
-        margin-bottom: 4vh;
         position: fixed;
-        bottom: 4vh; /* stesso margine della site-title */
+        bottom: 2vh; /* stesso margine della site-title */
         left: 5vw; /* uguale al padding della pagina */
         right: 5vw;
         margin-bottom: 0; /* reset di eventuali margini */
