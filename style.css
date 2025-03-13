@@ -13,6 +13,7 @@ body {
     background-color: var(--bg-color);
     overflow: hidden;
     font-family: 'ABC Social', sans-serif;
+    font-feature-settings: "ss03";
     color: var(--text-color);
 }
 
@@ -72,8 +73,10 @@ section.sticky {
 
 .circle-container {
     position: relative;
-    width: 90vh;
-    height: 90vh;
+    width: 90vw; /* Adatta alla larghezza del viewport */
+    height: 90vw; /* Uguale per circolarità */
+    max-width: 90vh; /* Non superare l'altezza disponibile */
+    max-height: 90vh;
 }
 
 .circle-image {
@@ -90,6 +93,7 @@ section.sticky {
     left: 2vh;
     font-size: 1.5rem;
     font-family: 'ABC Social';
+    font-feature-settings: "ss03";
     text-decoration: none;
     color: var(--text-color);
     z-index: 20;
@@ -101,6 +105,7 @@ section.sticky {
     right: 2vh;
     font-size: 1.5rem;
     font-family: 'ABC Social';
+    font-feature-settings: "ss03";
     text-decoration: none;
     color: var(--text-color);
     z-index: 20;
@@ -118,6 +123,7 @@ section.sticky {
         justify-content: center;
         align-items: center;
         height: 100vh;
+        width: 50vw;
         overflow: hidden;
     }
 
@@ -186,6 +192,7 @@ section.sticky {
 
 .intro-text {
     font-family: 'ABC Social Book', sans-serif;
+    font-feature-settings: "ss03";
     font-size: 1.5rem;
     line-height: 2rem;
     text-align: left;
@@ -193,14 +200,27 @@ section.sticky {
 
 .small-text {
     font-family: 'ABC Social Book', sans-serif;
+    font-feature-settings: "ss03";
     font-size: 1.25rem;
     line-height: 1.5rem;
     text-align: left;
 }
 
+/* Per separare bene location + mail dai social */
+.location-mail {
+    display: inline-block;
+}
+
+/* Per avere una gestione autonoma, anche se ora non serve margine */
+.social-links {
+    display: inline-block;
+    margin-top: 2vh;
+}
+
+/* Già esistente, mantiene spazio sopra la parte finale */
 .typeset-note {
     display: block;
-    margin-top: 2vh; /* o una misura a piacere per separare dai link */
+    margin-top: 2vh;
 }
 
 /* Hover links in about sections */
