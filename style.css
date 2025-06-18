@@ -12,30 +12,28 @@ body {
     height: 100vh;
     background-color: var(--bg-color);
     overflow: hidden;
-    font-family: 'ABC Social', sans-serif;
-    font-feature-settings: "ss03";
     color: var(--text-color);
 }
 
 @font-face {
-    font-family: 'ABC Social';
-    src: url('ABCSocial/ABCSocialCondensedEdu-Bold.woff2') format('woff2');
-    font-weight: bold;
+    font-family: 'Times Now-SemiBold';
+    src: url('Times_Now/TimesNow-SemiBold.woff2') format('woff2');
+    font-weight: normal;
 }
 
 @font-face {
-    font-family: 'ABC Social Book';
-    src: url('ABCSocial/ABCSocialCondensedEdu-Book.woff2') format('woff2');
-    font-weight: normal;
+    font-family: 'Times Now-ExtraBold';
+    src: url('Times_Now/TimesNow-ExtraBold.woff2') format('woff2');
+    font-weight: bold;
 }
 
 /* Dark and light mode colors */
 :root {
     --bg-color: #FFFFFF;
     --text-color: #000000;
-    --hover-color: #ff5200;
+    --hover-color: #bebfc3;
     --selection-color: #bebfc3;
-    --about-hover-color: #ff5200;
+    --about-hover-color: #bebfc3;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -92,8 +90,8 @@ section.sticky {
     top: 2vh;
     left: 2vh;
     font-size: 1.25rem;
-    font-family: 'ABC Social';
-    font-feature-settings: "ss03";
+    font-family: 'Times Now-ExtraBold';
+    letter-spacing: .025rem;
     text-decoration: none;
     color: var(--text-color);
     z-index: 20;
@@ -104,8 +102,8 @@ section.sticky {
     bottom: 2vh;
     right: 2vh;
     font-size: 1.25rem;
-    font-family: 'ABC Social';
-    font-feature-settings: "ss03";
+    font-family: 'Times Now-ExtraBold';
+    letter-spacing: .025rem;
     text-decoration: none;
     color: var(--text-color);
     z-index: 20;
@@ -113,7 +111,6 @@ section.sticky {
 
 .site-title:hover, .info-link:hover {
     color: var(--about-hover-color);
-    text-decoration: underline;
 }
 
 /* Responsive design for Spinning Wheel and Text */
@@ -149,6 +146,7 @@ section.sticky {
         top: 2vh;
         left: 2vh; 
         font-size: 1.25rem;
+        letter-spacing: .025rem;
         font-weight: bold;
         text-decoration: none;
         color: var(--text-color);
@@ -161,6 +159,7 @@ section.sticky {
         left: 5vw;
         right: 5vw;
         font-size: 1.25rem;
+        letter-spacing: .025rem;
         text-align: right;
     }
 }
@@ -190,18 +189,18 @@ section.sticky {
 }
 
 .intro-text {
-    font-family: 'ABC Social Book', sans-serif;
-    font-feature-settings: "ss03";
+    font-family: 'Times Now-SemiBold';
     font-size: 1.25rem;
     line-height: 1.5rem;
+    letter-spacing: .025rem;
     text-align: left;
 }
 
 .small-text {
-    font-family: 'ABC Social Book', sans-serif;
-    font-feature-settings: "ss03";
+    font-family: 'Times Now-SemiBold';
     font-size: 1.25rem;
     line-height: 1.5rem;
+    letter-spacing: .025rem;
     text-align: left;
 }
 
@@ -236,7 +235,6 @@ section.sticky {
 .intro-text a:hover,
 .small-text a:hover {
     color: var(--hover-color);
-    text-decoration: underline;
 }
 
 /* Selection color on hover (optional, to match other hovers) */
@@ -269,6 +267,7 @@ section.sticky {
         top: 2vh;
         left: 5vw; 
         font-size: 1.25rem;
+        letter-spacing: .025rem;
         text-decoration: none;
         color: var(--text-color);
         z-index: 20;
@@ -277,12 +276,14 @@ section.sticky {
     .intro-text {
         font-size: 1.25rem;
         line-height: 1.5rem;
+        letter-spacing: .025rem;
         margin-bottom: 4vh;
     }
 
     .small-text {
         font-size: 1.25rem;
         line-height: 1.5rem;
+        letter-spacing: .025rem;
         position: fixed;
         bottom: 2vh; /* stesso margine della site-title */
         left: 5vw; /* uguale al padding della pagina */
