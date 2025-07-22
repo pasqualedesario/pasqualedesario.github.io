@@ -89,9 +89,8 @@ section.sticky {
     position: absolute;
     top: 2vh;
     left: 2vh;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-family: 'Ronzino–Bold';
-    letter-spacing: .025rem;
     text-decoration: none;
     color: var(--text-color);
     z-index: 20;
@@ -101,9 +100,8 @@ section.sticky {
     position: absolute;
     bottom: 2vh;
     right: 2vh;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-family: 'Ronzino–Bold';
-    letter-spacing: .025rem;
     text-decoration: none;
     color: var(--text-color);
     z-index: 20;
@@ -188,17 +186,15 @@ section.sticky {
 
 .intro-text {
     font-family: 'Ronzino–Regular';
-    font-size: 1.25rem;
-    line-height: 1.5rem;
-    letter-spacing: .025rem;
+    font-size: 1.15rem;
+    line-height: 1.38rem;
     text-align: left;
 }
 
 .small-text {
     font-family: 'Ronzino–Regular';
-    font-size: 1.25rem;
-    line-height: 1.5rem;
-    letter-spacing: .025rem;
+    font-size: 1.15rem;
+    line-height: 1.38rem;
     text-align: left;
 }
 
