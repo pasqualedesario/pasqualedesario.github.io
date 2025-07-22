@@ -16,14 +16,14 @@ body {
 }
 
 @font-face {
-    font-family: 'Times Now-SemiBold';
-    src: url('Times_Now/TimesNow-SemiBold.woff2') format('woff2');
+    font-family: 'Ronzino–Regular';
+    src: url('Ronzino/Ronzino-Regular.woff2') format('woff2');
     font-weight: normal;
 }
 
 @font-face {
-    font-family: 'Times Now-ExtraBold';
-    src: url('Times_Now/TimesNow-ExtraBold.woff2') format('woff2');
+    font-family: 'Ronzino–Bold';
+    src: url('Ronzino/Ronzino-Bold.woff2') format('woff2');
     font-weight: bold;
 }
 
@@ -90,7 +90,7 @@ section.sticky {
     top: 2vh;
     left: 2vh;
     font-size: 1.25rem;
-    font-family: 'Times Now-ExtraBold';
+    font-family: 'Ronzino–Bold';
     letter-spacing: .025rem;
     text-decoration: none;
     color: var(--text-color);
@@ -102,7 +102,7 @@ section.sticky {
     bottom: 2vh;
     right: 2vh;
     font-size: 1.25rem;
-    font-family: 'Times Now-ExtraBold';
+    font-family: 'Ronzino–Bold';
     letter-spacing: .025rem;
     text-decoration: none;
     color: var(--text-color);
@@ -187,7 +187,7 @@ section.sticky {
 }
 
 .intro-text {
-    font-family: 'Times Now-SemiBold';
+    font-family: 'Ronzino–Regular';
     font-size: 1.25rem;
     line-height: 1.5rem;
     letter-spacing: .025rem;
@@ -195,7 +195,7 @@ section.sticky {
 }
 
 .small-text {
-    font-family: 'Times Now-SemiBold';
+    font-family: 'Ronzino–Regular';
     font-size: 1.25rem;
     line-height: 1.5rem;
     letter-spacing: .025rem;
