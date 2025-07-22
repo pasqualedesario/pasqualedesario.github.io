@@ -145,7 +145,7 @@ section.sticky {
         position: absolute;
         top: 2vh;
         left: 2vh; 
-        font-size: 1.15rem;
+        font-size: 1rem;
         font-weight: bold;
         text-decoration: none;
         color: var(--text-color);
@@ -157,7 +157,7 @@ section.sticky {
         bottom: 2vh;
         left: 5vw;
         right: 5vw;
-        font-size: 1.15rem;
+        font-size: 1rem;
         text-align: right;
     }
 }
@@ -264,19 +264,21 @@ section.sticky {
         position: absolute;
         top: 2vh;
         left: 5vw; 
-        font-size: 1.15rem;
+        font-size: 1rem;
         text-decoration: none;
         color: var(--text-color);
         z-index: 20;
     }
 
     .intro-text {
-        font-size: 1.15rem;
+        font-size: 1rem;
+        line-height: 1.2rem;
         margin-bottom: 4vh;
     }
 
     .small-text {
-        font-size: 1.15rem;
+        font-size: 1rem;
+        line-height: 1.2rem;
         position: fixed;
         bottom: 2vh; /* stesso margine della site-title */
         left: 5vw; /* uguale al padding della pagina */
