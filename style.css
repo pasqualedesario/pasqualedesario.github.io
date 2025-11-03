@@ -187,14 +187,14 @@ section.sticky {
 .intro-text {
     font-family: 'Ronzino–Regular';
     font-size: 1.15rem;
-    line-height: 1.38rem;
+    line-height: 1.5rem;
     text-align: left;
 }
 
 .small-text {
     font-family: 'Ronzino–Regular';
     font-size: 1.15rem;
-    line-height: 1.38rem;
+    line-height: 1.5rem;
     text-align: left;
 }
 
@@ -268,13 +268,13 @@ section.sticky {
 
     .intro-text {
         font-size: 1rem;
-        line-height: 1.2rem;
+        line-height: 1.3rem;
         margin-bottom: 4vh;
     }
 
     .small-text {
         font-size: 1rem;
-        line-height: 1.2rem;
+        line-height: 1.3rem;
         position: fixed;
         bottom: 2vh; /* stesso margine della site-title */
         left: 5vw; /* uguale al padding della pagina */
