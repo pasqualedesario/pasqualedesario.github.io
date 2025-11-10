@@ -1,13 +1,3 @@
-/* Margine inferiore simmetrico all'altezza del titolo in alto */
-.info-bottom-margin {
-    height: 0;
-}
-
-@media (max-width: 768px) {
-    .info-bottom-margin {
-        height: 0;
-    }
-}
 :root {
     --color-white: #FFFFFF;
     --color-black: #000000;
@@ -740,6 +730,17 @@ div::-webkit-scrollbar {
     font-feature-settings: "lnum" 1, "onum" 0;
 }
 
+/* Margine inferiore simmetrico all'altezza del titolo in alto */
+.info-bottom-margin {
+    height: 0;
+}
+
+@media (max-width: 768px) {
+    .info-bottom-margin {
+        height: 0;
+    }
+}
+
 @media (max-width: 768px) {
     .info-overlay-blur {
         width: 100%;
@@ -934,6 +935,13 @@ div::-webkit-scrollbar {
 /* --- Allineamento e spaziatura uniforme Info --- */
 .info-body .intro-text {
   margin-bottom: 1vh; /* spazio coerente sotto About */
+}
+
+/* Simbolo grado abbassato per allineamento con maiuscoletto */
+.grado-basso {
+    position: relative;
+    top: 1px;
+    font-size: inherit;
 }
 
 .info-body .small-text {

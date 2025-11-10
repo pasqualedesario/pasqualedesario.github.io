@@ -535,18 +535,18 @@ function updateFooterDateTime() {
         .find(part => part.type === 'timeZoneName')?.value || 'UTC';
     
     let dateTimeString = `bari, ${day} ${month} ${year}, ${hours}:${minutes}:${seconds} ${timezone.toLowerCase()}`;
-    
+
     // Add temperature if available (use placeholder to maintain width)
     if (currentTemperature !== null) {
-        dateTimeString += `, ${currentTemperature}°c`;
+        dateTimeString += `, ${currentTemperature}<span class="grado-basso">°</span>c`;
     } else {
-        dateTimeString += `, --°c`;
+        dateTimeString += `, --<span class="grado-basso">°</span>c`;
     }
-    
-    // Update all datetime elements
+
+    // Update all datetime elements (HTML, non textContent)
     const dateTimeElements = document.querySelectorAll('.footer-datetime');
     dateTimeElements.forEach(el => {
-        el.textContent = dateTimeString;
+        el.innerHTML = dateTimeString;
     });
 }
 
