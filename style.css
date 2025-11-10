@@ -1,10 +1,3 @@
-    /* Fix per iOS notch e Chrome/Safari font-weight */
-    @supports(padding-bottom: env(safe-area-inset-bottom)) {
-        .info-body {
-            padding-bottom: calc(1vh + env(safe-area-inset-bottom, 0px)) !important;
-        }
-    }
-
 :root {
     --color-white: #FFFFFF;
     --color-black: #000000;
@@ -713,7 +706,7 @@ div::-webkit-scrollbar {
     margin-top: calc(1vh + 1.5rem);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex: 1;
     height: calc(100% - 1vh - 1.5rem);
     overflow-y: auto;
@@ -724,7 +717,7 @@ div::-webkit-scrollbar {
 }
 
 .info-body .small-text {
-    margin-top: auto;
+    margin-top: var(--line-height-base);
     align-self: flex-start;
 }
 
@@ -825,9 +818,9 @@ div::-webkit-scrollbar {
     }
     
     .info-body .small-text {
-        margin-top: 0;
-        align-self: flex-start;
-    }
+         margin-top: var(--line-height-mobile-base);
+         align-self: flex-start;
+}
 }
 
 /* Footer Marquee */
@@ -920,4 +913,36 @@ div::-webkit-scrollbar {
         transform: translateZ(0);
         -webkit-transform: translateZ(0);
     }
+}
+/* --- Allineamento e spaziatura uniforme Info --- */
+.info-body .intro-text {
+  margin-bottom: 1.25rem; /* spazio coerente sotto About */
+}
+
+.info-body .small-text {
+  margin-top: 0; /* elimina il margine doppio sopra Experience */
+}
+
+.info-body .small-text > * {
+  margin: 0;
+  margin-bottom: 1rem; /* spazio fisso e uniforme tra Experience, Education, Contact, ecc. */
+}
+
+.info-body .small-text > *:last-child {
+  margin-bottom: 0; /* nessuno spazio dopo l'ultima riga (Typeset note) */
+}
+
+/* versione mobile */
+@media (max-width: 768px) {
+  .info-body .intro-text {
+    margin-bottom: 1rem;
+  }
+
+  .info-body .small-text {
+    margin-top: 0;
+  }
+
+  .info-body .small-text > * {
+    margin-bottom: 0.9rem;
+  }
 }
