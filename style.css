@@ -751,7 +751,6 @@ div::-webkit-scrollbar {
         justify-content: space-between;
         flex: 1;
         height: calc(100% - 1vh - 1.3rem);
-        overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
     }
