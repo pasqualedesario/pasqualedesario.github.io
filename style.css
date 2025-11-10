@@ -717,6 +717,8 @@ div::-webkit-scrollbar {
 
     .info-overlay {
         height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
+        position: fixed;
+        overflow: hidden;
     }
 
     .info-overlay-content {
@@ -751,6 +753,7 @@ div::-webkit-scrollbar {
         justify-content: space-between;
         flex: 1;
         height: calc(100% - 1vh - 1.3rem);
+        overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
     }
