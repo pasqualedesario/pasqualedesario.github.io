@@ -532,14 +532,14 @@ section.sticky {
     }
 
     .intro-text {
-        font-size: 1rem;
-        line-height: 1.3rem;
+        font-size: 0.95rem;
+        line-height: 1.25rem;
         margin-bottom: 2vh;
     }
 
     .small-text {
-        font-size: 1rem;
-        line-height: 1.3rem;
+        font-size: 0.95rem;
+        line-height: 1.25rem;
         position: relative;
         bottom: auto;
         left: auto;
@@ -724,6 +724,8 @@ div::-webkit-scrollbar {
         left: auto;
         right: 0;
         transform: translateX(105%);
+        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
+        max-height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
     }
 
     .info-overlay.active .info-overlay-content {
@@ -742,12 +744,15 @@ div::-webkit-scrollbar {
     }
 
     .info-body {
-        padding: 0 2.5vw 1vh 2.5vw;
+        padding: 0 2.5vw 2vh 2.5vw;
         margin-top: calc(1vh + 1.3rem);
-        min-height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - 2vh - 1.3rem);
+        height: calc(100% - 1vh - 1.3rem - 2vh);
+        max-height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - 1vh - 1.3rem - 2vh);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 }
 
@@ -768,6 +773,9 @@ div::-webkit-scrollbar {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     will-change: transform;
+    contain: layout style paint;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .footer-marquee-content {
@@ -823,10 +831,19 @@ div::-webkit-scrollbar {
     .footer-marquee {
         height: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
         padding-bottom: env(safe-area-inset-bottom, 0px);
+        max-width: 100vw;
+        contain: strict;
     }
     
     .footer-marquee-text {
         font-size: 0.65rem;
         line-height: 0.9rem;
+    }
+    
+    .footer-marquee-content {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
     }
 }
