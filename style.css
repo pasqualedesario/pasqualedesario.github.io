@@ -501,6 +501,8 @@ section.sticky {
 .contact-label {
     font-size: 0.8rem;
     line-height: 1.1rem;
+    font-variant: small-caps;
+
 }
 
 .typeset-note {
@@ -871,7 +873,8 @@ div::-webkit-scrollbar {
     font-weight: 400;
     font-size: 0.8rem;
     line-height: 1.2rem;
-    color: #000000;
+        font-variant: small-caps;
+        /* ...eventuali proprietà esistenti... */
     user-select: none;
     pointer-events: none;
     font-variant: small-caps;
