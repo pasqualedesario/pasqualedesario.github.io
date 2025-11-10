@@ -1,3 +1,13 @@
+/* Margine inferiore simmetrico all'altezza del titolo in alto */
+.info-bottom-margin {
+    height: 0;
+}
+
+@media (max-width: 768px) {
+    .info-bottom-margin {
+        height: 0;
+    }
+}
 :root {
     --color-white: #FFFFFF;
     --color-black: #000000;
@@ -19,7 +29,6 @@
     --transition-slow: 0.6s ease;
     --footer-height: 2rem;
     --footer-height-mobile: 1.5rem;
-    
 }
 
 
@@ -159,6 +168,7 @@ section.sticky {
     width: 100%;
     height: 100%;
     display: flex;
+    overflow: auto;
     transition: transform 0.6s ease;
     will-change: transform;
     touch-action: manipulation;
@@ -659,6 +669,7 @@ div::-webkit-scrollbar {
     height: 100%;
     background-color: #FFFFFF;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
     transform: translateX(105%);
@@ -710,6 +721,7 @@ div::-webkit-scrollbar {
     flex: 1;
     height: calc(100% - 1vh - 1.5rem);
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .info-body .intro-text {
@@ -739,10 +751,11 @@ div::-webkit-scrollbar {
         left: 0;
         width: 100vw;
         height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
-        overflow: hidden;
+        overflow: auto;
         z-index: 9998;
         display: flex;
         flex-direction: column;
+        -webkit-overflow-scrolling: touch;
     }
 
     .info-overlay-content {
@@ -756,6 +769,7 @@ div::-webkit-scrollbar {
         background: #fff;
         display: flex;
         flex-direction: column;
+        -webkit-overflow-scrolling: touch;
     }
 
     .info-overlay.active .info-overlay-content {
@@ -916,7 +930,7 @@ div::-webkit-scrollbar {
 }
 /* --- Allineamento e spaziatura uniforme Info --- */
 .info-body .intro-text {
-  margin-bottom: 1.25rem; /* spazio coerente sotto About */
+  margin-bottom: 1vh; /* spazio coerente sotto About */
 }
 
 .info-body .small-text {
@@ -925,17 +939,17 @@ div::-webkit-scrollbar {
 
 .info-body .small-text > * {
   margin: 0;
-  margin-bottom: 1rem; /* spazio fisso e uniforme tra Experience, Education, Contact, ecc. */
+  margin-bottom: 1vh; /* spazio fisso e uniforme tra Experience, Education, Contact, ecc. */
 }
 
 .info-body .small-text > *:last-child {
-  margin-bottom: 0; /* nessuno spazio dopo l'ultima riga (Typeset note) */
+  margin-bottom: 1vh; /* nessuno spazio dopo l'ultima riga (Typeset note) */
 }
 
 /* versione mobile */
 @media (max-width: 768px) {
   .info-body .intro-text {
-    margin-bottom: 1rem;
+    margin-bottom: 1vh;
   }
 
   .info-body .small-text {
@@ -943,6 +957,6 @@ div::-webkit-scrollbar {
   }
 
   .info-body .small-text > * {
-    margin-bottom: 0.9rem;
+    margin-bottom: 1vh;
   }
 }
