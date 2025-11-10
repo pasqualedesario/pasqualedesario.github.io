@@ -67,7 +67,6 @@ body {
         background: var(--color-white);
         -webkit-overflow-scrolling: auto !important;
     }
-}
 
 @font-face {
     font-family: 'Ronzino';
@@ -766,12 +765,18 @@ div::-webkit-scrollbar {
     .info-header {
         font-size: 1rem;
         left: 2.5vw;
+        font-family: 'Ronzino', sans-serif;
+        font-weight: 700;
+        font-style: normal;
     }
 
     .info-close {
         top: 1vh;
         right: 2.5vw;
         font-size: 2.5rem;
+        font-family: 'Ronzino', sans-serif;
+        font-weight: 400;
+        font-style: normal;
     }
 
     .info-body {
@@ -781,12 +786,32 @@ div::-webkit-scrollbar {
         flex-direction: column;
         justify-content: space-between;
         flex: 1;
-        height: calc(100% - 1vh - 1.3rem);
+        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - 1vh - 1.3rem);
+        max-height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - 1vh - 1.3rem);
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
     }
     
+    .intro-text {
+        font-family: 'Ronzino', sans-serif;
+        font-weight: 400;
+        font-size: 0.95rem;
+        line-height: 1.25rem;
+        margin-bottom: 2vh;
+    }
+
+    .small-text {
+        font-family: 'Ronzino', sans-serif;
+        font-weight: 400;
+        font-size: 0.95rem;
+        line-height: 1.25rem;
+        position: relative;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        margin-bottom: 0;
+    }
     .info-body .intro-text {
         flex-shrink: 0;
     }
