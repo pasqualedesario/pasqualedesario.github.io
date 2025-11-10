@@ -737,7 +737,6 @@ div::-webkit-scrollbar {
         left: 0;
         width: 100vw;
         height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
-        max-height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
         overflow: hidden;
         z-index: 9998;
         display: flex;
