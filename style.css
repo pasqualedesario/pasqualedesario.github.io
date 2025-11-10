@@ -1,3 +1,10 @@
+    /* Fix per iOS notch e Chrome/Safari font-weight */
+    @supports(padding-bottom: env(safe-area-inset-bottom)) {
+        .info-body {
+            padding-bottom: calc(1vh + env(safe-area-inset-bottom, 0px)) !important;
+        }
+    }
+    
 :root {
     --color-white: #FFFFFF;
     --color-black: #000000;
