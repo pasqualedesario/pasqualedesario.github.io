@@ -1,44 +1,153 @@
 <!DOCTYPE html>
 
-<!--
-------------------------------------------------------------------------
-Pasquale de Sario, 2025
-------------------------------------------------------------------------
-Coded by me, hosted on GitHub
-------------------------------------------------------------------------
-Designed with "A Spinning Wheel of Images" by Gabriele Donini:
-https://codepen.io/GGGGab/pen/YzmybYy
-------------------------------------------------------------------------
--->
+<!-- 
+ ------------------------------------------------------------------------
+ Pasquale de Sario, 2025
+ ------------------------------------------------------------------------
+ Coded by me, hosted on GitHub
+ ------------------------------------------------------------------------
+ -->
 
 <html lang="en">
 
 <head>
     <meta charset="UTF-8"> 
     <title>Pasquale de Sario</title>
+    <meta name="keywords" content="graphic designer, type designer, information designer, art director, typography, visual identity, editorial design, Bari, Italy">
+    <meta name="author" content="Pasquale de Sario">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pasquale de Sario — Graphic Designer, Type Designer, Information Designer">
+    <meta property="og:description" content="Graphic designer, type designer, information designer, and art director specializing in typography and visual systems.">
+    <meta property="og:url" content="https://pasqualedesario.github.io">
+    
     <link rel="icon" href="favicon.svg">
+    <link rel="preload" href="Ronzino/Ronzino-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="Ronzino/Ronzino-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="Ronzino/Ronzino-Oblique.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body class="home-body">
     <!-- Nome in alto a sinistra -->
     <a href="index.html" class="site-title">Pasquale de Sario</a>
 
-    <!-- Wheel -->
-    <div class="circle-container" id="circle-container">
-        <img src="Projects/Alelaie.png" alt="Alelaie" class="circle-image" />
-        <img src="Projects/4VISIONS.png" alt="4VISIONS" class="circle-image" />
-        <img src="Projects/Meme Things First.png" alt="Meme Things First" class="circle-image" />
-        <img src="Projects/Esoeditoria in Italia.jpg" alt="Singolarità Multiple" class="circle-image" />
-        <img src="Projects/Serenissima.png" alt="Serenissima" class="circle-image" />
-        <img src="Projects/Biennale Parola.png" alt="Biennale Parola" class="circle-image" />
-        <img src="Projects/SacroScarto.png" alt="SacroScarto" class="circle-image" />
-        <img src="Projects//Apparati Radicali_Labirinto.jpg" alt="Apparati Radicali" class="circle-image" />
+    <!-- Info in alto a destra -->
+    <div class="right-column">
+        <a href="#" class="info-link" id="info-trigger">Info</a>
     </div>
 
-    <!-- Info in basso a destra -->
-    <a href="about.html" class="info-link">Info</a>
+    <!-- Overlay Info -->
+    <div class="info-overlay" id="info-overlay">
+        <div class="info-overlay-blur"></div>
+        <div class="info-overlay-content">
+            <div class="info-header">Info</div>
+            <div class="info-body">
+                <div class="intro-text">
+                    <p>Graphic designer and researcher from Bari (Puglia, Italy). He holds a bachelor&rsquo;s degree in Industrial Design at <a href="https://www.poliba.it/">Politecnico di Bari</a> and a master&rsquo;s degree in Communication Design at <a href="https://www.iuav.it/">Iuav University of Venice</a>.</p>
+                    <p>His practice explores <span class="hover-effect">typography in its form and structure, information and editorial design</span> and all the ways they interpolate each other within and without <span class="hover-effect">visual systems</span>. His research is oriented also towards <span class="hover-effect">design histories</span>, <span class="hover-effect">open tools</span> and <span class="hover-effect">learning collective ecosystems</span> outside the institutional walls.</p>
+                </div>
+                <div class="small-text">
+                    <p class="location-mail">
+                        <span class="contact-label">Contact</span><br>
+                        <a href="mailto:pasquale.desario0@gmail.com">pasquale.desario<span class="lining-zero">0</span>@gmail.com</a>
+                    </p>
+        
+                    <p class="platform-links">
+                        <span class="platform-label">Platforms</span><br>
+                        <a href="https://www.instagram.com/pasqualedesario.xyz/" rel="noopener noreferrer" target="_blank">Instagram</a><br>
+                        <a href="https://www.linkedin.com/in/pasqualedesario/" rel="noopener noreferrer" target="_blank">LinkedIn</a><br>
+                        <a href="https://github.com/pasqualedesario" rel="noopener noreferrer" target="_blank">GitHub</a><br>
+                        <a href="https://www.are.na/pasquale-de-sario" rel="noopener noreferrer" target="_blank">Are.na</a><br>
+                        <a href="https://typo.social/@pasqualedesario" rel="noopener noreferrer" target="_blank">Mastodon</a>
+                    </p>
+            
+                    <p class="typeset-note">
+                        © Pasquale de Sario, 2025<br>
+                        Typeset in <a href="https://www.collletttivo.it/typefaces/ronzino" rel="noopener noreferrer" target="_blank">Ronzino</a> (Collletttivo, 2024)<br>
+                        This website doesn&rsquo;t use third party cookies 🍪
+                    </p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Titolo progetto fisso che cambia contenuto -->
+    <h2 class="project-title-fixed"></h2>
+
+    <!-- Info progetto fisso che cambia contenuto -->
+    <div class="project-info-fixed"></div>
+
+    <!-- Indicatore immagini -->
+    <div class="project-progress" aria-hidden="true">
+        <span class="project-progress-current">01</span><span class="project-progress-divider">/</span><span class="project-progress-total">01</span>
+    </div>
+
+    <!-- Progetti con scorrimento verticale -->
+    <main id="projects">
+        <section class="project" data-title="&lt;a href=&quot;https://www.instagram.com/p/DEAFcCboJDO&quot;&gt;Modernizzare stanca&lt;/a&gt;" data-category="Poster" data-year="@Spazio Alelaie, 2024" data-images="Projects/MS_Alelaie_1.png|Projects/MS_Alelaie_2.png">
+            <div class="project-gallery"></div>
+        </section>
+
+        <section class="project" data-title="&lt;span style=&quot;font-variant-numeric: lining-nums;&quot;&gt;4VISIONS.&lt;/span&gt; Esplorazioni sonore" data-category="Visual Identity" data-year="@MAT, 2023" data-images="Projects/4V_1.png|Projects/4V_2.png">
+            <div class="project-gallery"></div>
+        </section>
+
+        <section class="project" data-title="&lt;a href=&quot;https://www.iuav.it/it/eventi/meme-things-first&quot;&gt;Meme Things First&lt;/a&gt;" data-category="Visual Identity — Research — Curatorship" data-year="@Iuav, 2024, w/ Rebecca Bertero & Serena de Mola" data-images="Projects/MTF_1.png|Projects/MTF_2.jpg|Projects/MTF_3.jpg">
+            <div class="project-gallery"></div>
+        </section>
+
+        <section class="project" data-title="Serenissima" data-category="Book Design — Photography — Sound Design" data-year="@Iuav, 2024, w/ Andrea Pintauro" data-images="Projects/Serenissima_1.png|Projects/Serenissima_2.png">
+            <div class="project-gallery"></div>
+        </section>
+
+        <section class="project" data-title="&lt;a href=&quot;https://www.youtube.com/watch?v=X49crKOX9Js&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Merda&lt;/a&gt;" data-category="Poster" data-year="2022" data-images="Projects/EM.png">
+            <div class="project-gallery"></div>
+        </section>
+
+        <section class="project" data-title="&lt;a href=&quot;https://fedrigonitopaward.com/it/project/universita-iuav-di-venezia-biennale-parola/&quot;&gt;Biennale Parola&lt;/a&gt;" data-category="Book Design — Information Design" data-year="@Iuav, 2024, w/ Giulia Gatta & Tommaso Antonelli" data-images="Projects/BP_1.png|Projects/BP_2.jpg|Projects/BP_3.mp4|Projects/BP_4.jpeg|Projects/BP_5.png|Projects/BP_6.jpeg|Projects/BP_7.png|Projects/BP_8.mp4|Projects/BP_9.jpeg|Projects/BP_10.jpg">
+            <div class="project-gallery"></div>
+        </section>
+
+        <section class="project" data-title="The Dances of Palucca" data-category="Poster" data-year="2024" data-images="Projects/Palucca_1.png|Projects/Palucca_2.png">
+            <div class="project-gallery"></div>
+        </section>
+
+        <section class="project" data-title="&lt;a href=&quot;https://www.instagram.com/p/DMsBdTpI6SL&quot;&gt;La dimora del Minotauro&lt;/a&gt;" data-category="Artwork" data-year="@Apparati Radicali, 2025" data-images="Projects/AR_1.jpg|Projects/AR_2.jpg">
+            <div class="project-gallery"></div>
+        </section>
+    </main>
+
+    <!-- Footer Marquee -->
+    <div class="footer-marquee">
+        <div class="footer-marquee-content">
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio available upon request</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio available upon request</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio available upon request</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio available upon request</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio available upon request</a> —&nbsp;</span>
+        </div>
+        <div class="footer-marquee-content" aria-hidden="true">
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio available upon request</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio available upon request</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio available upon request</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio available upon request</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio available upon request</a> —&nbsp;</span>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
