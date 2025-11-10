@@ -744,15 +744,28 @@ div::-webkit-scrollbar {
     }
 
     .info-body {
-        padding: 0 2.5vw 2vh 2.5vw;
+        padding: 0 2.5vw calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px) + 2vh) 2.5vw;
         margin-top: calc(1vh + 1.3rem);
-        height: calc(100% - 1vh - 1.3rem - 2vh);
-        max-height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - 1vh - 1.3rem - 2vh);
+        height: auto;
+        min-height: calc(100% - 1vh - 1.3rem);
+        max-height: none;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 2vh;
         overflow-y: auto;
+        overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
+    }
+    
+    .info-body .intro-text {
+        flex-shrink: 0;
+    }
+    
+    .info-body .small-text {
+        flex-shrink: 0;
+        margin-top: auto;
+        padding-bottom: 0;
     }
 }
 
