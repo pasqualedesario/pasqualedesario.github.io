@@ -787,16 +787,17 @@ div::-webkit-scrollbar {
     }
 
     .info-body {
-        padding: 0 2.5vw calc(1vh + env(safe-area-inset-bottom, 0px)) 2.5vw;
+        padding: 0 2.5vw 0 2.5vw;
         margin-top: calc(1vh + 1.3rem);
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
         flex: 1;
-        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - 1vh - 1.3rem);
-        max-height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - 1vh - 1.3rem);
+        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
+        max-height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
         overflow-y: auto;
         overflow-x: hidden;
+        scroll-padding-bottom: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
         -webkit-overflow-scrolling: touch;
     }
     
@@ -824,7 +825,7 @@ div::-webkit-scrollbar {
     }
     
     .info-body .small-text {
-        margin-top: auto;
+        margin-top: 0;
         align-self: flex-start;
     }
 }
