@@ -744,15 +744,13 @@ div::-webkit-scrollbar {
     }
 
     .info-body {
-        padding: 0 2.5vw calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px) + 2vh) 2.5vw;
+        padding: 0 2.5vw 1vh 2.5vw;
         margin-top: calc(1vh + 1.3rem);
-        height: auto;
-        min-height: calc(100% - 1vh - 1.3rem);
-        max-height: none;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        gap: 2vh;
+        justify-content: space-between;
+        flex: 1;
+        height: calc(100% - 1vh - 1.3rem);
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
@@ -763,9 +761,8 @@ div::-webkit-scrollbar {
     }
     
     .info-body .small-text {
-        flex-shrink: 0;
         margin-top: auto;
-        padding-bottom: 0;
+        align-self: flex-start;
     }
 }
 
