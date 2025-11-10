@@ -110,8 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 slide.appendChild(video);
                 video.style.userSelect = 'none';
-                
-                slide.appendChild(video);
+
             } else {
                 // Crea elemento immagine
                 const img = document.createElement('img');
@@ -410,83 +409,69 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updateTitle);
     window.addEventListener('load', updateTitle);
 
-    // Info overlay functionality
-    const infoTrigger = document.getElementById('info-trigger');
-    const infoOverlay = document.getElementById('info-overlay');
+// Info overlay functionality
+const infoTrigger = document.getElementById('info-trigger');
+const infoOverlay = document.getElementById('info-overlay');
 
-    let scrollPosition = 0;
+let scrollPosition = 0;
 
-    const lockScroll = () => {
-        scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-        document.body.classList.add('scroll-lock');
-        document.body.style.top = `-${scrollPosition}px`;
-    };
+const lockScroll = () => {
+  scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+  document.body.classList.add('scroll-lock');
+  document.body.style.top = `-${scrollPosition}px`;
+};
 
-    const unlockScroll = () => {
-        document.body.classList.remove('scroll-lock');
-        document.body.style.removeProperty('top');
-        window.scrollTo(0, scrollPosition);
-    };
+const unlockScroll = () => {
+  document.body.classList.remove('scroll-lock');
+  document.body.style.removeProperty('top');
+  window.scrollTo(0, scrollPosition);
+};
 
-    if (infoTrigger && infoOverlay) {
-        // Funzione per aprire il pannello
-        const openInfo = () => {
-            infoOverlay.classList.add('active');
-            lockScroll();
-            window.location.hash = 'info';
-        };
+const openInfo = () => {
+  if (!infoOverlay.classList.contains('active')) {
+    infoOverlay.classList.add('active');
+    lockScroll();
+  }
+  // Non usare window.location.hash; aggiorna l’URL senza scroll
+  history.pushState({ info: true }, '', '#info');
+};
 
-        // Funzione per chiudere il pannello
-        const closeInfo = () => {
-            infoOverlay.classList.remove('active');
-            unlockScroll();
-            history.pushState('', document.title, window.location.pathname + window.location.search);
-        };
+const closeInfo = () => {
+  if (infoOverlay.classList.contains('active')) {
+    infoOverlay.classList.remove('active');
+    unlockScroll();
+  }
+  history.pushState({ info: false }, '', window.location.pathname + window.location.search);
+};
 
-        infoTrigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (infoOverlay.classList.contains('active')) {
-                closeInfo();
-            } else {
-                openInfo();
-            }
-        });
-
-        infoOverlay.addEventListener('click', (e) => {
-            if (e.target === infoOverlay || e.target.classList.contains('info-overlay-blur')) {
-                closeInfo();
-            }
-        });
-
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && infoOverlay.classList.contains('active')) {
-                closeInfo();
-            }
-        });
-
-        // Gestione del cambio di hash
-        window.addEventListener('hashchange', () => {
-            if (window.location.hash === '#info') {
-                if (!infoOverlay.classList.contains('active')) {
-                    infoOverlay.classList.add('active');
-                    lockScroll();
-                }
-            } else {
-                if (infoOverlay.classList.contains('active')) {
-                    infoOverlay.classList.remove('active');
-                    unlockScroll();
-                }
-            }
-        });
-
-        // Apri il pannello se l'URL ha #info al caricamento
-        if (window.location.hash === '#info') {
-            infoOverlay.classList.add('active');
-            lockScroll();
-        }
+if (infoTrigger && infoOverlay) {
+  infoTrigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (infoOverlay.classList.contains('active')) {
+      closeInfo();
+    } else {
+      openInfo();
     }
-});
+  });
+
+  infoOverlay.addEventListener('click', (e) => {
+    if (e.target === infoOverlay || e.target.classList.contains('info-overlay-blur')) {
+      closeInfo();
+    }
+  });
+
+  window.addEventListener('popstate', () => {
+    if (window.location.hash === '#info') {
+      openInfo();
+    } else {
+      closeInfo();
+    }
+  });
+
+  if (window.location.hash === '#info') {
+    openInfo();
+  }
+}
 
 // Update footer datetime
 let currentTemperature = null;
@@ -562,4 +547,4 @@ function shuffle(items) {
     }
     return array;
 }
-
+});
