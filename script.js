@@ -415,20 +415,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const infoOverlay = document.getElementById('info-overlay');
 
     let scrollPosition = 0;
-    
+
     const lockScroll = () => {
         scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-        document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
+        document.body.classList.add('scroll-lock');
         document.body.style.top = `-${scrollPosition}px`;
-        document.body.style.width = '100%';
     };
 
     const unlockScroll = () => {
-        document.body.style.removeProperty('overflow');
-        document.body.style.removeProperty('position');
+        document.body.classList.remove('scroll-lock');
         document.body.style.removeProperty('top');
-        document.body.style.removeProperty('width');
         window.scrollTo(0, scrollPosition);
     };
 
