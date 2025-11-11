@@ -191,8 +191,6 @@ section.sticky {
     width: auto;
     height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px));
     display: block;
-        max-height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px));
-        height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px));
     pointer-events: none;
     object-fit: cover;
 }
@@ -870,11 +868,9 @@ div::-webkit-scrollbar {
     font-weight: 400;
     font-size: 0.8rem;
     line-height: 1.2rem;
-        font-variant: small-caps;
-        /* ...eventuali proprietà esistenti... */
+    font-variant: small-caps;
     user-select: none;
     pointer-events: none;
-    font-variant: small-caps;
     font-feature-settings: "smcp" 1, "onum" 1;
     text-transform: lowercase;
     letter-spacing: 0.05em;

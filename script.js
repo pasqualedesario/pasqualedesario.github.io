@@ -76,7 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return alignment;
         };
 
-        const createSlide = (src, alignment) => {
+        const stripHtml = (html) => {
+            const temp = document.createElement('div');
+            temp.innerHTML = html;
+            return temp.textContent || temp.innerText || '';
+        };
+
+        const createSlide = (src, alignment, index) => {
             const slide = document.createElement('div');
             slide.className = `project-slide ${alignment}`;
 
@@ -91,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 video.muted = true;
                 video.playsInline = true;
                 video.loop = true;
-                video.preload = 'auto';
+                video.preload = 'metadata';
                 video.draggable = false;
                 
                 const source = document.createElement('source');
@@ -115,7 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Crea elemento immagine
                 const img = document.createElement('img');
                 img.src = src;
-                img.alt = '';
+                const rawTitle = wrapper.parentElement?.getAttribute('data-title') || '';
+                const plainTitle = stripHtml(rawTitle).trim();
+                img.alt = plainTitle ? `${plainTitle} — image ${index + 1}` : `project image ${index + 1}`;
                 img.decoding = 'async';
                 img.loading = 'lazy';
                 img.draggable = false;
@@ -132,9 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return slide;
         };
 
-        sources.forEach((src) => {
+        sources.forEach((src, index) => {
             const alignment = pickAlignment();
-            wrapper.appendChild(createSlide(src, alignment));
+            wrapper.appendChild(createSlide(src, alignment, index));
         });
 
         wrapper.style.transition = state.transition;
@@ -535,9 +543,36 @@ function updateFooterDateTime() {
     });
 }
 
-// Initialize and update every second
-updateFooterDateTime();
-setInterval(updateFooterDateTime, 1000);
+// Initialize and update every second (cache NodeList to avoid repeated queries)
+const footerDateTimeElements = document.querySelectorAll('.footer-datetime');
+function updateFooterDateTimeCached() {
+    const now = new Date();
+    
+    const day = now.getDate();
+    const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+    const month = months[now.getMonth()];
+    const year = now.getFullYear();
+    
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    
+    const timezone = Intl.DateTimeFormat('en', { timeZoneName: 'short' })
+        .formatToParts(now)
+        .find(part => part.type === 'timeZoneName')?.value || 'UTC';
+    
+    let dateTimeString = `bari, ${day} ${month} ${year}, ${hours}:${minutes}:${seconds} ${timezone.toLowerCase()}`;
+    if (currentTemperature !== null) {
+        dateTimeString += `, ${currentTemperature}<span class="grado-basso">°</span>c`;
+    } else {
+        dateTimeString += `, --<span class="grado-basso">°</span>c`;
+    }
+    footerDateTimeElements.forEach(el => {
+        el.innerHTML = dateTimeString;
+    });
+}
+updateFooterDateTimeCached();
+setInterval(updateFooterDateTimeCached, 1000);
 
 function shuffle(items) {
     const array = [...items];

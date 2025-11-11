@@ -11,15 +11,24 @@
 <head>
     <meta charset="UTF-8"> 
     <title>Pasquale de Sario</title>
-    <meta name="keywords" content="graphic designer, type designer, information designer, art director, typography, visual identity, editorial design, Bari, Italy">
+    <meta name="description" content="Pasquale de Sario — Designer and researcher based in Bari (Italy)">
+    <meta name="keywords" content="graphic designer, book designer, type designer, information designer, art director, typography, visual identity, editorial design, Bari, Italy">
     <meta name="author" content="Pasquale de Sario">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Pasquale de Sario — Graphic Designer, Type Designer, Information Designer">
-    <meta property="og:description" content="Graphic designer, type designer, information designer, and art director specializing in typography and visual systems.">
+    <meta property="og:title" content="Pasquale de Sario — Designer and researcher based in Bari (Italy)">
+    <meta property="og:description" content="Pasquale de Sario — Designer and researcher based in Bari (Italy)">
     <meta property="og:url" content="https://pasqualedesario.github.io">
+    <meta property="og:image" content="https://pasqualedesario.github.io/Projects/AR_1.jpg">
+    <meta property="og:image:secure_url" content="https://pasqualedesario.github.io/Projects/AR_1.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Apparati Radicali — La dimora del Minotauro">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://pasqualedesario.github.io/Projects/AR_1.jpg">
+    <link rel="preconnect" href="https://api.open-meteo.com" crossorigin>
     
     <link rel="icon" href="favicon.svg">
     <link rel="preload" href="Ronzino/Ronzino-Regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -38,13 +47,13 @@
     </div>
 
     <!-- Overlay Info -->
-    <div class="info-overlay" id="info-overlay">
+    <div class="info-overlay" id="info-overlay" role="dialog" aria-modal="true" aria-labelledby="info-header">
         <div class="info-overlay-blur"></div>
         <div class="info-overlay-content">
-            <div class="info-header">Info</div>
+            <div class="info-header" id="info-header">Info</div>
             <div class="info-body">
                 <div class="intro-text">
-                    <p>Graphic designer and researcher from Bari (Puglia, Italy). He holds a bachelor&rsquo;s degree in Industrial Design at Polytechnic of Bari and a master&rsquo;s degree in Communication Design at Iuav University of Venice.</p>
+                    <p>Graphic designer and researcher based in Bari (Italy). He holds a bachelor&rsquo;s degree in Industrial Design at Polytechnic of Bari and a master&rsquo;s degree in Communication Design at Iuav University of Venice.</p>
                     <p>His practice explores <span class="hover-effect">typography in its form and structure, information and editorial design</span> and all the ways they interpolate each other within and without <span class="hover-effect">visual systems</span>. His research is oriented also towards <span class="hover-effect">design histories</span>, <span class="hover-effect">open tools</span> and <span class="hover-effect">learning collective ecosystems</span> outside the institutional walls.</p>
                 </div>
                 
@@ -81,11 +90,10 @@
                         Typeset in <a href="https://www.collletttivo.it/typefaces/ronzino" rel="noopener noreferrer" target="_blank">Ronzino</a> (Collletttivo, 2024)<br>
                         This website doesn&rsquo;t use third party cookies 🍪
                     </p>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </div> <!-- /.small-text -->
+            </div> <!-- /.info-body -->
+        </div> <!-- /.info-overlay-content -->
+    </div> <!-- /.info-overlay -->
 
     <!-- Titolo progetto fisso che cambia contenuto -->
     <h2 class="project-title-fixed"></h2>
