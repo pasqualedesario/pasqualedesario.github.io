@@ -828,6 +828,13 @@ div::-webkit-scrollbar {
         right: auto;
         margin-bottom: 0;
     }
+    
+    .typeset-note {
+        font-size: 0.6rem;
+        line-height: 0.9rem;
+        margin-top: 0.65rem;
+    }
+    
     .info-body .intro-text {
         flex-shrink: 0;
     }
