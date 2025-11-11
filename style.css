@@ -119,6 +119,8 @@ section.sticky {
     padding-bottom: 0;
 }
 
+/* removed top frosted bar */
+
 #projects {
     width: 100%;
     overflow: hidden;
@@ -384,6 +386,8 @@ section.sticky {
     .home-body .info-link {
         font-size: 1rem;
     }
+    
+    /* removed mobile top-bar adjustments */
 
     .project-gallery,
     .project-slide {
@@ -856,6 +860,8 @@ div::-webkit-scrollbar {
     -webkit-backface-visibility: hidden;
 }
 
+/* footer frosted removed; solid gray restored */
+
 .footer-marquee-content {
     display: inline-flex;
     white-space: nowrap;
@@ -919,6 +925,7 @@ div::-webkit-scrollbar {
         padding-bottom: env(safe-area-inset-bottom, 0px);
         max-width: 100vw;
         contain: strict;
+        background-color: #bebfc2;
     }
     
     .footer-marquee-text {
