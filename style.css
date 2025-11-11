@@ -482,17 +482,17 @@ section.sticky {
 
 .platform-label,
 .contact-label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     line-height: 1.1rem;
-    font-variant: small-caps;
-    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    letter-spacing: 0.075em;
 
 }
 
 .typeset-note {
     display: block;
     margin-top: 0.75rem;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     line-height: 1.1rem;
     font-family: 'Ronzino', sans-serif;
     font-weight: 400;
@@ -562,14 +562,14 @@ section.sticky {
     }
     
     .typeset-note {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         line-height: 0.9rem;
         margin-top: 0.65rem;
     }
 
     .platform-label,
     .contact-label {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         line-height: 0.9rem;
     }
 
@@ -866,15 +866,24 @@ div::-webkit-scrollbar {
 .footer-marquee-text {
     font-family: 'Ronzino', sans-serif;
     font-weight: 400;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     line-height: 1.2rem;
-    font-variant: small-caps;
     user-select: none;
     pointer-events: none;
-    font-feature-settings: "smcp" 1, "onum" 1;
-    text-transform: lowercase;
-    letter-spacing: 0.05em;
-    font-variant-numeric: oldstyle-nums;
+    font-feature-settings: "lnum" 1, "tnum" 1;
+    text-transform: uppercase;
+    letter-spacing: 0.075em;
+    font-variant-numeric: lining-nums tabular-nums;
+}
+
+.footer-marquee-text .num {
+    letter-spacing: 0;
+}
+
+.footer-marquee-text .emdash {
+    position: relative;
+    top: -1px;
+    display: inline-block;
 }
 
 .footer-marquee-text a {
@@ -913,7 +922,7 @@ div::-webkit-scrollbar {
     }
     
     .footer-marquee-text {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         line-height: 0.9rem;
     }
     
@@ -931,8 +940,6 @@ div::-webkit-scrollbar {
 
 /* Simbolo grado abbassato per allineamento con maiuscoletto */
 .grado-basso {
-    position: relative;
-    top: 1px;
     font-size: inherit;
 }
 

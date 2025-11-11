@@ -505,14 +505,7 @@ async function fetchTemperature() {
     }
 }
 
-// Fetch temperature on load and every 10 minutes
-fetchTemperature();
-setInterval(fetchTemperature, 600000); // 10 minutes
-
-function updateFooterDateTime() {
-    const now = new Date();
-    
-    // Format: "bari, 10 nov 2025, 14:30:45 cet, 15°c"
+function buildFooterDateTimeHtml(now) {
     const day = now.getDate();
     const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
     const month = months[now.getMonth()];
@@ -522,21 +515,26 @@ function updateFooterDateTime() {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
     
-    // Get timezone abbreviation
     const timezone = Intl.DateTimeFormat('en', { timeZoneName: 'short' })
         .formatToParts(now)
         .find(part => part.type === 'timeZoneName')?.value || 'UTC';
     
-    let dateTimeString = `bari, ${day} ${month} ${year}, ${hours}:${minutes}:${seconds} ${timezone.toLowerCase()}`;
-
-    // Add temperature if available (use placeholder to maintain width)
+    let html = `bari, <span class="num">${day}</span> ${month} <span class="num">${year}</span>, <span class="num">${hours}</span>:<span class="num">${minutes}</span>:<span class="num">${seconds}</span> ${timezone.toLowerCase()}`;
     if (currentTemperature !== null) {
-        dateTimeString += `, ${currentTemperature}<span class="grado-basso">°</span>c`;
+        html += `, <span class="num">${currentTemperature}</span><span class="grado-basso">°</span>c`;
     } else {
-        dateTimeString += `, --<span class="grado-basso">°</span>c`;
+        html += `, <span class="num">--</span><span class="grado-basso">°</span>c`;
     }
+    return html;
+}
 
-    // Update all datetime elements (HTML, non textContent)
+// Fetch temperature on load and every 10 minutes
+fetchTemperature();
+setInterval(fetchTemperature, 600000); // 10 minutes
+
+function updateFooterDateTime() {
+    const now = new Date();
+    const dateTimeString = buildFooterDateTimeHtml(now);
     const dateTimeElements = document.querySelectorAll('.footer-datetime');
     dateTimeElements.forEach(el => {
         el.innerHTML = dateTimeString;
@@ -547,32 +545,22 @@ function updateFooterDateTime() {
 const footerDateTimeElements = document.querySelectorAll('.footer-datetime');
 function updateFooterDateTimeCached() {
     const now = new Date();
-    
-    const day = now.getDate();
-    const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-    const month = months[now.getMonth()];
-    const year = now.getFullYear();
-    
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    
-    const timezone = Intl.DateTimeFormat('en', { timeZoneName: 'short' })
-        .formatToParts(now)
-        .find(part => part.type === 'timeZoneName')?.value || 'UTC';
-    
-    let dateTimeString = `bari, ${day} ${month} ${year}, ${hours}:${minutes}:${seconds} ${timezone.toLowerCase()}`;
-    if (currentTemperature !== null) {
-        dateTimeString += `, ${currentTemperature}<span class="grado-basso">°</span>c`;
-    } else {
-        dateTimeString += `, --<span class="grado-basso">°</span>c`;
-    }
+    const dateTimeString = buildFooterDateTimeHtml(now);
     footerDateTimeElements.forEach(el => {
         el.innerHTML = dateTimeString;
     });
 }
 updateFooterDateTimeCached();
 setInterval(updateFooterDateTimeCached, 1000);
+
+// Raise em-dash by 1px in footer marquee
+function wrapFooterDashes() {
+    const items = document.querySelectorAll('.footer-marquee-text');
+    items.forEach((el) => {
+        el.innerHTML = el.innerHTML.replace(/—/g, '<span class="emdash">—</span>');
+    });
+}
+wrapFooterDashes();
 
 function shuffle(items) {
     const array = [...items];
