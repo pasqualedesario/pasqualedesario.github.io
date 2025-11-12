@@ -373,14 +373,16 @@ section.sticky {
     .project-title-fixed {
         font-size: 1rem;
         margin-left: 2.5vw;
-        max-width: 90vw;
+        max-width: 75vw;
+        word-break: break-word;
+        overflow-wrap: anywhere;
     }
 
     .project-info-fixed {
         font-size: 0.65rem;
         line-height: 0.85rem;
         margin-left: 2.5vw;
-        top: calc(25vh + 1.3rem);
+        top: calc(25vh + 1.38rem);
         max-width: 90vw;
     }
 

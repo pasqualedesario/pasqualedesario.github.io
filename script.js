@@ -288,6 +288,29 @@ document.addEventListener('DOMContentLoaded', () => {
         progressTotal.textContent = formatCounter(total);
     }
 
+    function adjustTitleSpacing() {
+        if (!fixedTitle || !fixedInfo) {
+            return;
+        }
+
+        if (window.innerWidth > 768) {
+            fixedInfo.style.top = '';
+            return;
+        }
+
+        fixedInfo.style.top = '';
+        const infoStyle = window.getComputedStyle(fixedInfo);
+        const baseTop = parseFloat(infoStyle.top);
+        const titleStyle = window.getComputedStyle(fixedTitle);
+        const lineHeight = parseFloat(titleStyle.lineHeight);
+        const titleHeight = fixedTitle.scrollHeight;
+        const extra = Math.max(0, titleHeight - lineHeight);
+
+        if (extra > 0) {
+            fixedInfo.style.top = `${baseTop + extra}px`;
+        }
+    }
+
     function setFixedOffset(index) {
         const total = sections.length;
         if (total === 0) {
@@ -363,6 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setFixedOffset(activeIndex);
         updateProgress(activeSection);
+        adjustTitleSpacing();
     }
 
     if (fixedTitle && sections.length > 0) {
@@ -389,6 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.scrollTo(0, 0);
     updateTitle();
+    adjustTitleSpacing();
 
     window.addEventListener('keydown', event => {
         if (event.defaultPrevented) {
@@ -414,8 +439,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', updateTitle);
-    window.addEventListener('load', updateTitle);
+    const handleResize = () => {
+        updateTitle();
+        adjustTitleSpacing();
+    };
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('load', handleResize);
 
 // Info overlay functionality
 const infoTrigger = document.getElementById('info-trigger');
