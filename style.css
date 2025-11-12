@@ -100,7 +100,7 @@ a {
 section {
     position: relative;
     width: 100%;
-    height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px));
+    height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     z-index: 2;
     margin: 0;
     padding: 0;
@@ -126,14 +126,15 @@ section.sticky {
     overflow: hidden;
     margin: 0;
     padding: 0;
+    padding-top: calc(var(--footer-height) + env(safe-area-inset-top, 0px));
     padding-bottom: calc(var(--footer-height) + env(safe-area-inset-bottom, 0px));
     position: relative;
 }
 
 .project {
     position: relative;
-    height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px));
-    min-height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px));
+    height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+    min-height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     overflow: hidden;
     background-color: #FFFFFF;
     margin: 0;
@@ -168,7 +169,7 @@ section.sticky {
 .project-slide {
     flex: 0 0 100%;
     min-width: 100%;
-    height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px));
+    height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -188,20 +189,20 @@ section.sticky {
 }
 
 .project-slide img {
-    max-height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px));
+    max-height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     max-width: 100%;
     width: auto;
-    height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px));
+    height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     display: block;
     pointer-events: none;
     object-fit: cover;
 }
 
 .project-slide video {
-    max-height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px));
+    max-height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     max-width: 100%;
     width: auto;
-    height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px));
+    height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     display: block;
     filter: saturate(0.95) contrast(1.05);
     user-select: none;
@@ -302,20 +303,43 @@ section.sticky {
     text-decoration-thickness: 1.5px;
 }
 
-.home-body .site-title {
+/* Top Bar - speculare al footer */
+.top-bar {
     position: fixed;
-    top: 1vh;
-    left: 1vh;
-    font-size: 1.15rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #bebfc2;
+    overflow: hidden;
+    z-index: 10100;
+    padding: 0;
+    padding-top: env(safe-area-inset-top, 0px);
+    height: calc(var(--footer-height) + env(safe-area-inset-top, 0px));
+    display: flex;
+    align-items: center;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+    contain: layout style paint;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.home-body .site-title {
     font-family: 'Ronzino', sans-serif;
-    font-weight: 700;
-    color: #FFFFFF;
-    mix-blend-mode: difference;
-    display: inline-block;
-    z-index: 10000;
-    transition: text-decoration var(--transition-normal);
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.2rem;
+    color: #000000;
     text-decoration: none;
     text-underline-offset: 2px;
+    transition: text-decoration var(--transition-normal);
+    font-feature-settings: "lnum" 1, "tnum" 1;
+    text-transform: uppercase;
+    letter-spacing: 0.075em;
+    font-variant-numeric: lining-nums tabular-nums;
 }
 
 .home-body .site-title:hover {
@@ -323,25 +347,21 @@ section.sticky {
     text-decoration-thickness: 1.5px;
 }
 
-.home-body .right-column {
-    position: fixed;
-    top: 1vh;
-        left: calc(50vw + 1vh);
-    width: auto;
-    z-index: 10001;
-    mix-blend-mode: difference;
-}
-
 .home-body .info-link {
-    font-size: 1.15rem;
+    position: absolute;
+    left: calc(50vw + 1vh);
     font-family: 'Ronzino', sans-serif;
-    font-weight: 700;
-    color: #FFFFFF;
-    mix-blend-mode: difference;
-    display: inline-block;
-    transition: text-decoration var(--transition-normal);
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.2rem;
+    color: #000000;
     text-decoration: none;
     text-underline-offset: 2px;
+    transition: text-decoration var(--transition-normal);
+    font-feature-settings: "lnum" 1, "tnum" 1;
+    text-transform: uppercase;
+    letter-spacing: 0.075em;
+    font-variant-numeric: lining-nums tabular-nums;
 }
 
 .home-body .info-link:hover {
@@ -372,31 +392,40 @@ section.sticky {
         text-align: right;
     }
 
-    .home-body .site-title {
-        font-size: 1rem;
-        left: 2.5vw;
+    .top-bar {
+        height: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px));
+        padding-left: 2.5vw;
+        padding-right: 2.5vw;
     }
 
-    .home-body .right-column {
-        left: auto;
-        right: 2.5vw;
-        text-align: right;
+    .home-body .site-title {
+        font-size: 0.65rem;
+        line-height: 0.9rem;
     }
 
     .home-body .info-link {
-        font-size: 1rem;
+        position: absolute;
+        left: auto;
+        right: 2.5vw;
+        font-size: 0.65rem;
+        line-height: 0.9rem;
     }
     
     /* removed mobile top-bar adjustments */
 
+    #projects {
+        padding-top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px));
+        padding-bottom: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
+    }
+
     .project-gallery,
     .project-slide {
-        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
+        height: calc(100vh - var(--footer-height-mobile) - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     }
 
     .project-slide img {
         width: 100vw;
-        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
+        height: calc(100vh - var(--footer-height-mobile) - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
         max-width: none;
         max-height: none;
         object-fit: cover;
@@ -404,19 +433,19 @@ section.sticky {
 
     .project-slide video {
         width: 100vw;
-        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
+        height: calc(100vh - var(--footer-height-mobile) - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
         max-width: none;
         max-height: none;
         object-fit: cover;
     }
 
     section {
-        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
+        height: calc(100vh - var(--footer-height-mobile) - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     }
 
     .project {
-        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
-        min-height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
+        height: calc(100vh - var(--footer-height-mobile) - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+        min-height: calc(100vh - var(--footer-height-mobile) - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     }
 }
 
@@ -625,7 +654,7 @@ div::-webkit-scrollbar {
         top: 0;
         left: 0;
         width: 100%;
-        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
+        height: 100vh;
         z-index: 9998;
     display: flex;
     opacity: 0;
@@ -695,7 +724,7 @@ div::-webkit-scrollbar {
     transition: opacity 0.3s ease;
     line-height: 1;
     padding: 0;
-    z-index: 10001;
+    z-index: 10200;
 }
 
 .info-close:hover {
@@ -751,7 +780,7 @@ div::-webkit-scrollbar {
         top: 0;
         left: 0;
         width: 100vw;
-        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px));
+        height: 100vh;
         overflow: auto;
         z-index: 9998;
         display: flex;
@@ -851,7 +880,10 @@ div::-webkit-scrollbar {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #bebfc2;
+    background-color: rgba(255, 82, 0, 0.7);
+    backdrop-filter: blur(14px) saturate(130%);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     overflow: hidden;
     z-index: 10000;
     padding: 0;
@@ -867,7 +899,13 @@ div::-webkit-scrollbar {
     -webkit-backface-visibility: hidden;
 }
 
-/* footer frosted removed; solid gray restored */
+/* Fallback per browser senza supporto backdrop-filter */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .footer-marquee {
+        background-color: #ff5200;
+        border-top: none;
+    }
+}
 
 .footer-marquee-content {
     display: inline-flex;
@@ -932,7 +970,9 @@ div::-webkit-scrollbar {
         padding-bottom: env(safe-area-inset-bottom, 0px);
         max-width: 100vw;
         contain: strict;
-        background-color: #bebfc2;
+        background-color: rgba(255, 82, 0, 0.75);
+        backdrop-filter: blur(12px) saturate(130%);
+        -webkit-backdrop-filter: blur(12px) saturate(130%);
     }
     
     .footer-marquee-text {
