@@ -100,7 +100,7 @@ a {
 section {
     position: relative;
     width: 100%;
-    height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+    height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     z-index: 2;
     margin: 0;
     padding: 0;
@@ -133,8 +133,8 @@ section.sticky {
 
 .project {
     position: relative;
-    height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
-    min-height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+    height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+    min-height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     overflow: hidden;
     background-color: #FFFFFF;
     margin: 0;
@@ -169,7 +169,7 @@ section.sticky {
 .project-slide {
     flex: 0 0 100%;
     min-width: 100%;
-    height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+    height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -189,20 +189,20 @@ section.sticky {
 }
 
 .project-slide img {
-    max-height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+    max-height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     max-width: 100%;
     width: auto;
-    height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+    height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     display: block;
     pointer-events: none;
     object-fit: cover;
 }
 
 .project-slide video {
-    max-height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+    max-height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     max-width: 100%;
     width: auto;
-    height: calc(100vh - var(--footer-height) - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+    height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     display: block;
     filter: saturate(0.95) contrast(1.05);
     user-select: none;
@@ -415,18 +415,17 @@ section.sticky {
     /* removed mobile top-bar adjustments */
 
     #projects {
-        padding-top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px));
         padding-bottom: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
     }
 
     .project-gallery,
     .project-slide {
-        height: calc(100vh - var(--footer-height-mobile) - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     }
 
     .project-slide img {
         width: 100vw;
-        height: calc(100vh - var(--footer-height-mobile) - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
         max-width: none;
         max-height: none;
         object-fit: cover;
@@ -434,19 +433,19 @@ section.sticky {
 
     .project-slide video {
         width: 100vw;
-        height: calc(100vh - var(--footer-height-mobile) - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
         max-width: none;
         max-height: none;
         object-fit: cover;
     }
 
     section {
-        height: calc(100vh - var(--footer-height-mobile) - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     }
 
     .project {
-        height: calc(100vh - var(--footer-height-mobile) - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
-        min-height: calc(100vh - var(--footer-height-mobile) - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+        height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+        min-height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     }
 }
 
@@ -966,12 +965,15 @@ div::-webkit-scrollbar {
 
 @media (max-width: 768px) {
     #projects {
+        padding-top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px));
         padding-bottom: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
     }
     
     .footer-marquee {
-        height: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
-        padding-bottom: env(safe-area-inset-bottom, 0px);
+        height: var(--footer-height-mobile);
+        min-height: var(--footer-height-mobile);
+        padding-top: 0;
+        padding-bottom: 0;
         max-width: 100vw;
         contain: strict;
         background-color: rgba(255, 82, 0, 0.7);
