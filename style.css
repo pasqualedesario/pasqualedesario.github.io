@@ -310,7 +310,10 @@ section.sticky {
     left: 0;
     right: 0;
     width: 100%;
-    background-color: #bebfc2;
+    background-color: rgba(190, 191, 194, 0.85);
+    backdrop-filter: blur(16px) saturate(135%);
+    -webkit-backdrop-filter: blur(16px) saturate(135%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     overflow: hidden;
     z-index: 11000;
     padding: env(safe-area-inset-top, 0px) 1vh 0 1vh;
@@ -325,6 +328,14 @@ section.sticky {
     contain: layout style paint;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+}
+
+/* Fallback per browser senza supporto backdrop-filter */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .top-bar {
+        background-color: #bebfc2;
+        border-bottom: none;
+    }
 }
 
 .home-body .site-title {
@@ -399,6 +410,9 @@ section.sticky {
         min-height: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px));
         padding: env(safe-area-inset-top, 0px) 2.5vw 0 2.5vw;
         box-sizing: border-box;
+        background-color: rgba(190, 191, 194, 0.85);
+        backdrop-filter: blur(16px) saturate(135%);
+        -webkit-backdrop-filter: blur(16px) saturate(135%);
     }
 
     .home-body .site-title {
