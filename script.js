@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryStates = new Map();
     let currentIndex = 0;
     let ticking = false;
-    let globalLastAlignment = null; // Traccia l'ultimo allineamento globale
+    let lastProjectFirstAlignment = null; // Traccia l'allineamento del primo slide dell'ultimo progetto
 
     sections.forEach(section => {
         const wrapper = section.querySelector('.project-gallery');
@@ -34,8 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         wrapper.innerHTML = '';
 
-        const state = createGalleryState(wrapper, sources);
+        const state = createGalleryState(wrapper, sources, lastProjectFirstAlignment);
         galleryStates.set(section, state);
+        
+        // Aggiorna l'allineamento del primo slide di questo progetto per il prossimo
+        if (state.firstAlignment) {
+            lastProjectFirstAlignment = state.firstAlignment;
+        }
 
         wrapper.style.cursor = state.total <= 1 ? 'default' : 'crosshair';
 
@@ -56,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function createGalleryState(wrapper, sources) {
+    function createGalleryState(wrapper, sources, lastProjectFirstAlignment) {
         const state = {
             wrapper,
             images: sources,
@@ -64,15 +69,35 @@ document.addEventListener('DOMContentLoaded', () => {
             current: 0,
             position: 0,
             isTransitioning: false,
-            transition: 'transform 0.6s ease'
+            transition: 'transform 0.6s ease',
+            firstAlignment: null
         };
 
         const alignments = ['align-left', 'align-center', 'align-right'];
+        let lastAlignmentInProject = null; // Traccia l'ultimo allineamento all'interno di questo progetto
 
-        const pickAlignment = () => {
-            const choices = alignments.filter(alignment => alignment !== globalLastAlignment);
+        const pickAlignment = (isFirstSlide) => {
+            let choices;
+            
+            if (isFirstSlide) {
+                // Per il primo slide, evita l'allineamento dell'ultimo progetto
+                choices = lastProjectFirstAlignment 
+                    ? alignments.filter(alignment => alignment !== lastProjectFirstAlignment)
+                    : alignments;
+            } else {
+                // Per gli altri slide, evita solo l'ultimo allineamento all'interno di questo progetto
+                choices = lastAlignmentInProject 
+                    ? alignments.filter(alignment => alignment !== lastAlignmentInProject)
+                    : alignments;
+            }
+            
             const alignment = choices[Math.floor(Math.random() * choices.length)];
-            globalLastAlignment = alignment;
+            lastAlignmentInProject = alignment;
+            
+            if (isFirstSlide) {
+                state.firstAlignment = alignment;
+            }
+            
             return alignment;
         };
 
@@ -141,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         sources.forEach((src, index) => {
-            const alignment = pickAlignment();
+            const alignment = pickAlignment(index === 0);
             wrapper.appendChild(createSlide(src, alignment, index));
         });
 
