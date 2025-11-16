@@ -61,6 +61,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // IntersectionObserver per forzare il play dei video quando entrano in viewport (importante per mobile)
+    if ('IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const video = entry.target;
+                    if (video.tagName === 'VIDEO' && video.paused) {
+                        const playPromise = video.play();
+                        if (playPromise !== undefined) {
+                            playPromise.catch(error => {
+                                // Ignora errori di autoplay
+                            });
+                        }
+                    }
+                } else {
+                    // Pausa il video quando esce dalla viewport per risparmiare risorse
+                    const video = entry.target;
+                    if (video.tagName === 'VIDEO' && !video.paused) {
+                        video.pause();
+                    }
+                }
+            });
+        }, {
+            threshold: 0.5 // Quando almeno il 50% del video è visibile
+        });
+
+        // Osserva tutti i video
+        sections.forEach(section => {
+            const videos = section.querySelectorAll('video');
+            videos.forEach(video => {
+                videoObserver.observe(video);
+            });
+        });
+    }
+
     function createGalleryState(wrapper, sources, lastProjectFirstAlignment) {
         const state = {
             wrapper,
@@ -118,11 +153,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isVideo) {
                 // Crea elemento video
                 const video = document.createElement('video');
+                video.setAttribute('autoplay', '');
+                video.setAttribute('muted', '');
+                video.setAttribute('playsinline', '');
+                video.setAttribute('loop', '');
+                video.setAttribute('preload', 'auto');
+                video.setAttribute('webkit-playsinline', '');
                 video.autoplay = true;
                 video.muted = true;
                 video.playsInline = true;
                 video.loop = true;
-                video.preload = 'metadata';
+                video.preload = 'auto';
                 video.draggable = false;
                 
                 const source = document.createElement('source');
@@ -138,6 +179,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 video.addEventListener('click', (e) => e.preventDefault());
                 video.style.userSelect = 'none';
                 video.style.pointerEvents = 'none';
+                
+                // Forza il play quando il video è caricato (importante per mobile)
+                const tryPlay = () => {
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            // Ignora errori di autoplay, il video partirà quando visibile
+                        });
+                    }
+                };
+                
+                video.addEventListener('loadedmetadata', tryPlay);
+                video.addEventListener('canplay', tryPlay);
                 
                 slide.appendChild(video);
                 video.style.userSelect = 'none';
@@ -218,6 +272,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (sections[currentIndex] === section) {
             updateProgress(section);
         }
+        
+        // Forza il play del video nel nuovo slide (importante per mobile)
+        setTimeout(() => {
+            const slides = section.querySelectorAll('.project-slide');
+            const activeSlide = slides[newPosition];
+            if (activeSlide) {
+                const video = activeSlide.querySelector('video');
+                if (video && video.paused) {
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            // Ignora errori di autoplay
+                        });
+                    }
+                }
+            }
+        }, 100);
         
         // Reset transitioning state dopo l'animazione
         setTimeout(() => {
@@ -412,6 +483,24 @@ document.addEventListener('DOMContentLoaded', () => {
         setFixedOffset(activeIndex);
         updateProgress(activeSection);
         adjustTitleSpacing();
+        
+        // Forza il play del video nel primo slide del progetto attivo (importante per mobile)
+        const state = galleryStates.get(activeSection);
+        if (state) {
+            const slides = activeSection.querySelectorAll('.project-slide');
+            const activeSlide = slides[state.position];
+            if (activeSlide) {
+                const video = activeSlide.querySelector('video');
+                if (video && video.paused) {
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            // Ignora errori di autoplay
+                        });
+                    }
+                }
+            }
+        }
     }
 
     if (fixedTitle && sections.length > 0) {
