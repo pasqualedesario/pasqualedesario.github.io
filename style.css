@@ -432,7 +432,7 @@ section.sticky {
 
     #projects {
         padding-top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px));
-        padding-bottom: 0;
+        padding-bottom: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
     }
 
     .project-gallery,
@@ -533,7 +533,7 @@ section.sticky {
 .platform-label,
 .contact-label {
     font-size: 0.75rem;
-    line-height: 1.1rem;
+    line-height: 1.2rem;
     text-transform: uppercase;
     letter-spacing: 0.075em;
 
@@ -543,7 +543,7 @@ section.sticky {
     display: block;
     margin-top: 0.75rem;
     font-size: 0.75rem;
-    line-height: 1.1rem;
+    line-height: 1.2rem;
     font-family: 'Ronzino', sans-serif;
     font-weight: 400;
 }
@@ -612,14 +612,14 @@ section.sticky {
     }
     
     .typeset-note {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         line-height: 0.9rem;
         margin-top: 0.65rem;
     }
 
     .platform-label,
     .contact-label {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         line-height: 0.9rem;
     }
 
@@ -876,7 +876,7 @@ div::-webkit-scrollbar {
     }
     
     .typeset-note {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         line-height: 0.9rem;
         margin-top: 0.65rem;
     }
@@ -994,7 +994,7 @@ div::-webkit-scrollbar {
     }
     
     .footer-marquee-text {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         line-height: 0.9rem;
     }
     

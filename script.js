@@ -139,7 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, {
-            threshold: 0.3 // Quando almeno il 30% del video è visibile (più sensibile per mobile)
+            threshold: 0.1, // Quando almeno il 10% del video è visibile (molto sensibile per mobile)
+            rootMargin: '0px' // Nessun margine aggiuntivo
         });
 
         // Osserva tutti i video esistenti e futuri
@@ -569,12 +570,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const activeSlide = slides[state.position];
             if (activeSlide) {
                 const video = activeSlide.querySelector('video');
-                if (video && video.paused) {
-                    const playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(error => {
-                            // Ignora errori di autoplay
-                        });
+                if (video) {
+                    // Forza il play anche se il video è già stato tentato
+                    const playVideo = () => {
+                        if (video.paused || video.readyState < 3) {
+                            const playPromise = video.play();
+                            if (playPromise !== undefined) {
+                                playPromise.catch(error => {
+                                    // Ignora errori di autoplay, proverà di nuovo quando visibile
+                                });
+                            }
+                        }
+                    };
+                    
+                    // Prova immediatamente
+                    playVideo();
+                    
+                    // Prova anche quando il video è pronto
+                    if (video.readyState < 3) {
+                        video.addEventListener('canplay', playVideo, { once: true });
+                        video.addEventListener('loadeddata', playVideo, { once: true });
                     }
                 }
             }
