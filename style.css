@@ -431,7 +431,8 @@ section.sticky {
     /* removed mobile top-bar adjustments */
 
     #projects {
-        padding-bottom: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
+        padding-top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px));
+        padding-bottom: 0;
     }
 
     .project-gallery,
@@ -980,11 +981,6 @@ div::-webkit-scrollbar {
 }
 
 @media (max-width: 768px) {
-    #projects {
-        padding-top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px));
-        padding-bottom: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
-    }
-    
     .footer-marquee {
         height: var(--footer-height-mobile);
         min-height: var(--footer-height-mobile);
