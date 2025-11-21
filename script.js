@@ -661,13 +661,28 @@ let scrollPosition = 0;
 
 const lockScroll = () => {
   scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-  document.body.classList.add('scroll-lock');
-  document.body.style.top = `-${scrollPosition}px`;
+  // Su mobile iOS non bloccare completamente lo scroll per permettere scroll interno
+  if (window.innerWidth <= 768) {
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = `-${scrollPosition}px`;
+  } else {
+    document.body.classList.add('scroll-lock');
+    document.body.style.top = `-${scrollPosition}px`;
+  }
 };
 
 const unlockScroll = () => {
-  document.body.classList.remove('scroll-lock');
-  document.body.style.removeProperty('top');
+  if (window.innerWidth <= 768) {
+    document.body.style.removeProperty('overflow');
+    document.body.style.removeProperty('position');
+    document.body.style.removeProperty('width');
+    document.body.style.removeProperty('top');
+  } else {
+    document.body.classList.remove('scroll-lock');
+    document.body.style.removeProperty('top');
+  }
   window.scrollTo(0, scrollPosition);
 };
 

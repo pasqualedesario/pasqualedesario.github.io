@@ -63,6 +63,13 @@ body {
   -webkit-overflow-scrolling: auto;
 }
 
+@media (max-width: 768px) {
+  .scroll-lock .info-body {
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 @font-face {
     font-family: 'Ronzino';
     src: local('Ronzino Regular'),
