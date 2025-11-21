@@ -661,12 +661,10 @@ let scrollPosition = 0;
 
 const lockScroll = () => {
   scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-  // Su mobile iOS non bloccare completamente lo scroll per permettere scroll interno
+  // Su mobile iOS non bloccare lo scroll del body, solo prevenire scroll della pagina principale
   if (window.innerWidth <= 768) {
+    // Non bloccare lo scroll su mobile per permettere scroll interno
     document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
-    document.body.style.top = `-${scrollPosition}px`;
   } else {
     document.body.classList.add('scroll-lock');
     document.body.style.top = `-${scrollPosition}px`;
@@ -676,14 +674,11 @@ const lockScroll = () => {
 const unlockScroll = () => {
   if (window.innerWidth <= 768) {
     document.body.style.removeProperty('overflow');
-    document.body.style.removeProperty('position');
-    document.body.style.removeProperty('width');
-    document.body.style.removeProperty('top');
   } else {
     document.body.classList.remove('scroll-lock');
     document.body.style.removeProperty('top');
+    window.scrollTo(0, scrollPosition);
   }
-  window.scrollTo(0, scrollPosition);
 };
 
 const openInfo = () => {
