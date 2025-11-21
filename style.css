@@ -876,8 +876,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         transform: translateX(105%);
         height: 100vh;
         max-height: 100vh;
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow: hidden;
         background: #fff;
         display: flex;
         flex-direction: column;
@@ -917,11 +916,12 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         justify-content: flex-start;
         flex: 1;
         min-height: 0;
-        overflow-y: auto;
+        overflow-y: scroll;
         overflow-x: hidden;
-        scroll-padding-bottom: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
         -webkit-overflow-scrolling: touch;
         touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
     }
     
     .intro-text {
