@@ -661,10 +661,12 @@ let scrollPosition = 0;
 
 const lockScroll = () => {
   scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-  // Su mobile iOS non bloccare lo scroll del body per permettere scroll interno
+  // Su mobile bloccare completamente lo scroll del body
   if (window.innerWidth <= 768) {
-    // Non bloccare nulla su mobile - lo scroll sarà gestito dal contenuto info
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = `-${scrollPosition}px`;
   } else {
     document.body.classList.add('scroll-lock');
     document.body.style.top = `-${scrollPosition}px`;
@@ -674,6 +676,10 @@ const lockScroll = () => {
 const unlockScroll = () => {
   if (window.innerWidth <= 768) {
     document.body.style.removeProperty('overflow');
+    document.body.style.removeProperty('position');
+    document.body.style.removeProperty('width');
+    document.body.style.removeProperty('top');
+    window.scrollTo(0, scrollPosition);
   } else {
     document.body.classList.remove('scroll-lock');
     document.body.style.removeProperty('top');
@@ -685,6 +691,12 @@ const openInfo = () => {
   if (!infoOverlay.classList.contains('active')) {
     infoOverlay.classList.add('active');
     lockScroll();
+    
+    // Resetta lo scroll della pagina info all'apertura
+    const infoContent = infoOverlay.querySelector('.info-overlay-content');
+    if (infoContent) {
+      infoContent.scrollTop = 0;
+    }
   }
   // Non usare window.location.hash; aggiorna l'URL senza scroll
   history.pushState({ info: true }, '', '#info');
