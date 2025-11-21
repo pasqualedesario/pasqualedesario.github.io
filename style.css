@@ -857,6 +857,12 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         position: fixed;
         width: 100%;
         height: 100%;
+        touch-action: none;
+    }
+    
+    /* Permetti lo scroll solo all'interno della pagina info */
+    body:has(.info-overlay.active) .info-overlay-content {
+        touch-action: pan-y;
     }
 }
 
@@ -899,6 +905,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         position: relative;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: none;
+        touch-action: pan-y;
     }
 
     .info-overlay.active .info-overlay-content {
