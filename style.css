@@ -380,7 +380,23 @@ section.sticky {
     text-decoration-thickness: 1.5px;
 }
 
+.desktop-only {
+    display: inline;
+}
+
+.mobile-only {
+    display: none;
+}
+
 @media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+    
+    .mobile-only {
+        display: inline;
+    }
+    
     .project-title-fixed {
         font-size: 1rem;
         margin-left: 2.5vw;
@@ -659,6 +675,10 @@ section.sticky {
     .platform-links {
         margin-top: 0.65rem;
     }
+    
+    .platform-links:has(.degree-sup) {
+        line-height: 1.25rem;
+    }
 }
 
 ::selection {
@@ -833,6 +853,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         height: 300vh;
         backdrop-filter: blur(30px);
         -webkit-backdrop-filter: blur(30px);
+        z-index: 9997;
     }
 
     .info-overlay {
@@ -860,6 +881,8 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         display: flex;
         flex-direction: column;
         -webkit-overflow-scrolling: touch;
+        z-index: 10000;
+        position: relative;
     }
 
     .info-overlay.active .info-overlay-content {
@@ -885,8 +908,8 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     }
 
     .info-body {
-        padding: calc(1vh + 1.3rem) 2.5vw calc(1vh + 1.3rem) 2.5vw;
-        margin-top: 0;
+        padding: 0 2.5vw calc(1vh + 1.3rem) 2.5vw;
+        margin-top: calc(1vh + 1.3rem);
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -905,7 +928,6 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         font-size: 0.95rem;
         line-height: 1.25rem;
         margin-bottom: 2vh;
-        color: #000000;
     }
 
     .small-text {
@@ -918,7 +940,6 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         left: auto;
         right: auto;
         margin-bottom: 0;
-        color: #000000;
     }
     
     .typeset-note {
