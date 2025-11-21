@@ -873,6 +873,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         z-index: 9998;
         display: flex;
         flex-direction: column;
+        overscroll-behavior: none;
     }
 
     .info-overlay-content {
@@ -889,6 +890,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         z-index: 10001;
         position: relative;
         -webkit-overflow-scrolling: touch;
+        overscroll-behavior: none;
     }
 
     .info-overlay.active .info-overlay-content {
