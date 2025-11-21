@@ -432,6 +432,11 @@ section.sticky {
 
     #projects {
         padding-top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px));
+        padding-bottom: 0;
+    }
+    
+    .project:last-child {
+        margin-bottom: 0;
         padding-bottom: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
     }
 
@@ -463,6 +468,17 @@ section.sticky {
     .project {
         height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
         min-height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+    }
+    
+    /* Sottolineatura più sottile su mobile */
+    a:hover,
+    .project-title-fixed a:hover,
+    .home-body .site-title:hover,
+    .home-body .info-link:hover,
+    .intro-text a:hover,
+    .small-text a:hover,
+    .footer-marquee-text a:hover {
+        text-decoration-thickness: 1px;
     }
 }
 
@@ -856,6 +872,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         font-family: 'Ronzino', sans-serif;
         font-weight: 700;
         font-style: normal;
+        visibility: visible;
     }
 
     .info-close {
@@ -868,8 +885,8 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     }
 
     .info-body {
-        padding: 0 2.5vw calc(1vh + 1.3rem) 2.5vw;
-        margin-top: calc(1vh + 1.3rem);
+        padding: calc(1vh + 1.3rem) 2.5vw calc(1vh + 1.3rem) 2.5vw;
+        margin-top: 0;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -888,6 +905,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         font-size: 0.95rem;
         line-height: 1.25rem;
         margin-bottom: 2vh;
+        color: #000000;
     }
 
     .small-text {
@@ -900,6 +918,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         left: auto;
         right: auto;
         margin-bottom: 0;
+        color: #000000;
     }
     
     .typeset-note {
