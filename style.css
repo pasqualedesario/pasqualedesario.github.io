@@ -881,15 +881,14 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         right: 0;
         transform: translateX(105%);
         height: 100vh;
-        max-height: 100vh;
-        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
         background: #fff;
         display: flex;
         flex-direction: column;
         z-index: 10001;
         position: relative;
-        padding-bottom: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
-        box-sizing: border-box;
+        -webkit-overflow-scrolling: touch;
     }
 
     .info-overlay.active .info-overlay-content {
@@ -915,22 +914,13 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     }
 
     .info-body {
-        padding: calc(1vh + 1.3rem) 2.5vw 0 2.5vw;
+        padding: calc(1vh + 1.3rem) 2.5vw calc(1vh + 1.3rem) 2.5vw;
         margin-top: 0;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         flex: 1;
         min-height: 0;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
-        touch-action: pan-y;
-        overscroll-behavior: contain;
-        height: calc(100% - calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px)));
-        position: relative;
-        will-change: scroll-position;
-        box-sizing: border-box;
     }
     
     .intro-text {

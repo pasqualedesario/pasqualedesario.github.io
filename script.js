@@ -659,19 +659,12 @@ const infoOverlay = document.getElementById('info-overlay');
 
 let scrollPosition = 0;
 
-// Funzione per prevenire scroll del body su mobile (deve essere la stessa per poter essere rimossa)
-const preventBodyScrollMobile = (e) => {
-  // Permetti scroll solo se è dentro .info-body o .info-overlay-content
-  if (!e.target.closest('.info-body') && !e.target.closest('.info-overlay-content')) {
-    e.preventDefault();
-  }
-};
-
 const lockScroll = () => {
   scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
   // Su mobile iOS non bloccare lo scroll del body per permettere scroll interno
   if (window.innerWidth <= 768) {
     // Non bloccare nulla su mobile - lo scroll sarà gestito dal contenuto info
+    document.body.style.overflow = 'hidden';
   } else {
     document.body.classList.add('scroll-lock');
     document.body.style.top = `-${scrollPosition}px`;
@@ -680,7 +673,7 @@ const lockScroll = () => {
 
 const unlockScroll = () => {
   if (window.innerWidth <= 768) {
-    // Niente da fare su mobile
+    document.body.style.removeProperty('overflow');
   } else {
     document.body.classList.remove('scroll-lock');
     document.body.style.removeProperty('top');
@@ -692,11 +685,6 @@ const openInfo = () => {
   if (!infoOverlay.classList.contains('active')) {
     infoOverlay.classList.add('active');
     lockScroll();
-    
-    // Su mobile, previeni lo scroll della pagina principale quando si tocca l'overlay
-    if (window.innerWidth <= 768) {
-      document.addEventListener('touchmove', preventBodyScrollMobile, { passive: false });
-    }
   }
   // Non usare window.location.hash; aggiorna l'URL senza scroll
   history.pushState({ info: true }, '', '#info');
@@ -706,11 +694,6 @@ const closeInfo = () => {
   if (infoOverlay.classList.contains('active')) {
     infoOverlay.classList.remove('active');
     unlockScroll();
-    
-    // Rimuovi il listener su mobile
-    if (window.innerWidth <= 768) {
-      document.removeEventListener('touchmove', preventBodyScrollMobile);
-    }
   }
   history.pushState({ info: false }, '', window.location.pathname + window.location.search);
 };
