@@ -431,6 +431,7 @@ section.sticky {
     /* removed mobile top-bar adjustments */
 
     #projects {
+        padding-top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px));
         padding-bottom: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
     }
 
@@ -532,7 +533,7 @@ section.sticky {
 .platform-label,
 .contact-label {
     font-size: 0.75rem;
-    line-height: 1.1rem;
+    line-height: 1.2rem;
     text-transform: uppercase;
     letter-spacing: 0.075em;
 
@@ -555,7 +556,7 @@ section.sticky {
     display: block;
     margin-top: 0;
     font-size: 0.75rem;
-    line-height: 1.1rem;
+    line-height: 1.2rem;
     font-family: 'Ronzino', sans-serif;
     font-weight: 400;
 }
@@ -624,14 +625,14 @@ section.sticky {
     }
     
     .typeset-note {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         line-height: 0.9rem;
         margin-top: 0;
     }
 
     .platform-label,
     .contact-label {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         line-height: 0.9rem;
     }
 
@@ -902,7 +903,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     }
     
     .typeset-note {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         line-height: 0.9rem;
         margin-top: 0;
     }
@@ -1006,11 +1007,6 @@ body:has(.info-overlay.active) #projects .project-gallery video {
 }
 
 @media (max-width: 768px) {
-    #projects {
-        padding-top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px));
-        padding-bottom: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
-    }
-    
     .footer-marquee {
         height: var(--footer-height-mobile);
         min-height: var(--footer-height-mobile);
@@ -1024,7 +1020,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     }
     
     .footer-marquee-text {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         line-height: 0.9rem;
     }
     

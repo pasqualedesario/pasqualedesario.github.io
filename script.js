@@ -1,3 +1,58 @@
+// Update footer datetime - functions defined before DOMContentLoaded
+let currentTemperature = null;
+let isFirstUpdate = true;
+
+function buildFooterDateTimeHtml(now) {
+    const day = now.getDate();
+    const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+    const month = months[now.getMonth()];
+    const year = now.getFullYear();
+    
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    
+    const timezone = Intl.DateTimeFormat('en', { timeZoneName: 'short' })
+        .formatToParts(now)
+        .find(part => part.type === 'timeZoneName')?.value || 'UTC';
+    
+    let html = `bari, <span class="num">${day}</span> ${month} <span class="num">${year}</span>, <span class="num">${hours}</span>:<span class="num">${minutes}</span>:<span class="num">${seconds}</span> ${timezone.toLowerCase()}`;
+    if (currentTemperature !== null) {
+        html += `, <span class="num">${currentTemperature}</span><span class="grado-basso">°</span>c`;
+    } else {
+        html += `, <span class="num">--</span><span class="grado-basso">°</span>c`;
+    }
+    return html;
+}
+
+async function fetchTemperature() {
+    try {
+        // Using Open-Meteo API (no API key required)
+        // Coordinates for Bari: 41.1171, 16.8719
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.1171&longitude=16.8719&current_weather=true');
+        const data = await response.json();
+        if (data.current_weather && data.current_weather.temperature !== undefined) {
+            currentTemperature = Math.round(data.current_weather.temperature);
+            // Update immediately after first fetch
+            if (isFirstUpdate) {
+                updateFooterDateTime();
+                isFirstUpdate = false;
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching temperature:', error);
+    }
+}
+
+function updateFooterDateTime() {
+    const now = new Date();
+    const dateTimeString = buildFooterDateTimeHtml(now);
+    const dateTimeElements = document.querySelectorAll('.footer-datetime');
+    dateTimeElements.forEach(el => {
+        el.innerHTML = dateTimeString;
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
@@ -63,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // IntersectionObserver per forzare il play dei video quando entrano in viewport (importante per mobile)
     if ('IntersectionObserver' in window) {
-        const videoObserver = new IntersectionObserver((entries) => {
+        window.videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const video = entry.target;
@@ -84,16 +139,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, {
-            threshold: 0.5 // Quando almeno il 50% del video è visibile
+            threshold: 0.1, // Quando almeno il 10% del video è visibile (molto sensibile per mobile)
+            rootMargin: '0px' // Nessun margine aggiuntivo
         });
 
-        // Osserva tutti i video
-        sections.forEach(section => {
-            const videos = section.querySelectorAll('video');
-            videos.forEach(video => {
-                videoObserver.observe(video);
+        // Osserva tutti i video esistenti e futuri
+        // I video creati dinamicamente verranno osservati quando vengono aggiunti al DOM
+        const observeVideos = () => {
+            sections.forEach(section => {
+                const videos = section.querySelectorAll('video');
+                videos.forEach(video => {
+                    if (!video.dataset.observed) {
+                        window.videoObserver.observe(video);
+                        video.dataset.observed = 'true';
+                    }
+                });
             });
-        });
+        };
+        
+        // Osserva i video iniziali
+        observeVideos();
+        
+        // Osserva anche dopo un piccolo delay per catturare i video creati dinamicamente
+        setTimeout(observeVideos, 500);
     }
 
     function createGalleryState(wrapper, sources, lastProjectFirstAlignment) {
@@ -182,19 +250,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Forza il play quando il video è caricato (importante per mobile)
                 const tryPlay = () => {
-                    const playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(error => {
-                            // Ignora errori di autoplay, il video partirà quando visibile
-                        });
+                    if (video.paused) {
+                        const playPromise = video.play();
+                        if (playPromise !== undefined) {
+                            playPromise.catch(error => {
+                                // Ignora errori di autoplay, il video partirà quando visibile
+                            });
+                        }
                     }
                 };
                 
                 video.addEventListener('loadedmetadata', tryPlay);
                 video.addEventListener('canplay', tryPlay);
+                video.addEventListener('loadeddata', () => {
+                    // Piccolo delay per assicurarsi che tutto sia pronto
+                    setTimeout(tryPlay, 100);
+                });
                 
                 slide.appendChild(video);
                 video.style.userSelect = 'none';
+                
+                // Osserva il video quando viene aggiunto al DOM
+                if ('IntersectionObserver' in window && window.videoObserver) {
+                    window.videoObserver.observe(video);
+                }
 
             } else {
                 // Crea elemento immagine
@@ -491,12 +570,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const activeSlide = slides[state.position];
             if (activeSlide) {
                 const video = activeSlide.querySelector('video');
-                if (video && video.paused) {
-                    const playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(error => {
-                            // Ignora errori di autoplay
-                        });
+                if (video) {
+                    // Forza il play anche se il video è già stato tentato
+                    const playVideo = () => {
+                        if (video.paused || video.readyState < 3) {
+                            const playPromise = video.play();
+                            if (playPromise !== undefined) {
+                                playPromise.catch(error => {
+                                    // Ignora errori di autoplay, proverà di nuovo quando visibile
+                                });
+                            }
+                        }
+                    };
+                    
+                    // Prova immediatamente
+                    playVideo();
+                    
+                    // Prova anche quando il video è pronto
+                    if (video.readyState < 3) {
+                        video.addEventListener('canplay', playVideo, { once: true });
+                        video.addEventListener('loadeddata', playVideo, { once: true });
                     }
                 }
             }
@@ -622,88 +715,54 @@ if (infoTrigger && infoOverlay) {
   if (window.location.hash === '#info') {
     openInfo();
   }
+
+  // Wrap em-dashes in footer marquee (do this once before datetime updates)
+  wrapFooterDashes();
 }
 
-// Update footer datetime
-let currentTemperature = null;
-let isFirstUpdate = true;
-
-// Fetch temperature for Bari
-async function fetchTemperature() {
-    try {
-        // Using Open-Meteo API (no API key required)
-        // Coordinates for Bari: 41.1171, 16.8719
-        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.1171&longitude=16.8719&current_weather=true');
-        const data = await response.json();
-        if (data.current_weather && data.current_weather.temperature !== undefined) {
-            currentTemperature = Math.round(data.current_weather.temperature);
-            // Update immediately after first fetch
-            if (isFirstUpdate) {
-                updateFooterDateTime();
-                isFirstUpdate = false;
-            }
-        }
-    } catch (error) {
-        console.error('Error fetching temperature:', error);
+// Initialize and update footer datetime every second
+function updateFooterDateTimeCached() {
+    // Query elements every time to ensure we get all elements
+    const footerDateTimeElements = document.querySelectorAll('.footer-datetime');
+    if (footerDateTimeElements.length > 0) {
+        const now = new Date();
+        const dateTimeString = buildFooterDateTimeHtml(now);
+        footerDateTimeElements.forEach(el => {
+            el.innerHTML = dateTimeString;
+        });
     }
 }
 
-function buildFooterDateTimeHtml(now) {
-    const day = now.getDate();
-    const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-    const month = months[now.getMonth()];
-    const year = now.getFullYear();
-    
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    
-    const timezone = Intl.DateTimeFormat('en', { timeZoneName: 'short' })
-        .formatToParts(now)
-        .find(part => part.type === 'timeZoneName')?.value || 'UTC';
-    
-    let html = `bari, <span class="num">${day}</span> ${month} <span class="num">${year}</span>, <span class="num">${hours}</span>:<span class="num">${minutes}</span>:<span class="num">${seconds}</span> ${timezone.toLowerCase()}`;
-    if (currentTemperature !== null) {
-        html += `, <span class="num">${currentTemperature}</span><span class="grado-basso">°</span>c`;
-    } else {
-        html += `, <span class="num">--</span><span class="grado-basso">°</span>c`;
-    }
-    return html;
+// Start updating after DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initial update after a small delay to ensure DOM is ready
+        setTimeout(() => {
+            updateFooterDateTimeCached();
+            setInterval(updateFooterDateTimeCached, 1000);
+        }, 100);
+    });
+} else {
+    // DOM is already loaded
+    updateFooterDateTimeCached();
+    setInterval(updateFooterDateTimeCached, 1000);
 }
 
 // Fetch temperature on load and every 10 minutes
 fetchTemperature();
 setInterval(fetchTemperature, 600000); // 10 minutes
 
-function updateFooterDateTime() {
-    const now = new Date();
-    const dateTimeString = buildFooterDateTimeHtml(now);
-    const dateTimeElements = document.querySelectorAll('.footer-datetime');
-    dateTimeElements.forEach(el => {
-        el.innerHTML = dateTimeString;
-    });
-}
-
-// Initialize and update every second (cache NodeList to avoid repeated queries)
-const footerDateTimeElements = document.querySelectorAll('.footer-datetime');
-function updateFooterDateTimeCached() {
-    const now = new Date();
-    const dateTimeString = buildFooterDateTimeHtml(now);
-    footerDateTimeElements.forEach(el => {
-        el.innerHTML = dateTimeString;
-    });
-}
-updateFooterDateTimeCached();
-setInterval(updateFooterDateTimeCached, 1000);
-
 // Raise em-dash by 1px in footer marquee
+// Call this inside DOMContentLoaded to ensure it runs before datetime updates
 function wrapFooterDashes() {
     const items = document.querySelectorAll('.footer-marquee-text');
     items.forEach((el) => {
-        el.innerHTML = el.innerHTML.replace(/—/g, '<span class="emdash">—</span>');
+        // Only replace if not already wrapped to avoid interfering with datetime updates
+        if (!el.innerHTML.includes('<span class="emdash">')) {
+            el.innerHTML = el.innerHTML.replace(/—/g, '<span class="emdash">—</span>');
+        }
     });
 }
-wrapFooterDashes();
 
 function shuffle(items) {
     const array = [...items];
