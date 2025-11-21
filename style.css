@@ -538,9 +538,22 @@ section.sticky {
 
 }
 
+.degree-sup {
+    font-size: 0.75rem;
+    vertical-align: super;
+    display: inline-block;
+    width: 1.5em;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.platform-links:has(.degree-sup) {
+    line-height: 1.5rem;
+}
+
 .typeset-note {
     display: block;
-    margin-top: 0.75rem;
+    margin-top: 0;
     font-size: 0.75rem;
     line-height: 1.1rem;
     font-family: 'Ronzino', sans-serif;
@@ -613,13 +626,17 @@ section.sticky {
     .typeset-note {
         font-size: 0.6rem;
         line-height: 0.9rem;
-        margin-top: 0.65rem;
+        margin-top: 0;
     }
 
     .platform-label,
     .contact-label {
         font-size: 0.6rem;
         line-height: 0.9rem;
+    }
+
+    .degree-sup {
+        font-size: 0.6rem;
     }
 
     .platform-links {
@@ -686,14 +703,22 @@ div::-webkit-scrollbar {
 }
 
 .info-overlay-blur {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: -100vh;
     left: 0;
     width: 50%;
-    height: 100%;
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+    height: 300vh;
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
     background-color: rgba(255, 255, 255, 0.3);
+    z-index: 9999;
+}
+
+.info-overlay.active ~ * #projects .project-gallery img,
+.info-overlay.active ~ * #projects .project-gallery video,
+body:has(.info-overlay.active) #projects .project-gallery img,
+body:has(.info-overlay.active) #projects .project-gallery video {
+    filter: blur(50px);
 }
 
 .info-overlay-content {
@@ -748,7 +773,7 @@ div::-webkit-scrollbar {
 }
 
 .info-body {
-    padding: 0 1vh 1vh 1vh;
+    padding: 0 1vh calc(1vh + 1.5rem) 1vh;
     margin-top: calc(1vh + 1.5rem);
     display: flex;
     flex-direction: column;
@@ -764,7 +789,6 @@ div::-webkit-scrollbar {
 }
 
 .info-body .small-text {
-    margin-top: var(--line-height-base);
     align-self: flex-start;
 }
 
@@ -786,9 +810,12 @@ div::-webkit-scrollbar {
 
 @media (max-width: 768px) {
     .info-overlay-blur {
+        position: fixed;
+        top: -100vh;
         width: 100%;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        height: 300vh;
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
     }
 
     .info-overlay {
@@ -840,7 +867,7 @@ div::-webkit-scrollbar {
     }
 
     .info-body {
-        padding: 0 2.5vw 0 2.5vw;
+        padding: 0 2.5vw calc(1vh + 1.3rem) 2.5vw;
         margin-top: calc(1vh + 1.3rem);
         display: flex;
         flex-direction: column;
@@ -877,7 +904,7 @@ div::-webkit-scrollbar {
     .typeset-note {
         font-size: 0.6rem;
         line-height: 0.9rem;
-        margin-top: 0.65rem;
+        margin-top: 0;
     }
     
     .info-body .intro-text {
@@ -885,7 +912,6 @@ div::-webkit-scrollbar {
     }
     
     .info-body .small-text {
-         margin-top: var(--line-height-mobile-base);
          align-self: flex-start;
 }
 }
@@ -1011,7 +1037,7 @@ div::-webkit-scrollbar {
 }
 /* --- Allineamento e spaziatura uniforme Info --- */
 .info-body .intro-text {
-  margin-bottom: 1vh; /* spazio coerente sotto About */
+  margin-bottom: 1vh; /* spazio sotto About */
 }
 
 /* Simbolo grado abbassato per allineamento con maiuscoletto */
@@ -1029,7 +1055,7 @@ div::-webkit-scrollbar {
 }
 
 .info-body .small-text > *:last-child {
-  margin-bottom: 1vh; /* nessuno spazio dopo l'ultima riga (Typeset note) */
+  margin-bottom: 0; /* nessuno spazio extra, usa solo padding-bottom di info-body */
 }
 
 /* versione mobile */
@@ -1044,5 +1070,9 @@ div::-webkit-scrollbar {
 
   .info-body .small-text > * {
     margin-bottom: 1vh;
+  }
+
+  .info-body .small-text > *:last-child {
+    margin-bottom: 0;
   }
 }
