@@ -868,13 +868,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
 
 @media (max-width: 768px) {
     .info-overlay-blur {
-        position: fixed;
-        top: -100vh;
-        width: 100%;
-        height: 300vh;
-        backdrop-filter: blur(30px);
-        -webkit-backdrop-filter: blur(30px);
-        z-index: 9997;
+        display: none;
     }
 
     .info-overlay {
