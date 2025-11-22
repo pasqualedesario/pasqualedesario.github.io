@@ -21,7 +21,6 @@
     --footer-height-mobile: 1.5rem;
 }
 
-
 * {
     margin: 0;
     padding: 0;
@@ -33,10 +32,13 @@ html {
     padding: 0;
     height: 100%;
     overscroll-behavior: none;
+    /* iOS Safari fix: ensure no relative positioning */
+    position: static;
 }
 
 body {
     min-height: 100dvh;
+    min-height: -webkit-fill-available; /* iOS Safari fix for dynamic viewport */
     min-width: 100dvw;
     background-color: var(--color-white);
     color: var(--color-black);
@@ -49,6 +51,8 @@ body {
     padding: 0;
     overscroll-behavior: none;
     isolation: isolate;
+    /* iOS Safari fix: ensure no relative positioning */
+    position: static;
 }
 
 .scroll-lock {
@@ -119,6 +123,7 @@ section.sticky {
     min-height: 100dvh;
     overflow-x: hidden;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     background-color: #FFFFFF;
     padding-bottom: 0;
 }
@@ -163,7 +168,7 @@ section.sticky {
     overflow: auto;
     transition: transform 0.6s ease;
     will-change: transform;
-    touch-action: manipulation;
+    touch-action: pan-y pan-x;
     overflow: visible;
     background-color: #FFFFFF;
     z-index: 0;
@@ -310,9 +315,9 @@ section.sticky {
 /* Top Bar - speculare al footer */
 .top-bar {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0px; /* iOS Safari fix: explicit px unit */
+    left: 0px;
+    right: 0px;
     width: 100%;
     background-color: rgba(190, 191, 194, 0.7);
     backdrop-filter: blur(16px) saturate(135%);
@@ -481,6 +486,11 @@ section.sticky {
         object-fit: cover;
     }
 
+    /* Nascondi il video di Palucca su mobile - mostra solo la prima immagine */
+    section[data-title*="Palucca"] .project-slide:nth-child(2) {
+        display: none;
+    }
+
     section {
         height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     }
@@ -488,6 +498,16 @@ section.sticky {
     .project {
         height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
         min-height: calc(100vh - var(--footer-height-mobile) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+    }
+
+    /* Assicura scroll verticale fluido su mobile */
+    body {
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+    }
+
+    .project-gallery {
+        touch-action: pan-y pan-x;
     }
     
     /* Sottolineatura più sottile su mobile */
@@ -725,10 +745,12 @@ div::-webkit-scrollbar {
 /* Info Overlay */
     .info-overlay {
         position: fixed;
-        top: 0;
-        left: 0;
+        top: 0px; /* iOS Safari fix: explicit px unit */
+        left: 0px;
+        bottom: 0px; /* iOS Safari fix: explicit bottom */
         width: 100%;
         height: 100vh;
+        height: -webkit-fill-available; /* iOS Safari fix for dynamic viewport */
         z-index: 9998;
     display: flex;
     opacity: 0;
@@ -765,12 +787,13 @@ body:has(.info-overlay.active) #projects .project-gallery video {
 
 .info-overlay-content {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 0px; /* iOS Safari fix: explicit px unit */
+    right: 0px;
     width: 50%;
     height: 100%;
+    height: -webkit-fill-available; /* iOS Safari fix for dynamic viewport */
     background-color: #FFFFFF;
-    overflow-y: scroll;
+    overflow-y: scroll; /* iOS Safari fix: use scroll not auto */
     -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
@@ -839,6 +862,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     justify-content: flex-start;
     flex: 1;
     height: calc(100% - 1vh - 1.5rem);
+    min-height: 100vh; /* iOS Safari fix: exploit iOS bug for proper scrolling */
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -881,10 +905,12 @@ body:has(.info-overlay.active) #projects .project-gallery video {
 
     .info-overlay {
         position: fixed;
-        top: 0;
-        left: 0;
+        top: 0px; /* iOS Safari fix: explicit px unit */
+        left: 0px;
+        bottom: 0px; /* iOS Safari fix: explicit bottom */
         width: 100vw;
         height: 100vh;
+        height: -webkit-fill-available; /* iOS Safari fix for dynamic viewport */
         overflow: hidden;
         z-index: 9998;
         display: flex;
@@ -894,11 +920,14 @@ body:has(.info-overlay.active) #projects .project-gallery video {
 
     .info-overlay-content {
         width: 100vw;
-        left: 0;
-        right: 0;
+        left: 0px; /* iOS Safari fix: explicit px unit */
+        right: 0px;
+        top: 0px;
+        bottom: 0px; /* iOS Safari fix: explicit bottom */
         transform: translateX(105%);
         height: 100vh;
-        overflow-y: scroll;
+        height: -webkit-fill-available; /* iOS Safari fix for dynamic viewport */
+        overflow-y: scroll; /* iOS Safari fix: use scroll not auto */
         overflow-x: hidden;
         background: #fff;
         display: flex;
@@ -939,7 +968,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         flex-direction: column;
         justify-content: flex-start;
         flex: 1;
-        min-height: 0;
+        min-height: 100vh; /* iOS Safari fix: exploit iOS bug for proper scrolling */
     }
     
     .intro-text {
@@ -980,9 +1009,9 @@ body:has(.info-overlay.active) #projects .project-gallery video {
 /* Footer Marquee */
 .footer-marquee {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0px; /* iOS Safari fix: explicit px unit */
+    left: 0px;
+    right: 0px;
     width: 100%;
     background-color: rgba(255, 82, 0, 0.6);
     backdrop-filter: blur(16px) saturate(135%);

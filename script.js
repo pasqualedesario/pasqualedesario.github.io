@@ -402,17 +402,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const touch = event.touches[0];
             const deltaX = touch.clientX - startX;
             const deltaY = touch.clientY - startY;
+            const absDeltaX = Math.abs(deltaX);
+            const absDeltaY = Math.abs(deltaY);
 
             if (!horizontal) {
-                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
-                    horizontal = true;
-                } else if (Math.abs(deltaY) > Math.abs(deltaX)) {
+                // Se lo scroll verticale è maggiore, permettere lo scroll nativo
+                if (absDeltaY > absDeltaX && absDeltaY > 15) {
                     tracking = false;
+                    horizontal = false;
                     return;
+                }
+                // Solo se il movimento orizzontale è chiaramente maggiore dello verticale
+                if (absDeltaX > absDeltaY && absDeltaX > 20) {
+                    horizontal = true;
                 }
             }
 
-            if (horizontal) {
+            // Previeni default solo se è chiaramente uno swipe orizzontale
+            if (horizontal && absDeltaX > absDeltaY) {
                 event.preventDefault();
             }
         }, { passive: false });
