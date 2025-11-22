@@ -773,7 +773,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     width: 50%;
     height: 100%;
     background-color: #FFFFFF;
-    overflow-y: auto;
+    overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
@@ -781,6 +781,21 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     transition: transform 0.2s ease-out;
     touch-action: pan-y;
     overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.5) transparent;
+}
+
+.info-overlay-content::-webkit-scrollbar,
+.info-body::-webkit-scrollbar {
+    width: 4px;
+    background: transparent;
+    display: block;
+}
+
+.info-overlay-content::-webkit-scrollbar-thumb,
+.info-body::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.35);
+    border-radius: 2px;
 }
 
 .info-overlay.active .info-overlay-content {
@@ -886,7 +901,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         right: 0;
         transform: translateX(105%);
         height: 100vh;
-        overflow-y: auto;
+        overflow-y: scroll;
         overflow-x: hidden;
         background: #fff;
         display: flex;
