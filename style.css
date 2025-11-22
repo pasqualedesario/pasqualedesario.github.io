@@ -52,15 +52,12 @@ body {
 }
 
 .scroll-lock {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-  left: 0;
-  right: 0;
-  touch-action: none;
-  overscroll-behavior: none;
-  background: var(--color-white);
-  -webkit-overflow-scrolling: auto;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
 }
 
 @media (max-width: 768px) {

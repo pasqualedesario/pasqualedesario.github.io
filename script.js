@@ -661,12 +661,10 @@ let scrollPosition = 0;
 
 const lockScroll = () => {
   scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-  // Su mobile bloccare completamente lo scroll del body
+  const html = document.documentElement;
   if (window.innerWidth <= 768) {
     document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
-    document.body.style.top = `-${scrollPosition}px`;
+    html.style.overflow = 'hidden';
   } else {
     document.body.classList.add('scroll-lock');
     document.body.style.top = `-${scrollPosition}px`;
@@ -674,17 +672,15 @@ const lockScroll = () => {
 };
 
 const unlockScroll = () => {
+  const html = document.documentElement;
   if (window.innerWidth <= 768) {
     document.body.style.removeProperty('overflow');
-    document.body.style.removeProperty('position');
-    document.body.style.removeProperty('width');
-    document.body.style.removeProperty('top');
-    window.scrollTo(0, scrollPosition);
+    html.style.removeProperty('overflow');
   } else {
     document.body.classList.remove('scroll-lock');
     document.body.style.removeProperty('top');
-    window.scrollTo(0, scrollPosition);
   }
+  window.scrollTo(0, scrollPosition);
 };
 
 const openInfo = () => {
