@@ -487,8 +487,19 @@ section.sticky {
     }
 
     /* Nascondi il video di Palucca su mobile - mostra solo la prima immagine */
-    section[data-title*="Palucca"] .project-slide:nth-child(2) {
-        display: none;
+    section[data-title*="Palucca"] .project-slide:nth-child(2),
+    section[data-title*="Palucca"] .project-slide:nth-of-type(2) {
+        display: none !important;
+    }
+    
+    /* Nascondi anche il video direttamente se il selettore sopra non funziona */
+    section[data-title*="Palucca"] .project-slide video {
+        display: none !important;
+    }
+    
+    /* Mostra solo la prima immagine */
+    section[data-title*="Palucca"] .project-slide:first-child img {
+        display: block !important;
     }
 
     section {
@@ -961,13 +972,27 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     }
 
     .info-body {
-        padding: calc(1vh + 1.3rem) 2.5vw calc(1vh + 1.3rem + var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px)) 2.5vw;
+        padding: calc(1vh + 1.3rem) 2.5vw calc(1vh + 1.3rem) 2.5vw;
         margin-top: 0;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         flex: 1;
         min-height: 0; /* Permette al contenuto di determinare l'altezza, senza spazio extra */
+    }
+    
+    /* Assicura che lo spazio tra typeset-note e footer sia uguale a quello tra top-bar e intro-text */
+    .info-body .small-text > *:last-child {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    /* Rimuovi qualsiasi margine extra da typeset-note su mobile */
+    .info-body .typeset-note {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
     
     .intro-text {
