@@ -405,6 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const absDeltaX = Math.abs(deltaX);
             const absDeltaY = Math.abs(deltaY);
 
+            // Determina la direzione solo se non è già stata determinata
             if (!horizontal) {
                 // Se lo scroll verticale è maggiore, permettere lo scroll nativo
                 if (absDeltaY > absDeltaX && absDeltaY > 15) {
@@ -426,13 +427,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         wrapper.addEventListener('touchend', event => {
             if (!tracking) {
+                // Reset sempre le variabili anche se tracking è false
+                horizontal = false;
                 return;
             }
 
             const state = galleryStates.get(section);
-            tracking = false;
-
-            if (!state || state.total <= 1 || !horizontal) {
+            if (!state || state.total <= 1) {
+                tracking = false;
                 horizontal = false;
                 return;
             }
@@ -440,14 +442,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const touch = event.changedTouches[0];
             const deltaX = touch.clientX - startX;
 
-            if (Math.abs(deltaX) >= SWIPE_THRESHOLD) {
+            if (horizontal && Math.abs(deltaX) >= SWIPE_THRESHOLD) {
                 changeSlide(section, deltaX < 0 ? 1 : -1);
             }
 
+            // Reset sempre le variabili dopo touchend
+            tracking = false;
             horizontal = false;
         }, { passive: true });
 
         wrapper.addEventListener('touchcancel', () => {
+            // Reset sempre le variabili
             tracking = false;
             horizontal = false;
         });
