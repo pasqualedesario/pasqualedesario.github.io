@@ -793,7 +793,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     height: 100%;
     height: -webkit-fill-available; /* iOS Safari fix for dynamic viewport */
     background-color: #FFFFFF;
-    overflow-y: scroll; /* iOS Safari fix: use scroll not auto */
+    overflow-y: auto; /* Scroll solo quando necessario su desktop */
     -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
@@ -861,8 +861,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     flex-direction: column;
     justify-content: flex-start;
     flex: 1;
-    height: calc(100% - 1vh - 1.5rem);
-    min-height: 100vh; /* iOS Safari fix: exploit iOS bug for proper scrolling */
+    min-height: 0; /* Permette al contenuto di determinare l'altezza */
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -968,7 +967,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         flex-direction: column;
         justify-content: flex-start;
         flex: 1;
-        min-height: 100vh; /* iOS Safari fix: exploit iOS bug for proper scrolling */
+        min-height: 0; /* Permette al contenuto di determinare l'altezza, senza spazio extra */
     }
     
     .intro-text {
