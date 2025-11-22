@@ -417,7 +417,7 @@ section.sticky {
         font-size: 0.65rem;
         line-height: 0.85rem;
         margin-left: 2.5vw;
-        top: calc(25vh + 1.38rem);
+        top: calc(25vh + 1.22rem);
         max-width: 90vw;
     }
 
