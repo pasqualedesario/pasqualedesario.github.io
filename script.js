@@ -283,7 +283,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const plainTitle = stripHtml(rawTitle).trim();
                 img.alt = plainTitle ? `${plainTitle} — image ${index + 1}` : `project image ${index + 1}`;
                 img.decoding = 'async';
-                img.loading = 'lazy';
+                // Prime due immagini: eager loading per assicurare caricamento immediato
+                img.loading = index < 2 ? 'eager' : 'lazy';
                 img.draggable = false;
                 
                 // Previeni click destro e apertura in nuova tab
