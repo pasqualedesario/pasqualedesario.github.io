@@ -7,15 +7,15 @@ function buildFooterDateTimeHtml(now) {
     const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
     const month = months[now.getMonth()];
     const year = now.getFullYear();
-    
+
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
-    
+
     const timezone = Intl.DateTimeFormat('en', { timeZoneName: 'short' })
         .formatToParts(now)
         .find(part => part.type === 'timeZoneName')?.value || 'UTC';
-    
+
     let html = `bari, <span class="num">${day}</span> ${month} <span class="num">${year}</span>, <span class="num">${hours}</span>:<span class="num">${minutes}</span>:<span class="num">${seconds}</span> ${timezone.toLowerCase()}`;
     if (currentTemperature !== null) {
         html += `, <span class="num">${currentTemperature}</span><span class="grado-basso">°</span>c`;
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const state = createGalleryState(wrapper, sources, lastProjectFirstAlignment);
         galleryStates.set(section, state);
-        
+
         // Aggiorna l'allineamento del primo slide di questo progetto per il prossimo
         if (state.firstAlignment) {
             lastProjectFirstAlignment = state.firstAlignment;
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Usa la posizione del click rispetto all'intera finestra
                 const clickX = event.clientX;
                 const halfWidth = window.innerWidth / 2;
-                
+
                 // Click sulla metà sinistra = vai indietro, metà destra = vai avanti
                 const direction = clickX < halfWidth ? -1 : 1;
                 changeSlide(section, direction);
@@ -156,10 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         };
-        
+
         // Osserva i video iniziali
         observeVideos();
-        
+
         // Osserva anche dopo un piccolo delay per catturare i video creati dinamicamente
         setTimeout(observeVideos, 500);
     }
@@ -181,26 +181,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const pickAlignment = (isFirstSlide) => {
             let choices;
-            
+
             if (isFirstSlide) {
                 // Per il primo slide, evita l'allineamento dell'ultimo progetto
-                choices = lastProjectFirstAlignment 
+                choices = lastProjectFirstAlignment
                     ? alignments.filter(alignment => alignment !== lastProjectFirstAlignment)
                     : alignments;
             } else {
                 // Per gli altri slide, evita solo l'ultimo allineamento all'interno di questo progetto
-                choices = lastAlignmentInProject 
+                choices = lastAlignmentInProject
                     ? alignments.filter(alignment => alignment !== lastAlignmentInProject)
                     : alignments;
             }
-            
+
             const alignment = choices[Math.floor(Math.random() * choices.length)];
             lastAlignmentInProject = alignment;
-            
+
             if (isFirstSlide) {
                 state.firstAlignment = alignment;
             }
-            
+
             return alignment;
         };
 
@@ -233,13 +233,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 video.loop = true;
                 video.preload = 'auto';
                 video.draggable = false;
-                
+
                 const source = document.createElement('source');
                 source.src = src;
                 source.type = `video/${ext === 'mov' ? 'quicktime' : ext}`;
-                
+
                 video.appendChild(source);
-                
+
                 // Previeni click destro e apertura in nuova tab
                 video.addEventListener('contextmenu', (e) => e.preventDefault());
                 video.addEventListener('dragstart', (e) => e.preventDefault());
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 video.addEventListener('click', (e) => e.preventDefault());
                 video.style.userSelect = 'none';
                 video.style.pointerEvents = 'none';
-                
+
                 // Forza il play quando il video è caricato (importante per mobile)
                 const tryPlay = () => {
                     if (video.paused) {
@@ -259,17 +259,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 };
-                
+
                 video.addEventListener('loadedmetadata', tryPlay);
                 video.addEventListener('canplay', tryPlay);
                 video.addEventListener('loadeddata', () => {
                     // Piccolo delay per assicurarsi che tutto sia pronto
                     setTimeout(tryPlay, 100);
                 });
-                
+
                 slide.appendChild(video);
                 video.style.userSelect = 'none';
-                
+
                 // Osserva il video quando viene aggiunto al DOM
                 if ('IntersectionObserver' in window && window.videoObserver) {
                     window.videoObserver.observe(video);
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Prime due immagini: eager loading per assicurare caricamento immediato
                 img.loading = index < 2 ? 'eager' : 'lazy';
                 img.draggable = false;
-                
+
                 // Previeni click destro e apertura in nuova tab
                 img.addEventListener('contextmenu', (e) => e.preventDefault());
                 img.addEventListener('dragstart', (e) => e.preventDefault());
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 slide.appendChild(img);
             }
-            
+
             return slide;
         };
 
@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const newPosition = state.position + direction;
-        
+
         // Blocca lo scorrimento se si raggiunge l'inizio o la fine
         if (newPosition < 0 || newPosition >= state.total) {
             return;
@@ -352,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (sections[currentIndex] === section) {
             updateProgress(section);
         }
-        
+
         // Forza il play del video nel nuovo slide (importante per mobile)
         setTimeout(() => {
             const slides = section.querySelectorAll('.project-slide');
@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }, 100);
-        
+
         // Reset transitioning state dopo l'animazione
         setTimeout(() => {
             state.isTransitioning = false;
@@ -575,7 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setFixedOffset(activeIndex);
         updateProgress(activeSection);
         adjustTitleSpacing();
-        
+
         // Forza il play del video nel primo slide del progetto attivo (importante per mobile)
         const state = galleryStates.get(activeSection);
         if (state) {
@@ -595,10 +595,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
                     };
-                    
+
                     // Prova immediatamente
                     playVideo();
-                    
+
                     // Prova anche quando il video è pronto
                     if (video.readyState < 3) {
                         video.addEventListener('canplay', playVideo, { once: true });
@@ -666,141 +666,164 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', handleResize);
     window.addEventListener('load', handleResize);
 
-// Info overlay functionality
-const infoTrigger = document.getElementById('info-trigger');
-const infoOverlay = document.getElementById('info-overlay');
+    // Info overlay functionality
+    const infoTrigger = document.getElementById('info-trigger');
+    const infoOverlay = document.getElementById('info-overlay');
 
-let scrollPosition = 0;
+    let scrollPosition = 0;
 
-const lockScroll = () => {
-  scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-  const html = document.documentElement;
-  if (window.innerWidth <= 768) {
-    document.body.style.overflow = 'hidden';
-    html.style.overflow = 'hidden';
-  } else {
-    document.body.classList.add('scroll-lock');
-    document.body.style.top = `-${scrollPosition}px`;
-  }
-};
+    const lockScroll = () => {
+        scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        const html = document.documentElement;
+        if (window.innerWidth <= 768) {
+            document.body.style.overflow = 'hidden';
+            html.style.overflow = 'hidden';
+        } else {
+            document.body.classList.add('scroll-lock');
+            document.body.style.top = `-${scrollPosition}px`;
+        }
+    };
 
-const unlockScroll = () => {
-  const html = document.documentElement;
-  if (window.innerWidth <= 768) {
-    document.body.style.removeProperty('overflow');
-    html.style.removeProperty('overflow');
-  } else {
-    document.body.classList.remove('scroll-lock');
-    document.body.style.removeProperty('top');
-  }
-  window.scrollTo(0, scrollPosition);
-};
+    const unlockScroll = () => {
+        const html = document.documentElement;
+        if (window.innerWidth <= 768) {
+            document.body.style.removeProperty('overflow');
+            html.style.removeProperty('overflow');
+        } else {
+            document.body.classList.remove('scroll-lock');
+            document.body.style.removeProperty('top');
+        }
+        window.scrollTo(0, scrollPosition);
+    };
 
-const openInfo = () => {
-  if (!infoOverlay.classList.contains('active')) {
-    infoOverlay.classList.add('active');
-    lockScroll();
-    
-    // Resetta lo scroll della pagina info all'apertura
-    const infoContent = infoOverlay.querySelector('.info-overlay-content');
-    if (infoContent) {
-      infoContent.scrollTop = 0;
+    const openInfo = () => {
+        if (!infoOverlay.classList.contains('active')) {
+            infoOverlay.classList.add('active');
+            lockScroll();
+
+            // Resetta lo scroll della pagina info all'apertura
+            const infoContent = infoOverlay.querySelector('.info-overlay-content');
+            if (infoContent) {
+                infoContent.scrollTop = 0;
+            }
+        }
+        // Non usare window.location.hash; aggiorna l'URL senza scroll
+        history.pushState({ info: true }, '', '#info');
+    };
+
+    const closeInfo = () => {
+        if (infoOverlay.classList.contains('active')) {
+            infoOverlay.classList.remove('active');
+            unlockScroll();
+        }
+        history.pushState({ info: false }, '', window.location.pathname + window.location.search);
+    };
+
+    if (infoTrigger && infoOverlay) {
+        infoTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (infoOverlay.classList.contains('active')) {
+                closeInfo();
+            } else {
+                openInfo();
+            }
+        });
+
+        infoOverlay.addEventListener('click', (e) => {
+            if (e.target === infoOverlay || e.target.classList.contains('info-overlay-blur')) {
+                closeInfo();
+            }
+        });
+
+        window.addEventListener('popstate', () => {
+            if (window.location.hash === '#info') {
+                openInfo();
+            } else {
+                closeInfo();
+            }
+        });
+
+        if (window.location.hash === '#info') {
+            openInfo();
+        }
+
+        // Wrap em-dashes in footer marquee (do this once before datetime updates)
+        wrapFooterDashes();
     }
-  }
-  // Non usare window.location.hash; aggiorna l'URL senza scroll
-  history.pushState({ info: true }, '', '#info');
-};
 
-const closeInfo = () => {
-  if (infoOverlay.classList.contains('active')) {
-    infoOverlay.classList.remove('active');
-    unlockScroll();
-  }
-  history.pushState({ info: false }, '', window.location.pathname + window.location.search);
-};
+    // Initialize and update footer datetime every second
+    function updateFooterDateTimeCached() {
+        // Query elements every time to ensure we get all elements
+        const footerDateTimeElements = document.querySelectorAll('.footer-datetime');
+        if (footerDateTimeElements.length > 0) {
+            const now = new Date();
+            const dateTimeString = buildFooterDateTimeHtml(now);
+            footerDateTimeElements.forEach(el => {
+                el.innerHTML = dateTimeString;
+            });
+        }
+    }
 
-if (infoTrigger && infoOverlay) {
-  infoTrigger.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (infoOverlay.classList.contains('active')) {
-      closeInfo();
+    // Start updating after DOM is loaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial update after a small delay to ensure DOM is ready
+            setTimeout(() => {
+                updateFooterDateTimeCached();
+                setInterval(updateFooterDateTimeCached, 1000);
+            }, 100);
+        });
     } else {
-      openInfo();
+        // DOM is already loaded
+        updateFooterDateTimeCached();
+        setInterval(updateFooterDateTimeCached, 1000);
     }
-  });
 
-  infoOverlay.addEventListener('click', (e) => {
-    if (e.target === infoOverlay || e.target.classList.contains('info-overlay-blur')) {
-      closeInfo();
-    }
-  });
+    // Fetch temperature on load and every 10 minutes
+    fetchTemperature();
+    setInterval(fetchTemperature, 600000); // 10 minutes
 
-  window.addEventListener('popstate', () => {
-    if (window.location.hash === '#info') {
-      openInfo();
-    } else {
-      closeInfo();
-    }
-  });
-
-  if (window.location.hash === '#info') {
-    openInfo();
-  }
-
-  // Wrap em-dashes in footer marquee (do this once before datetime updates)
-  wrapFooterDashes();
-}
-
-// Initialize and update footer datetime every second
-function updateFooterDateTimeCached() {
-    // Query elements every time to ensure we get all elements
-    const footerDateTimeElements = document.querySelectorAll('.footer-datetime');
-    if (footerDateTimeElements.length > 0) {
-        const now = new Date();
-        const dateTimeString = buildFooterDateTimeHtml(now);
-        footerDateTimeElements.forEach(el => {
-            el.innerHTML = dateTimeString;
+    // Raise em-dash by 1px in footer marquee
+    // Call this inside DOMContentLoaded to ensure it runs before datetime updates
+    function wrapFooterDashes() {
+        const items = document.querySelectorAll('.footer-marquee-text');
+        items.forEach((el) => {
+            // Only replace if not already wrapped to avoid interfering with datetime updates
+            if (!el.innerHTML.includes('<span class="emdash">')) {
+                el.innerHTML = el.innerHTML.replace(/—/g, '<span class="emdash">—</span>');
+            }
         });
     }
-}
 
-// Start updating after DOM is loaded
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        // Initial update after a small delay to ensure DOM is ready
-        setTimeout(() => {
-            updateFooterDateTimeCached();
-            setInterval(updateFooterDateTimeCached, 1000);
-        }, 100);
-    });
-} else {
-    // DOM is already loaded
-    updateFooterDateTimeCached();
-    setInterval(updateFooterDateTimeCached, 1000);
-}
+    function randomizeFooterColor() {
+        const colors = [
+            'rgba(255, 82, 0, 0.6)',   // #ff5200 (Orange)
+            'rgba(242, 255, 38, 0.6)', // #f2ff26 (Yellow/Lime)
+            'rgba(0, 217, 115, 0.6)',  // #00d973 (Green)
+            'rgba(71, 51, 255, 0.6)',  // #4733ff (Blue)
+            'rgba(255, 77, 201, 0.6)'  // #ff4dc9 (Pink)
+        ];
 
-// Fetch temperature on load and every 10 minutes
-fetchTemperature();
-setInterval(fetchTemperature, 600000); // 10 minutes
-
-// Raise em-dash by 1px in footer marquee
-// Call this inside DOMContentLoaded to ensure it runs before datetime updates
-function wrapFooterDashes() {
-    const items = document.querySelectorAll('.footer-marquee-text');
-    items.forEach((el) => {
-        // Only replace if not already wrapped to avoid interfering with datetime updates
-        if (!el.innerHTML.includes('<span class="emdash">')) {
-            el.innerHTML = el.innerHTML.replace(/—/g, '<span class="emdash">—</span>');
+        const footer = document.querySelector('.footer-marquee');
+        if (footer) {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            footer.style.backgroundColor = randomColor;
         }
-    });
-}
-
-function shuffle(items) {
-    const array = [...items];
-    for (let i = array.length - 1; i > 0; i -= 1) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
     }
-    return array;
-}
+
+    // Randomize color on load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', randomizeFooterColor);
+    } else {
+        randomizeFooterColor();
+    }
+
+    function shuffle(items) {
+        const array = [...items];
+        for (let i = array.length - 1; i > 0; i -= 1) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
 });

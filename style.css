@@ -38,7 +38,8 @@ html {
 
 body {
     min-height: 100dvh;
-    min-height: -webkit-fill-available; /* iOS Safari fix for dynamic viewport */
+    min-height: -webkit-fill-available;
+    /* iOS Safari fix for dynamic viewport */
     min-width: 100dvw;
     background-color: var(--color-white);
     color: var(--color-black);
@@ -65,17 +66,17 @@ body {
 }
 
 @media (max-width: 768px) {
-  .scroll-lock .info-body {
-    touch-action: pan-y;
-    -webkit-overflow-scrolling: touch;
-  }
+    .scroll-lock .info-body {
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 @font-face {
     font-family: 'Ronzino';
     src: local('Ronzino Regular'),
-         local('Ronzino-Regular'),
-         url('Ronzino/Ronzino-Regular.woff2') format('woff2');
+        local('Ronzino-Regular'),
+        url('Ronzino/Ronzino-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -84,8 +85,8 @@ body {
 @font-face {
     font-family: 'Ronzino';
     src: local('Ronzino Bold'),
-         local('Ronzino-Bold'),
-         url('Ronzino/Ronzino-Bold.woff2') format('woff2');
+        local('Ronzino-Bold'),
+        url('Ronzino/Ronzino-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -94,8 +95,8 @@ body {
 @font-face {
     font-family: 'Ronzino';
     src: local('Ronzino Oblique'),
-         local('Ronzino-Oblique'),
-         url('Ronzino/Ronzino-Oblique.woff2') format('woff2');
+        local('Ronzino-Oblique'),
+        url('Ronzino/Ronzino-Oblique.woff2') format('woff2');
     font-weight: 400;
     font-style: oblique;
     font-display: swap;
@@ -165,7 +166,8 @@ section.sticky {
     width: 100%;
     height: 100%;
     display: flex;
-    overflow: visible; /* Permette lo scroll orizzontale tramite transform */
+    overflow: visible;
+    /* Permette lo scroll orizzontale tramite transform */
     transition: transform 0.6s ease;
     will-change: transform;
     touch-action: pan-y pan-x;
@@ -314,7 +316,8 @@ section.sticky {
 /* Top Bar - speculare al footer */
 .top-bar {
     position: fixed;
-    top: 0px; /* iOS Safari fix: explicit px unit */
+    top: 0px;
+    /* iOS Safari fix: explicit px unit */
     left: 0px;
     right: 0px;
     width: 100%;
@@ -400,11 +403,11 @@ section.sticky {
     .desktop-only {
         display: none;
     }
-    
+
     .mobile-only {
         display: inline;
     }
-    
+
     .project-title-fixed {
         font-size: 1rem;
         margin-left: 2.5vw;
@@ -451,14 +454,14 @@ section.sticky {
         font-size: 0.65rem;
         line-height: 0.9rem;
     }
-    
+
     /* removed mobile top-bar adjustments */
 
     #projects {
         padding-top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px));
         padding-bottom: 0;
     }
-    
+
     .project:last-child {
         margin-bottom: 0;
         padding-bottom: calc(var(--footer-height-mobile) + env(safe-area-inset-bottom, 0px));
@@ -503,7 +506,7 @@ section.sticky {
     .project-gallery {
         touch-action: pan-y pan-x;
     }
-    
+
     /* Sottolineatura più sottile su mobile */
     a:hover,
     .project-title-fixed a:hover,
@@ -654,7 +657,7 @@ section.sticky {
     .about-body .site-title {
         position: absolute;
         top: 1vh;
-        left: 2.5vw; 
+        left: 2.5vw;
         font-size: 1rem;
     }
 
@@ -673,7 +676,7 @@ section.sticky {
         right: auto;
         margin-bottom: 0;
     }
-    
+
     .typeset-note {
         font-size: 0.65rem;
         line-height: 0.9rem;
@@ -693,7 +696,7 @@ section.sticky {
     .platform-links {
         margin-top: 0.65rem;
     }
-    
+
     .platform-links:has(.degree-sup) {
         line-height: 1.25rem;
     }
@@ -737,15 +740,18 @@ div::-webkit-scrollbar {
 }
 
 /* Info Overlay */
-    .info-overlay {
-        position: fixed;
-        top: 0px; /* iOS Safari fix: explicit px unit */
-        left: 0px;
-        bottom: 0px; /* iOS Safari fix: explicit bottom */
-        width: 100%;
-        height: 100vh;
-        height: -webkit-fill-available; /* iOS Safari fix for dynamic viewport */
-        z-index: 9998;
+.info-overlay {
+    position: fixed;
+    top: 0px;
+    /* iOS Safari fix: explicit px unit */
+    left: 0px;
+    bottom: 0px;
+    /* iOS Safari fix: explicit bottom */
+    width: 100%;
+    height: 100vh;
+    height: -webkit-fill-available;
+    /* iOS Safari fix for dynamic viewport */
+    z-index: 9998;
     display: flex;
     opacity: 0;
     visibility: hidden;
@@ -772,8 +778,8 @@ div::-webkit-scrollbar {
     pointer-events: none;
 }
 
-.info-overlay.active ~ * #projects .project-gallery img,
-.info-overlay.active ~ * #projects .project-gallery video,
+.info-overlay.active~* #projects .project-gallery img,
+.info-overlay.active~* #projects .project-gallery video,
 body:has(.info-overlay.active) #projects .project-gallery img,
 body:has(.info-overlay.active) #projects .project-gallery video {
     filter: blur(50px);
@@ -781,13 +787,16 @@ body:has(.info-overlay.active) #projects .project-gallery video {
 
 .info-overlay-content {
     position: absolute;
-    top: 0px; /* iOS Safari fix: explicit px unit */
+    top: 0px;
+    /* iOS Safari fix: explicit px unit */
     right: 0px;
     width: 50%;
     height: 100%;
-    height: -webkit-fill-available; /* iOS Safari fix for dynamic viewport */
+    height: -webkit-fill-available;
+    /* iOS Safari fix for dynamic viewport */
     background-color: #FFFFFF;
-    overflow-y: auto; /* Scroll solo quando necessario su desktop */
+    overflow-y: auto;
+    /* Scroll solo quando necessario su desktop */
     -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
@@ -796,7 +805,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     touch-action: pan-y;
     overscroll-behavior: contain;
     scrollbar-width: thin;
-    scrollbar-color: rgba(0,0,0,0.5) transparent;
+    scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
 }
 
 .info-overlay-content::-webkit-scrollbar,
@@ -808,7 +817,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
 
 .info-overlay-content::-webkit-scrollbar-thumb,
 .info-body::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.35);
+    background-color: rgba(0, 0, 0, 0.35);
     border-radius: 2px;
 }
 
@@ -855,7 +864,8 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     flex-direction: column;
     justify-content: flex-start;
     flex: 1;
-    min-height: 0; /* Permette al contenuto di determinare l'altezza */
+    min-height: 0;
+    /* Permette al contenuto di determinare l'altezza */
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -898,12 +908,15 @@ body:has(.info-overlay.active) #projects .project-gallery video {
 
     .info-overlay {
         position: fixed;
-        top: 0px; /* iOS Safari fix: explicit px unit */
+        top: 0px;
+        /* iOS Safari fix: explicit px unit */
         left: 0px;
-        bottom: 0px; /* iOS Safari fix: explicit bottom */
+        bottom: 0px;
+        /* iOS Safari fix: explicit bottom */
         width: 100vw;
         height: 100vh;
-        height: -webkit-fill-available; /* iOS Safari fix for dynamic viewport */
+        height: -webkit-fill-available;
+        /* iOS Safari fix for dynamic viewport */
         overflow: hidden;
         z-index: 9998;
         display: flex;
@@ -913,14 +926,18 @@ body:has(.info-overlay.active) #projects .project-gallery video {
 
     .info-overlay-content {
         width: 100vw;
-        left: 0px; /* iOS Safari fix: explicit px unit */
+        left: 0px;
+        /* iOS Safari fix: explicit px unit */
         right: 0px;
         top: 0px;
-        bottom: 0px; /* iOS Safari fix: explicit bottom */
+        bottom: 0px;
+        /* iOS Safari fix: explicit bottom */
         transform: translateX(105%);
         height: 100vh;
-        height: -webkit-fill-available; /* iOS Safari fix for dynamic viewport */
-        overflow-y: scroll; /* iOS Safari fix: use scroll not auto */
+        height: -webkit-fill-available;
+        /* iOS Safari fix for dynamic viewport */
+        overflow-y: scroll;
+        /* iOS Safari fix: use scroll not auto */
         overflow-x: hidden;
         background: #fff;
         display: flex;
@@ -942,7 +959,8 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         font-family: 'Ronzino', sans-serif;
         font-weight: 700;
         font-style: normal;
-        visibility: hidden; /* Nascondi header quando si scrolla */
+        visibility: hidden;
+        /* Nascondi header quando si scrolla */
     }
 
     .info-close {
@@ -961,15 +979,16 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         flex-direction: column;
         justify-content: flex-start;
         flex: 1;
-        min-height: 0; /* Permette al contenuto di determinare l'altezza, senza spazio extra */
+        min-height: 0;
+        /* Permette al contenuto di determinare l'altezza, senza spazio extra */
     }
-    
+
     /* Assicura che lo spazio tra typeset-note e footer sia uguale a quello tra top-bar e intro-text */
-    .info-body .small-text > *:last-child {
+    .info-body .small-text>*:last-child {
         margin-bottom: 0 !important;
         padding-bottom: 0 !important;
     }
-    
+
     /* Rimuovi qualsiasi margine extra da typeset-note su mobile */
     .info-body .typeset-note {
         margin-top: 0 !important;
@@ -977,7 +996,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         padding-top: 0 !important;
         padding-bottom: 0 !important;
     }
-    
+
     .intro-text {
         font-family: 'Ronzino', sans-serif;
         font-weight: 400 !important;
@@ -997,26 +1016,27 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         right: auto;
         margin-bottom: 0;
     }
-    
+
     .typeset-note {
         font-size: 0.65rem;
         line-height: 0.9rem;
         margin-top: 0;
     }
-    
+
     .info-body .intro-text {
         flex-shrink: 0;
     }
-    
+
     .info-body .small-text {
-         align-self: flex-start;
-}
+        align-self: flex-start;
+    }
 }
 
 /* Footer Marquee */
 .footer-marquee {
     position: fixed;
-    bottom: 0px; /* iOS Safari fix: explicit px unit */
+    bottom: 0px;
+    /* iOS Safari fix: explicit px unit */
     left: 0px;
     right: 0px;
     width: 100%;
@@ -1097,6 +1117,7 @@ body:has(.info-overlay.active) #projects .project-gallery video {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-100%);
     }
@@ -1114,12 +1135,12 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         backdrop-filter: blur(16px) saturate(135%);
         -webkit-backdrop-filter: blur(16px) saturate(135%);
     }
-    
+
     .footer-marquee-text {
         font-size: 0.65rem;
         line-height: 0.9rem;
     }
-    
+
     .footer-marquee-content {
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
@@ -1127,9 +1148,11 @@ body:has(.info-overlay.active) #projects .project-gallery video {
         -webkit-transform: translateZ(0);
     }
 }
+
 /* --- Allineamento e spaziatura uniforme Info --- */
 .info-body .intro-text {
-  margin-bottom: 1vh; /* spazio sotto About */
+    margin-bottom: 1vh;
+    /* spazio sotto About */
 }
 
 /* Simbolo grado abbassato per allineamento con maiuscoletto */
@@ -1138,33 +1161,36 @@ body:has(.info-overlay.active) #projects .project-gallery video {
 }
 
 .info-body .small-text {
-  margin-top: 0; /* elimina il margine doppio sopra Experience */
+    margin-top: 0;
+    /* elimina il margine doppio sopra Experience */
 }
 
-.info-body .small-text > * {
-  margin: 0;
-  margin-bottom: 1vh; /* spazio fisso e uniforme tra Experience, Education, Contact, ecc. */
+.info-body .small-text>* {
+    margin: 0;
+    margin-bottom: 1vh;
+    /* spazio fisso e uniforme tra Experience, Education, Contact, ecc. */
 }
 
-.info-body .small-text > *:last-child {
-  margin-bottom: 0; /* nessuno spazio extra, usa solo padding-bottom di info-body */
+.info-body .small-text>*:last-child {
+    margin-bottom: 0;
+    /* nessuno spazio extra, usa solo padding-bottom di info-body */
 }
 
 /* versione mobile */
 @media (max-width: 768px) {
-  .info-body .intro-text {
-    margin-bottom: 1vh;
-  }
+    .info-body .intro-text {
+        margin-bottom: 1vh;
+    }
 
-  .info-body .small-text {
-    margin-top: 0;
-  }
+    .info-body .small-text {
+        margin-top: 0;
+    }
 
-  .info-body .small-text > * {
-    margin-bottom: 1vh;
-  }
+    .info-body .small-text>* {
+        margin-bottom: 1vh;
+    }
 
-  .info-body .small-text > *:last-child {
-    margin-bottom: 0;
-  }
+    .info-body .small-text>*:last-child {
+        margin-bottom: 0;
+    }
 }
