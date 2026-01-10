@@ -795,28 +795,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function randomizeFooterColor() {
-        const colors = [
-            'rgba(255, 82, 0, 0.6)',   // #ff5200 (Orange)
-            'rgba(242, 255, 38, 0.6)', // #f2ff26 (Yellow/Lime)
-            'rgba(0, 217, 115, 0.6)',  // #00d973 (Green)
-            'rgba(71, 51, 255, 0.6)',  // #4733ff (Blue)
-            'rgba(255, 77, 201, 0.6)'  // #ff4dc9 (Pink)
-        ];
 
-        const footer = document.querySelector('.footer-marquee');
-        if (footer) {
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            footer.style.backgroundColor = randomColor;
-        }
-    }
 
-    // Randomize color on load
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', randomizeFooterColor);
-    } else {
-        randomizeFooterColor();
-    }
+
 
     function shuffle(items) {
         const array = [...items];
