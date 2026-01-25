@@ -577,7 +577,6 @@ section.sticky {
     font-size: 1.15rem;
     line-height: 1.5rem;
     text-align: left;
-    text-wrap: pretty;
 }
 
 .location-mail {
