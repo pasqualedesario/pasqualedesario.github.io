@@ -133,7 +133,7 @@ section.sticky {
 
 #projects {
     width: 100%;
-    overflow: hidden;
+    /* Removed overflow: hidden to allow sticky positioning */
     margin: 0;
     padding: 0;
     padding-top: calc(var(--footer-height) + env(safe-area-inset-top, 0px));
@@ -142,7 +142,8 @@ section.sticky {
 }
 
 .project {
-    position: relative;
+    position: sticky;
+    top: 0;
     height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     min-height: calc(100vh - var(--footer-height) - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
     overflow: hidden;
@@ -235,7 +236,7 @@ section.sticky {
     font-weight: 400;
     font-style: oblique;
     font-size: 1.15rem;
-    line-height: 1.2;
+    line-height: 1.35rem;
     padding: 0;
     will-change: transform;
     max-width: 80vw;
@@ -287,6 +288,7 @@ section.sticky {
     font-variant-numeric: oldstyle-nums;
     font-feature-settings: "onum" 1;
     will-change: transform;
+    line-height: 1.35rem;
 }
 
 .project-progress span {
@@ -414,6 +416,7 @@ section.sticky {
         max-width: 75vw;
         word-break: break-word;
         overflow-wrap: anywhere;
+        line-height: 1.15rem;
     }
 
     .project-info-fixed {
@@ -430,6 +433,7 @@ section.sticky {
         right: 2.5vw;
         top: 25vh;
         text-align: right;
+        line-height: 1.15rem;
     }
 
     .top-bar {
@@ -586,7 +590,7 @@ section.sticky {
 .platform-label,
 .contact-label {
     font-size: 0.75rem;
-    line-height: 1.2rem;
+    line-height: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 0.075em;
 
@@ -609,7 +613,7 @@ section.sticky {
     display: block;
     margin-top: 0;
     font-size: 0.75rem;
-    line-height: 1.2rem;
+    line-height: 1.1rem;
     font-family: 'Ronzino', sans-serif;
     font-weight: 400;
 }
@@ -679,14 +683,14 @@ section.sticky {
 
     .typeset-note {
         font-size: 0.65rem;
-        line-height: 0.9rem;
+        line-height: 0.85rem;
         margin-top: 0;
     }
 
     .platform-label,
     .contact-label {
         font-size: 0.65rem;
-        line-height: 0.9rem;
+        line-height: 0.85rem;
     }
 
     .degree-sup {
