@@ -401,7 +401,7 @@ section.sticky {
     font-size: 0.75rem;
     line-height: 1.2rem;
     color: #000000;
-    font-feature-settings: "lnum" 1, "tnum" 1;
+    font-feature-settings: "lnum" 1, "tnum" 1, "case" 1;
     text-transform: uppercase;
     letter-spacing: 0.075em;
     font-variant-numeric: lining-nums tabular-nums;
