@@ -76,7 +76,7 @@ body {
     font-family: 'Ronzino';
     src: local('Ronzino Regular'),
         local('Ronzino-Regular'),
-        url('Ronzino/Ronzino-Regular.woff2') format('woff2');
+        url('Fonts/Ronzino-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -86,7 +86,7 @@ body {
     font-family: 'Ronzino';
     src: local('Ronzino Bold'),
         local('Ronzino-Bold'),
-        url('Ronzino/Ronzino-Bold.woff2') format('woff2');
+        url('Fonts/Ronzino-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -96,7 +96,7 @@ body {
     font-family: 'Ronzino';
     src: local('Ronzino Oblique'),
         local('Ronzino-Oblique'),
-        url('Ronzino/Ronzino-Oblique.woff2') format('woff2');
+        url('Fonts/Ronzino-Oblique.woff2') format('woff2');
     font-weight: 400;
     font-style: oblique;
     font-display: swap;
@@ -393,6 +393,33 @@ section.sticky {
     text-decoration-thickness: 1.5px;
 }
 
+/* Language Switcher */
+.lang-switcher {
+    display: inline;
+    font-family: 'Ronzino', sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.2rem;
+    color: #000000;
+    font-feature-settings: "lnum" 1, "tnum" 1;
+    text-transform: uppercase;
+    letter-spacing: 0.075em;
+    font-variant-numeric: lining-nums tabular-nums;
+    margin-left: 0.3em;
+}
+
+.lang-link {
+    color: #000000;
+    text-decoration: none;
+    text-underline-offset: 2px;
+    transition: text-decoration var(--transition-normal);
+}
+
+.lang-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+}
+
 .desktop-only {
     display: inline;
 }
@@ -457,6 +484,16 @@ section.sticky {
         right: 2.5vw;
         font-size: 0.65rem;
         line-height: 0.9rem;
+    }
+
+    .lang-switcher {
+        font-size: 0.65rem;
+        line-height: 0.9rem;
+        margin-left: 0.25em;
+    }
+
+    .lang-link:hover {
+        text-decoration-thickness: 1px;
     }
 
     /* removed mobile top-bar adjustments */

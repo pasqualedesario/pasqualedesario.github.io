@@ -795,9 +795,247 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ========================================================================
+    // TRANSLATION SYSTEM
+    // ========================================================================
 
+    const translations = {
+        en: {
+            'info': 'Info',
+            'about': 'Designer and independent researcher based in Bari (Italy). His practice explores <span class="hover-effect">typography in its form and structure, information and editorial design</span> and all the ways they interpolate each other within and without <span class="hover-effect">visual systems</span>. His research is oriented also towards <span class="hover-effect">design histories</span>, <span class="hover-effect">open tools</span> and <span class="hover-effect">learning collective ecosystems</span> outside the institutional walls.',
+            'education': 'education',
+            'communication-design': 'Communication Design',
+            'industrial-design': 'Industrial Design',
+            'iuav': 'Iuav University of Venice',
+            'poliba': 'Polytechnic of Bari',
+            'experience': 'experience',
+            'services': 'services',
+            'art-direction': 'Art Direction',
+            'book-design': 'Book Design',
+            'information-design': 'Information Design',
+            'type-design': 'Type Design',
+            'visual-identity': 'Visual Identity',
+            'web-design': 'Web Design',
+            'contact': 'mail',
+            'platforms': 'platforms',
+            'typeset-in': 'Typeset in',
+            'cookies': 'This website doesn&rsquo;t use third party cookies 🍪',
+            'footer-cv': 'full cv and portfolio available upon request'
+        },
+        it: {
+            'info': 'Info',
+            'about': 'Designer e ricercatore indipendente di base a Bari. La sua pratica esplora <span class="hover-effect">la tipografia nella sua forma e struttura, l\'information design e l\'editoria</span> e tutte le modalità con le quali queste si interpolano all\'interno e all\'esterno dei <span class="hover-effect">sistemi visivi</span>. La sua ricerca è orientata anche alle <span class="hover-effect">storie del design</span>, agli <span class="hover-effect">strumenti aperti</span> e agli <span class="hover-effect">ecosistemi collettivi di apprendimento</span> al di fuori delle mura istituzionali.',
+            'education': 'formazione',
+            'communication-design': 'Design della comunicazione',
+            'industrial-design': 'Disegno industriale',
+            'iuav': 'Università Iuav di Venezia',
+            'poliba': 'Politecnico di Bari',
+            'experience': 'esperienza',
+            'services': 'servizi',
+            'art-direction': 'Art Direction',
+            'book-design': 'Editoria',
+            'information-design': 'Information Design',
+            'type-design': 'Type Design',
+            'visual-identity': 'Identità visiva',
+            'web-design': 'Web Design',
+            'contact': 'mail',
+            'platforms': 'piattaforme',
+            'typeset-in': 'Composto in',
+            'cookies': 'Questo sito non utilizza cookie di terze parti 🍪',
+            'footer-cv': 'cv completo e portfolio disponibili su richiesta'
+        }
+    };
 
+    // Project metadata translations keyed by data-project-id
+    const projectMetadata = {
+        en: {
+            'mimmo-castellano': {
+                category: 'Research — Book Design',
+                year: '@Iuav, 2025'
+            },
+            'singolarita-multiple': {
+                category: 'Research — Book Design',
+                year: '@Iuav, 2024, w/ Jolanda Baudino, Chiara Lorenzo, Irene Mazzoleni'
+            },
+            'modernizzare-stanca': {
+                category: 'Poster',
+                year: '@Spazio Alelaie, 2024'
+            },
+            '4visions': {
+                category: 'Visual Identity',
+                year: '@MAT, 2023'
+            },
+            'meme-things-first': {
+                category: 'Visual Identity — Research — Curatorship',
+                year: '@Iuav, 2024, w/ Rebecca Bertero & Serena de Mola'
+            },
+            'biennale-parola': {
+                category: 'Book Design — Information Design',
+                year: '@Iuav, 2024, w/ Giulia Gatta & Tommaso Antonelli'
+            },
+            'la-dimora-del-minotauro': {
+                category: 'Artwork',
+                year: '@Apparati Radicali, 2025'
+            }
+        },
+        it: {
+            'mimmo-castellano': {
+                category: 'Ricerca — Editoria',
+                year: '@Iuav, 2025'
+            },
+            'singolarita-multiple': {
+                category: 'Ricerca — Editoria',
+                year: '@Iuav, 2024, con Jolanda Baudino, Chiara Lorenzo, Irene Mazzoleni'
+            },
+            'modernizzare-stanca': {
+                category: 'Manifesto',
+                year: '@Spazio Alelaie, 2024'
+            },
+            '4visions': {
+                category: 'Identità visiva',
+                year: '@MAT, 2023'
+            },
+            'meme-things-first': {
+                category: 'Identità visiva — Ricerca — Curatela',
+                year: '@Iuav, 2024, con Rebecca Bertero & Serena de Mola'
+            },
+            'biennale-parola': {
+                category: 'Editoria — Information Design',
+                year: '@Iuav, 2024, con Giulia Gatta & Tommaso Antonelli'
+            },
+            'la-dimora-del-minotauro': {
+                category: 'Artwork',
+                year: '@Apparati Radicali, 2025'
+            }
+        }
+    };
 
+    let currentLang = 'it'; // Default to Italian
+    let isChangingLanguage = false; // Prevent re-entrancy
+
+    function setLanguage(lang) {
+        // Skip if already this language or currently changing
+        if (currentLang === lang) {
+            return;
+        }
+        if (isChangingLanguage) {
+            return;
+        }
+
+        isChangingLanguage = true;
+        currentLang = lang;
+
+        // Update URL hash to indicate language (without triggering hashchange loop)
+        const newHash = lang === 'it' ? '#it' : '#en';
+        if (window.location.hash !== newHash) {
+            history.replaceState(null, '', newHash);
+        }
+
+        // Update html lang attribute
+        const htmlRoot = document.getElementById('html-root');
+        if (htmlRoot) {
+            htmlRoot.setAttribute('lang', lang);
+        }
+
+        // Update all elements with data-lang attributes
+        const translatableElements = document.querySelectorAll('[data-lang]');
+        translatableElements.forEach(element => {
+            const key = element.getAttribute('data-lang');
+            if (translations[lang] && translations[lang][key]) {
+                element.innerHTML = translations[lang][key];
+            }
+        });
+
+        // Update project metadata (category and year)
+        updateProjectMetadata(lang);
+
+        isChangingLanguage = false;
+    }
+
+    function updateProjectMetadata(lang) {
+        // Query sections dynamically
+        const allSections = document.querySelectorAll('.project');
+
+        allSections.forEach(section => {
+            const projectId = section.getAttribute('data-project-id');
+            if (!projectId) return;
+
+            if (projectMetadata[lang] && projectMetadata[lang][projectId]) {
+                const metadata = projectMetadata[lang][projectId];
+
+                if (metadata.category) {
+                    section.setAttribute('data-category', metadata.category);
+                }
+
+                if (metadata.year) {
+                    section.setAttribute('data-year', metadata.year);
+                }
+            }
+        });
+
+        // Manually update the visible project info
+        if (fixedInfo && allSections.length > 0) {
+            const vh = window.innerHeight;
+            const midViewport = vh / 2;
+            let activeSection = allSections[0];
+
+            allSections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= midViewport) {
+                    activeSection = section;
+                }
+            });
+
+            const categoryContent = activeSection.getAttribute('data-category');
+            const yearContent = activeSection.getAttribute('data-year');
+            if (categoryContent || yearContent) {
+                fixedInfo.innerHTML = (categoryContent || '') + (categoryContent && yearContent ? '<br>' : '') + (yearContent || '');
+            }
+        }
+    }
+
+    // Language switcher click handlers
+    const langLinks = document.querySelectorAll('.lang-link');
+
+    langLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const lang = link.getAttribute('data-lang-code');
+            if (lang) {
+                setLanguage(lang);
+            }
+        });
+    });
+
+    // Initialize language based on URL hash or default to Italian
+    function initializeLanguage() {
+        const hash = window.location.hash.substring(1);
+        // Force set currentLang to opposite first so setLanguage actually runs
+        if (hash === 'en') {
+            currentLang = 'it';
+            setLanguage('en');
+        } else {
+            currentLang = 'en';
+            setLanguage('it');
+        }
+    }
+
+    // Listen for hash changes (browser back/forward)
+    window.addEventListener('hashchange', () => {
+        const hash = window.location.hash.substring(1);
+        if (hash === 'en' && currentLang !== 'en') {
+            setLanguage('en');
+        } else if ((hash === 'it' || hash === '') && currentLang !== 'it') {
+            setLanguage('it');
+        }
+    });
+
+    // Initialize language on page load
+    initializeLanguage();
+
+    // ========================================================================
+    // END TRANSLATION SYSTEM
+    // ========================================================================
 
     function shuffle(items) {
         const array = [...items];

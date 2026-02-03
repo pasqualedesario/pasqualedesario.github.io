@@ -2,11 +2,11 @@
 
 <!-- 
  ------------------------------------------------------------------------
- Pasquale de Sario, 2026
+ Design and development by Pasquale de Sario, 2026
  ------------------------------------------------------------------------
  -->
 
-<html lang="en">
+<html lang="it" id="html-root">
 
 <head>
     <meta charset="UTF-8">
@@ -32,9 +32,9 @@
     <link rel="preconnect" href="https://api.open-meteo.com" crossorigin>
 
     <link rel="icon" href="favicon.svg">
-    <link rel="preload" href="Ronzino/Ronzino-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="Ronzino/Ronzino-Bold.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="Ronzino/Ronzino-Oblique.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="Fonts/Ronzino-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="Fonts/Ronzino-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="Fonts/Ronzino-Oblique.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -42,37 +42,45 @@
     <!-- Top Bar -->
     <div class="top-bar">
         <a href="index.html" class="site-title">Pasquale de Sario</a>
-        <a href="javascript:void(0)" class="info-link" id="info-trigger">Info</a>
+        <span class="lang-switcher">
+            (<a href="javascript:void(0)" class="lang-link" data-lang-code="it" id="lang-it">IT</a>/<a
+                href="javascript:void(0)" class="lang-link" data-lang-code="en" id="lang-en">EN</a>)
+        </span>
+        <a href="javascript:void(0)" class="info-link" id="info-trigger" data-lang="info">Info</a>
     </div>
 
     <!-- Overlay Info -->
     <div class="info-overlay" id="info-overlay" role="dialog" aria-modal="true" aria-labelledby="info-header">
         <div class="info-overlay-blur"></div>
         <div class="info-overlay-content">
-            <div class="info-header" id="info-header">Info</div>
+            <div class="info-header" id="info-header" data-lang="info">Info</div>
             <div class="info-body">
                 <div class="intro-text">
-                    <p>Graphic designer and researcher based in Bari (Italy). His practice explores <span
-                            class="hover-effect">typography in its form and structure, information and editorial
+                    <p data-lang="about">Graphic designer and researcher based in Bari (Italy). His practice explores
+                        <span class="hover-effect">typography in its form and structure, information and editorial
                             design</span> and all the ways they interpolate each other within and without <span
                             class="hover-effect">visual systems</span>. His research is oriented also towards <span
                             class="hover-effect">design histories</span>, <span class="hover-effect">open tools</span>
                         and <span class="hover-effect">learning collective ecosystems</span> outside the institutional
-                        walls.</p>
+                        walls.
+                    </p>
                 </div>
 
                 <div class="small-text">
                     <p class="platform-links">
-                        <span class="platform-label">education</span><br>
-                        <span class="degree-sup">MA</span> Communication Design @<a href="https://www.iuav.it"
-                            rel="noopener noreferrer" target="_blank"><span class="desktop-only">Iuav University of
+                        <span class="platform-label" data-lang="education">education</span><br>
+                        <span class="degree-sup">MA</span> <span data-lang="communication-design">Communication
+                            Design</span> @<a href="https://www.iuav.it" rel="noopener noreferrer" target="_blank"><span
+                                class="desktop-only" data-lang="iuav">Iuav University of
                                 Venice</span><span class="mobile-only">Iuav</span></a><br>
-                        <span class="degree-sup">BA</span> Industrial Design @<a href="https://www.poliba.it/"
-                            rel="noopener noreferrer" target="_blank">Polytechnic of Bari</a><br>
+                        <span class="degree-sup">BA</span> <span data-lang="industrial-design">Industrial Design</span>
+                        @<a href="https://www.poliba.it/" rel="noopener noreferrer" target="_blank"><span
+                                data-lang="poliba">Polytechnic of
+                                Bari</span></a><br>
                     </p>
 
                     <p class="platform-links">
-                        <span class="platform-label">experience</span><br>
+                        <span class="platform-label" data-lang="experience">experience</span><br>
                         <a href="https://www.b-r-u-n-o.it/" rel="noopener noreferrer" target="_blank">bruno</a><br>
                         <a href="https://www.lascuolaopensource.xyz/" rel="noopener noreferrer" target="_blank">La
                             Scuola Open Source</a><br>
@@ -81,23 +89,23 @@
                     </p>
 
                     <p class="platform-links">
-                        <span class="platform-label">services</span><br>
-                        Art Direction<br>
-                        Book Design<br>
-                        Information Design<br>
-                        Type Design<br>
-                        Visual Identity<br>
-                        Web Design<br>
+                        <span class="platform-label" data-lang="services">services</span><br>
+                        <span data-lang="art-direction">Art Direction</span><br>
+                        <span data-lang="book-design">Book Design</span><br>
+                        <span data-lang="information-design">Information Design</span><br>
+                        <span data-lang="type-design">Type Design</span><br>
+                        <span data-lang="visual-identity">Visual Identity</span><br>
+                        <span data-lang="web-design">Web Design</span><br>
                     </p>
 
                     <p class="location-mail">
-                        <span class="contact-label">contact</span><br>
+                        <span class="contact-label" data-lang="contact">contact</span><br>
                         <a href="mailto:pasquale.desario0@gmail.com">pasquale.desario<span
                                 class="lining-zero">0</span>@gmail.com</a>
                     </p>
 
                     <p class="platform-links">
-                        <span class="platform-label">platforms</span><br>
+                        <span class="platform-label" data-lang="platforms">platforms</span><br>
                         <a href="https://www.instagram.com/pasqualedesario.xyz/" rel="noopener noreferrer"
                             target="_blank">Instagram</a><br>
                         <a href="https://www.linkedin.com/in/pasqualedesario/" rel="noopener noreferrer"
@@ -110,9 +118,9 @@
 
                     <p class="typeset-note">
                         © Pasquale de Sario, 2026<br>
-                        Typeset in Ronzino (<a href="https://www.collletttivo.it/" rel="noopener noreferrer"
-                            target="_blank">Collletttivo</a>, 2024)<br>
-                        This website doesn&rsquo;t use third party cookies 🍪
+                        <span data-lang="typeset-in">Typeset in</span> Ronzino (<a href="https://www.collletttivo.it/"
+                            rel="noopener noreferrer" target="_blank">Collletttivo</a>, 2024)<br>
+                        <span data-lang="cookies">This website doesn&rsquo;t use third party cookies 🍪</span>
                     </p>
                 </div> <!-- /.small-text -->
             </div> <!-- /.info-body -->
@@ -133,33 +141,33 @@
 
     <!-- Progetti con scorrimento verticale -->
     <main id="projects">
-        <section class="project" data-title="Mimmo Castellano: furor graphicus" data-category="Research — Book Design"
-            data-year="@Iuav, 2025"
+        <section class="project" data-project-id="mimmo-castellano" data-title="Mimmo Castellano: furor graphicus"
+            data-category="Research — Book Design" data-year="@Iuav, 2025"
             data-images="Projects/MC_1.jpg|Projects/MC_2.jpg|Projects/MC_3.jpg|Projects/MC_4.jpg|Projects/MC_5.jpg|Projects/MC_6.jpg">
             <div class="project-gallery"></div>
         </section>
 
-        <section class="project" data-title="Singolarità multiple. Esoeditoria in Italia 1920–1980"
-            data-category="Research — Book Design"
+        <section class="project" data-project-id="singolarita-multiple"
+            data-title="Singolarità multiple. Esoeditoria in Italia 1920–1980" data-category="Research — Book Design"
             data-year="@Iuav, 2024, w/ Jolanda Baudino, Chiara Lorenzo, Irene Mazzoleni"
             data-images="Projects/Sm_1.jpg|Projects/Sm_2.jpg">
             <div class="project-gallery"></div>
         </section>
 
-        <section class="project"
+        <section class="project" data-project-id="modernizzare-stanca"
             data-title="&lt;a href=&quot;https://www.instagram.com/p/DEAFcCboJDO&quot;&gt;Modernizzare stanca&lt;/a&gt;"
             data-category="Poster" data-year="@Spazio Alelaie, 2024"
             data-images="Projects/Ms_Alelaie_1.jpg|Projects/Ms_Alelaie_2.jpg|Projects/Ms_Alelaie_3.jpg">
             <div class="project-gallery"></div>
         </section>
 
-        <section class="project"
+        <section class="project" data-project-id="4visions"
             data-title="&lt;span style=&quot;font-variant-numeric: lining-nums;&quot;&gt;4VISIONS.&lt;/span&gt; Esplorazioni sonore"
             data-category="Visual Identity" data-year="@MAT, 2023" data-images="Projects/4V_1.jpg|Projects/4V_2.jpg">
             <div class="project-gallery"></div>
         </section>
 
-        <section class="project"
+        <section class="project" data-project-id="meme-things-first"
             data-title="&lt;a href=&quot;https://meme-things-first.github.io/MTF/&quot;&gt;Meme Things First&lt;/a&gt;"
             data-category="Visual Identity — Research — Curatorship"
             data-year="@Iuav, 2024, w/ Rebecca Bertero & Serena de Mola"
@@ -167,7 +175,7 @@
             <div class="project-gallery"></div>
         </section>
 
-        <section class="project"
+        <section class="project" data-project-id="biennale-parola"
             data-title="&lt;a href=&quot;https://fedrigonitopaward.com/it/project/universita-iuav-di-venezia-biennale-parola/&quot;&gt;Biennale Parola&lt;/a&gt;"
             data-category="Book Design — Information Design"
             data-year="@Iuav, 2024, w/ Giulia Gatta & Tommaso Antonelli"
@@ -175,7 +183,7 @@
             <div class="project-gallery"></div>
         </section>
 
-        <section class="project"
+        <section class="project" data-project-id="la-dimora-del-minotauro"
             data-title="&lt;a href=&quot;https://www.instagram.com/p/DMsBdTpI6SL&quot;&gt;La dimora del Minotauro&lt;/a&gt;"
             data-category="Artwork" data-year="@Apparati Radicali, 2025"
             data-images="Projects/AR_1.jpg|Projects/AR_2.mp4">
@@ -187,36 +195,46 @@
     <div class="footer-marquee">
         <div class="footer-marquee-content">
             <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
-            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">full cv
+                    and portfolio
                     available upon request</a> —&nbsp;</span>
             <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
-            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">full cv
+                    and portfolio
                     available upon request</a> —&nbsp;</span>
             <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
-            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">full cv
+                    and portfolio
                     available upon request</a> —&nbsp;</span>
             <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
-            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">full cv
+                    and portfolio
                     available upon request</a> —&nbsp;</span>
             <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
-            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">full cv
+                    and portfolio
                     available upon request</a> —&nbsp;</span>
         </div>
         <div class="footer-marquee-content" aria-hidden="true">
             <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
-            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">full cv
+                    and portfolio
                     available upon request</a> —&nbsp;</span>
             <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
-            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">full cv
+                    and portfolio
                     available upon request</a> —&nbsp;</span>
             <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
-            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">full cv
+                    and portfolio
                     available upon request</a> —&nbsp;</span>
             <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
-            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">full cv
+                    and portfolio
                     available upon request</a> —&nbsp;</span>
             <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
-            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com">full cv and portfolio
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">full cv
+                    and portfolio
                     available upon request</a> —&nbsp;</span>
         </div>
     </div>
