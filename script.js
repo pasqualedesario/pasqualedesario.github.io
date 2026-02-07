@@ -824,7 +824,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         it: {
             'info': 'Info',
-            'about': 'Designer e ricercatore indipendente di base a Bari. La sua pratica esplora <span class="hover-effect">la tipografia nella sua forma e struttura, l\'information design e l\'editoria</span> e tutte le modalità con le quali queste si interpolano all\'interno e all\'esterno dei <span class="hover-effect">sistemi visivi</span>. La sua ricerca è orientata anche alle <span class="hover-effect">storie del design</span>, agli <span class="hover-effect">strumenti aperti</span> e agli <span class="hover-effect">ecosistemi collettivi di apprendimento</span> al di fuori delle mura istituzionali.',
+            'about': 'Designer e ricercatore indipendente di base a Bari. La sua pratica esplora <span class="hover-effect">la tipografia nella sua forma e struttura, l&rsquo;information design e l&rsquo;editoria</span> e tutte le modalità con le quali queste si interpolano all&rsquo;interno e all&rsquo;esterno dei <span class="hover-effect">sistemi visivi</span>. La sua ricerca è orientata anche alle <span class="hover-effect">storie del design</span>, agli <span class="hover-effect">strumenti aperti</span> e agli <span class="hover-effect">ecosistemi collettivi di apprendimento</span> al di fuori delle mura istituzionali.',
             'education': 'formazione',
             'communication-design': 'Design della comunicazione',
             'industrial-design': 'Disegno industriale',
