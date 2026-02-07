@@ -842,7 +842,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'platforms': 'piattaforme',
             'typeset-in': 'Composto in',
             'cookies': 'Questo sito non utilizza cookie di terze parti 🍪',
-            'footer-cv': 'cv completo e portfolio disponibili su richiesta'
+            'footer-cv': 'cv e portfolio completi disponibili su richiesta'
         }
     };
 
