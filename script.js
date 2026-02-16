@@ -866,7 +866,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 year: '@MAT, 2023'
             },
             'meme-things-first': {
-                category: 'Visual Identity — Research — Curatorship',
+                category: 'Visual Identity — Book Design — Web Design & Development — Research — Curatorship',
                 year: '@Iuav, 2024, w/ Rebecca Bertero & Serena de Mola'
             },
             'biennale-parola': {
@@ -896,7 +896,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 year: '@MAT, 2023'
             },
             'meme-things-first': {
-                category: 'Identità visiva — Ricerca — Curatela',
+                category: 'Identità visiva — Editoria — Web Design & Development — Ricerca — Curatela',
                 year: '@Iuav, 2024, con Rebecca Bertero & Serena de Mola'
             },
             'biennale-parola': {
