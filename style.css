@@ -322,7 +322,7 @@ a {
 
 .home-body .info-link {
     position: absolute;
-    left: 50vw;
+    left: calc(50vw - 2px);
     font-family: 'Ronzino', sans-serif;
     font-weight: 400;
     font-size: 0.75rem;
@@ -410,7 +410,7 @@ a {
 
 .info-body .info-link {
     position: absolute;
-    left: 50vw;
+    left: calc(50vw - 2px);
 }
 
 
@@ -420,11 +420,11 @@ a {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: calc(var(--footer-height) + 1vh) 1vh calc(var(--footer-height) + 1vh) 50vw;
+    padding: calc(var(--footer-height) + 1vh) 1vh calc(var(--footer-height) + 1vh) calc(50vw - 2px);
 }
 
 .info-page-content {
-    max-width: calc(50vw - 1vh);
+    max-width: calc(50vw - 2px - 1vh);
     width: 100%;
     text-align: left;
 }
