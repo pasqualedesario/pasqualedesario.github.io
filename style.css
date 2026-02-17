@@ -661,10 +661,10 @@ div::-webkit-scrollbar {
 
 @media (max-width: 768px) {
     #gallery-container {
-        top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px) + 2vh);
+        top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px) + 2.5vw);
         /* Dynamic bottom: thumbnail + info text height + padding */
         height: auto;
-        bottom: calc(var(--thumbnail-height-mobile) + var(--mobile-info-height) + 2vh);
+        bottom: calc(var(--thumbnail-height-mobile) + var(--mobile-info-height) + 2.5vw - 0.15rem);
     }
 
     .gallery-slide {
@@ -687,7 +687,7 @@ div::-webkit-scrollbar {
         bottom: var(--thumbnail-height-mobile);
         height: auto;
         justify-content: flex-end;
-        padding-bottom: 2.5vw;
+        padding-bottom: calc(2.5vw - 0.1rem);
     }
 
     #project-title-bottom {
