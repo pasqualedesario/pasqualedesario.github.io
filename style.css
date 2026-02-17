@@ -19,6 +19,7 @@
     --footer-height-mobile: 1.5rem;
     --thumbnail-height: 60px;
     --thumbnail-height-mobile: 44px;
+    --mobile-info-height: 0px;
 }
 
 * {
@@ -321,7 +322,7 @@ a {
 
 .home-body .info-link {
     position: absolute;
-    left: 50%;
+    left: 50vw;
     font-family: 'Ronzino', sans-serif;
     font-weight: 400;
     font-size: 0.75rem;
@@ -409,7 +410,7 @@ a {
 
 .info-body .info-link {
     position: absolute;
-    left: 50%;
+    left: 50vw;
 }
 
 
@@ -660,18 +661,21 @@ div::-webkit-scrollbar {
 
 @media (max-width: 768px) {
     #gallery-container {
-        top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px) + 2.5vw);
-        height: calc(100vh - var(--footer-height-mobile) - var(--thumbnail-height-mobile) - env(safe-area-inset-top, 0px) - 2.5vw);
+        top: calc(var(--footer-height-mobile) + env(safe-area-inset-top, 0px) + 2vh);
+        /* Dynamic bottom: thumbnail + info text height + padding */
+        height: auto;
+        bottom: calc(var(--thumbnail-height-mobile) + var(--mobile-info-height) + 2vh);
     }
 
     .gallery-slide {
         align-items: center;
+        padding-top: 0;
     }
 
     .gallery-slide img,
     .gallery-slide video {
         height: auto;
-        max-height: 65vh;
+        max-height: 100%;
         width: auto;
         max-width: 100vw;
         object-fit: contain;

@@ -456,6 +456,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 (slide.category && slide.year ? '<br>' : '') +
                 (slide.year || '');
         }
+        // Update layout metrics after content change (essential for mobile dynamic centering)
+        requestAnimationFrame(updateLayoutMetrics);
     }
 
     function updateActiveThumbnail() {
@@ -614,6 +616,27 @@ document.addEventListener('DOMContentLoaded', () => {
         observeVideos();
         setTimeout(observeVideos, 500);
     }
+
+    // ====================================================================
+    // LAYOUT METRICS (Dynamic Mobile Centering)
+    // ====================================================================
+
+    function updateLayoutMetrics() {
+        if (window.innerWidth > 768) {
+            document.documentElement.style.removeProperty('--mobile-info-height');
+            return;
+        }
+
+        const infoBottom = document.getElementById('project-info-bottom');
+        if (infoBottom) {
+            const height = infoBottom.offsetHeight;
+            document.documentElement.style.setProperty('--mobile-info-height', `${height}px`);
+        }
+    }
+
+    window.addEventListener('resize', updateLayoutMetrics);
+    // Initial call
+    updateLayoutMetrics();
 
     // ====================================================================
     // INITIALIZE GALLERY
