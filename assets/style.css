@@ -54,7 +54,7 @@ body {
     font-family: 'Ronzino';
     src: local('Ronzino Regular'),
         local('Ronzino-Regular'),
-        url('Fonts/Ronzino-Regular.woff2') format('woff2');
+        url('fonts/Ronzino-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -64,7 +64,7 @@ body {
     font-family: 'Ronzino';
     src: local('Ronzino Bold'),
         local('Ronzino-Bold'),
-        url('Fonts/Ronzino-Bold.woff2') format('woff2');
+        url('fonts/Ronzino-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -74,7 +74,7 @@ body {
     font-family: 'Ronzino';
     src: local('Ronzino Oblique'),
         local('Ronzino-Oblique'),
-        url('Fonts/Ronzino-Oblique.woff2') format('woff2');
+        url('fonts/Ronzino-Oblique.woff2') format('woff2');
     font-weight: 400;
     font-style: oblique;
     font-display: swap;
@@ -302,17 +302,27 @@ a {
     }
 }
 
-.home-body .site-title {
+/* Shared Navigation Typography */
+.nav-text,
+.home-body .site-title,
+.home-body .info-link,
+.lang-switcher,
+.info-body .site-title,
+.info-body .info-link,
+.footer-marquee-text {
     font-family: 'Ronzino', sans-serif;
     font-weight: 400;
     font-size: 0.75rem;
     line-height: 1.2rem;
-    color: #000000;
-    text-decoration: none;
-    text-underline-offset: 2px;
     text-transform: uppercase;
     letter-spacing: 0.075em;
     font-variant-numeric: lining-nums tabular-nums;
+    color: #000000;
+}
+
+.home-body .site-title {
+    text-decoration: none;
+    text-underline-offset: 2px;
 }
 
 .home-body .site-title:hover {
@@ -323,16 +333,8 @@ a {
 .home-body .info-link {
     position: absolute;
     left: calc(50vw - 2px);
-    font-family: 'Ronzino', sans-serif;
-    font-weight: 400;
-    font-size: 0.75rem;
-    line-height: 1.2rem;
-    color: #000000;
     text-decoration: none;
     text-underline-offset: 2px;
-    text-transform: uppercase;
-    letter-spacing: 0.075em;
-    font-variant-numeric: lining-nums tabular-nums;
 }
 
 .home-body .info-link:hover {
@@ -344,14 +346,7 @@ a {
 
 .lang-switcher {
     display: inline;
-    font-family: 'Ronzino', sans-serif;
-    font-weight: 400;
-    font-size: 0.75rem;
-    line-height: 1.2rem;
-    color: #000000;
     font-feature-settings: "lnum" 1, "tnum" 1, "case" 1;
-    text-transform: uppercase;
-    letter-spacing: 0.075em;
     margin-left: 0.5em;
 }
 
@@ -390,16 +385,8 @@ a {
 
 .info-body .site-title,
 .info-body .info-link {
-    font-family: 'Ronzino', sans-serif;
-    font-weight: 400;
-    font-size: 0.75rem;
-    line-height: 1.2rem;
-    color: #000000;
     text-decoration: none;
     text-underline-offset: 2px;
-    text-transform: uppercase;
-    letter-spacing: 0.075em;
-    font-variant-numeric: lining-nums tabular-nums;
 }
 
 .info-body .site-title:hover,
@@ -604,16 +591,10 @@ div::-webkit-scrollbar {
 }
 
 .footer-marquee-text {
-    font-family: 'Ronzino', sans-serif;
-    font-weight: 400;
-    font-size: 0.75rem;
-    line-height: 1.2rem;
+    /* Shared styles via selector grouping above */
     user-select: none;
     pointer-events: none;
     font-feature-settings: "lnum" 1, "tnum" 1;
-    text-transform: uppercase;
-    letter-spacing: 0.075em;
-    font-variant-numeric: lining-nums tabular-nums;
 }
 
 .footer-marquee-text .num {
@@ -780,14 +761,11 @@ div::-webkit-scrollbar {
     .info-body .info-link {
         left: auto;
         right: 2.5vw;
-    }
-
-    .info-body .site-title {
         font-size: 0.65rem;
         line-height: 0.9rem;
     }
 
-    .info-body .info-link {
+    .info-body .site-title {
         font-size: 0.65rem;
         line-height: 0.9rem;
     }
