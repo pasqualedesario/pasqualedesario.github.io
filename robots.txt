@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pasqualedesario.github.io/sitemap.xml

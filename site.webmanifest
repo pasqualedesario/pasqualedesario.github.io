@@ -1,0 +1,15 @@
+{
+    "name": "Pasquale de Sario",
+    "short_name": "Pasquale de Sario",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#FFFFFF",
+    "icons": [
+        {
+            "src": "favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ]
+}

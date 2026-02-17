@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pasquale de Sario — 404</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#FFFFFF">
+    <link rel="icon" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="site.webmanifest">
+    <style>
+        body {
+            height: 100dvh;
+            /* Dynamic viewport height for clearer mobile centering */
+            width: 100vw;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: var(--color-white);
+        }
+
+        /* Fixed 404 number */
+        #error-code {
+            position: absolute;
+            font-family: 'Ronzino', sans-serif;
+            font-weight: 700;
+            /* Bold */
+            color: #E5E5E5;
+            /* Light gray */
+            z-index: 0;
+            user-select: none;
+            pointer-events: none;
+            line-height: 1;
+            white-space: nowrap;
+            /* Center perfectly */
+            top: 50%;
+            left: 50%;
+            /* Visual centering correction: text sits on baseline, so -52% pulls it up slightly */
+            transform: translate(-50%, -53%);
+            margin: 0;
+            padding: 0;
+
+            /* Fill viewport width on Desktop */
+            font-size: 38vw;
+
+            /* Lining & Tabular numbers (no oldstyle) */
+            font-variant-numeric: lining-nums tabular-nums;
+            font-feature-settings: "lnum" 1, "tnum" 1, "onum" 0;
+        }
+
+        /* Ensure header/footer sit above 404 */
+        .top-bar,
+        .footer-marquee {
+            z-index: 100;
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 768px) {
+            #error-code {
+                /* Stack vertically upright */
+                writing-mode: vertical-rl;
+                text-orientation: upright;
+                /* Center, slightly pulled up for visual balance */
+                transform: translate(-50%, -56%);
+                /* Adjusted size to fit height */
+                font-size: 28vh;
+                letter-spacing: -0.35em;
+                width: auto;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body class="home-body">
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <a href="index.html" class="site-title">Pasquale de Sario</a>
+        <span class="lang-switcher">
+            (<a href="javascript:void(0)" class="lang-link" data-lang-code="it" id="lang-it"
+                aria-label="Switch to Italian">IT</a>/<a href="javascript:void(0)" class="lang-link" data-lang-code="en"
+                id="lang-en" aria-label="Switch to English">EN</a>)
+        </span>
+        <a href="info.html" class="info-link" data-lang="info">Info</a>
+    </header>
+
+    <div id="error-code">404</div>
+
+    <!-- Footer Marquee -->
+    <footer class="footer-marquee">
+        <div class="footer-marquee-content">
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">cv e
+                    portfolio completi disponibili su richiesta</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">cv e
+                    portfolio completi disponibili su richiesta</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">cv e
+                    portfolio completi disponibili su richiesta</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">cv e
+                    portfolio completi disponibili su richiesta</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">cv e
+                    portfolio completi disponibili su richiesta</a> —&nbsp;</span>
+        </div>
+        <div class="footer-marquee-content" aria-hidden="true">
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">cv e
+                    portfolio completi disponibili su richiesta</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">cv e
+                    portfolio completi disponibili su richiesta</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">cv e
+                    portfolio completi disponibili su richiesta</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">cv e
+                    portfolio completi disponibili su richiesta</a> —&nbsp;</span>
+            <span class="footer-marquee-text"><span class="footer-datetime"></span> —&nbsp;</span>
+            <span class="footer-marquee-text"><a href="mailto:pasquale.desario0@gmail.com" data-lang="footer-cv">cv e
+                    portfolio completi disponibili su richiesta</a> —&nbsp;</span>
+        </div>
+    </footer>
+
+    <!-- Script for Clock and Translations -->
+    <script src="script.js"></script>
+</body>
+
+</html>
