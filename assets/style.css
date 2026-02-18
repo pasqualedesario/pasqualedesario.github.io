@@ -147,19 +147,16 @@ a {
 
 #project-info-bottom {
     position: fixed;
-    /* Desktop: Position in the slot between image and thumbs */
     top: auto;
     bottom: var(--thumbnail-height);
     height: calc(4rem + 1vh);
-    /* 4rem text + 0.5vh gap top + 0.5vh gap bottom (compensated for line-height) */
     left: 0;
     right: 0;
     width: 100%;
 
-    /* Center vertical */
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
 
     z-index: 100;
@@ -167,8 +164,9 @@ a {
     mix-blend-mode: normal;
     pointer-events: none;
     max-width: 100%;
-    text-align: center;
+    text-align: left;
     transform: none;
+    padding: 0 1vh;
 }
 
 #project-info-bottom a {
@@ -185,18 +183,22 @@ a {
 }
 
 #project-title-bottom {
-    font-size: 1.15rem;
-    line-height: 1.5rem;
+    font-size: 0.8rem;
+    line-height: 1.1rem;
     letter-spacing: 0.02em;
+    font-weight: 400;
+    font-style: oblique;
     margin: 0;
-    text-wrap: balance;
+    white-space: nowrap;
+    width: calc(50vw - 2px - 1vh);
+    flex-shrink: 0;
 }
 
 #project-detail-bottom {
     font-size: 0.8rem;
     line-height: 1.1rem;
     padding: 0;
-    text-wrap: pretty;
+    white-space: nowrap;
 }
 
 /* ========================================================================
@@ -642,24 +644,28 @@ div::-webkit-scrollbar {
     }
 
     #project-info-bottom {
-        /* Mobile specific layout */
         top: auto;
         bottom: var(--thumbnail-height-mobile);
         height: auto;
-        justify-content: flex-end;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 2.5vw;
         padding-bottom: calc(2.5vw - 0.1rem);
     }
 
     #project-title-bottom {
-        font-size: 0.95rem;
-        line-height: 1.25rem;
-        text-wrap: balance;
-
+        font-size: 0.65rem;
+        line-height: 0.85rem;
+        font-weight: 400;
+        font-style: oblique;
+        white-space: nowrap;
+        width: calc(50vw - 2px - 2.5vw);
+        flex-shrink: 0;
     }
 
     #project-detail-bottom {
-        font-size: 0.65rem;
-        line-height: 0.85rem;
+        display: none;
     }
 
     #thumbnail-strip {
