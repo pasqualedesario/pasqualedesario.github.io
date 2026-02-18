@@ -15,7 +15,8 @@
         updateIntervals: {
             time: 1000,
             weather: 600000 // 10 minutes
-        }
+        },
+        videoExtensions: ['mp4', 'webm', 'mov', 'ogg']
     };
 
     const state = {
@@ -108,6 +109,10 @@
 
     const formatTime = (unit) => String(unit).padStart(2, '0');
 
+    const cachedTimezone = Intl.DateTimeFormat('en', { timeZoneName: 'short' })
+        .formatToParts(new Date())
+        .find(part => part.type === 'timeZoneName')?.value.toLowerCase() || 'utc';
+
     const stripHtml = (html) => {
         const temp = document.createElement('div');
         temp.innerHTML = html;
@@ -128,9 +133,7 @@
             hours: formatTime(now.getHours()),
             minutes: formatTime(now.getMinutes()),
             seconds: formatTime(now.getSeconds()),
-            timezone: Intl.DateTimeFormat('en', { timeZoneName: 'short' })
-                .formatToParts(now)
-                .find(part => part.type === 'timeZoneName')?.value.toLowerCase() || 'utc'
+            timezone: cachedTimezone
         };
 
         let html = `bari, <span class="num">${dateParts.day}</span> ${dateParts.month} <span class="num">${dateParts.year}</span>, <span class="num">${dateParts.hours}</span>:<span class="num">${dateParts.minutes}</span>:<span class="num">${dateParts.seconds}</span> ${dateParts.timezone}`;
@@ -299,7 +302,7 @@
         slideEl.className = 'gallery-slide';
 
         const ext = src.split('.').pop().toLowerCase();
-        const isVideo = ['mp4', 'webm', 'mov', 'ogg'].includes(ext);
+        const isVideo = CONFIG.videoExtensions.includes(ext);
 
         if (isVideo) {
             const video = document.createElement('video');
@@ -344,24 +347,72 @@
         thumbEl.className = 'thumbnail-item';
         thumbEl.dataset.index = index;
 
-        const isVideo = ['mp4', 'webm', 'mov', 'ogg'].some(ext => src.toLowerCase().endsWith(ext));
-        const media = document.createElement(isVideo ? 'video' : 'img');
-        media.src = src;
-        media.draggable = false;
+        const isVideo = CONFIG.videoExtensions.some(ext => src.toLowerCase().endsWith(ext));
 
         if (isVideo) {
-            media.muted = true;
-            media.preload = 'metadata';
-            media.playsInline = true;
+            // Create a temporary video to capture the first frame as a thumbnail
+            const tempVideo = document.createElement('video');
+            tempVideo.muted = true;
+            tempVideo.playsInline = true;
+            tempVideo.preload = 'auto';
+            tempVideo.src = src;
+
+            // Placeholder img that will receive the captured poster frame
+            const img = document.createElement('img');
+            img.draggable = false;
+            img.alt = '';
+            img.style.opacity = '0';
+            img.addEventListener('contextmenu', e => e.preventDefault());
+            thumbEl.appendChild(img);
+
+            // Fallback: if canvas capture fails, use a simple video element
+            const useFallbackVideo = () => {
+                img.remove();
+                const fallback = document.createElement('video');
+                fallback.src = src;
+                fallback.muted = true;
+                fallback.preload = 'metadata';
+                fallback.playsInline = true;
+                fallback.draggable = false;
+                fallback.style.pointerEvents = 'none';
+                fallback.addEventListener('contextmenu', e => e.preventDefault());
+                thumbEl.appendChild(fallback);
+            };
+
+            tempVideo.addEventListener('loadeddata', () => {
+                tempVideo.currentTime = 0.1;
+            });
+
+            tempVideo.addEventListener('seeked', () => {
+                try {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = tempVideo.videoWidth;
+                    canvas.height = tempVideo.videoHeight;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(tempVideo, 0, 0, canvas.width, canvas.height);
+                    img.src = canvas.toDataURL('image/jpeg', 0.7);
+                    img.style.opacity = '1';
+                    // Release the temp video
+                    tempVideo.src = '';
+                    tempVideo.load();
+                } catch (e) {
+                    useFallbackVideo();
+                }
+            });
+
+            // If the video fails to load at all, use fallback
+            tempVideo.addEventListener('error', useFallbackVideo);
         } else {
-            media.loading = 'lazy';
-            media.decoding = 'async';
+            const img = document.createElement('img');
+            img.src = src;
+            img.draggable = false;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            img.addEventListener('contextmenu', e => e.preventDefault());
+            thumbEl.appendChild(img);
         }
 
-        media.addEventListener('contextmenu', e => e.preventDefault());
-        thumbEl.appendChild(media);
         thumbEl.addEventListener('click', () => goToSlide(index));
-
         container.appendChild(thumbEl);
     }
 
