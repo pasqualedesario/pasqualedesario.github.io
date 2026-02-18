@@ -366,7 +366,7 @@
     }
 
     function goToSlide(index, animate = true) {
-        const { slides, currentSlide, isTransitioning } = state.gallery;
+        const { slides, isTransitioning } = state.gallery;
         if (index < 0 || index >= slides.length || (isTransitioning && animate)) return;
 
         state.gallery.isTransitioning = true;
